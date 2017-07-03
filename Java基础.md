@@ -151,6 +151,27 @@ byte < short < int < long < float <double
 * 输入制表符 \t
 * 输入反斜杠 \
 
+### 基本数据类型
+
+![enter description here][9]
+
+### 数据运算符
+![enter description here][10]
+
+* “%”应用于奇偶判断和012012类似的数据结构，为整数取余符号，小数取余没有什么意义。结果符号与被取余符号相同。
+* 整数做被除数，0不能做除数，否则报错。
+
+``` 
+1.///参与运算的时候，如果是a++,先赋值后运算，如果是++a，先运算，后赋值
+2. ///int b = a++;
+3. ///System.out.println(a + "---------" + b);
+4. int b = ++a;
+5. System.out.println(a + "---------" + b);
+6.
+```
+
+
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499071848807.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499071003627.jpg
@@ -160,3 +181,5 @@ byte < short < int < long < float <double
   [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499071257408.jpg
   [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499071298586.jpg
   [8]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499071331963.jpg
+  [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499072603233.jpg
+  [10]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499072644888.jpg
