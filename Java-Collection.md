@@ -19,3 +19,10 @@ Map集合的底层实现: 数组 + 链表
 Collection类对象在调用 remove,contains等方法时需要比较对象是否相等,这会涉及到对象类型的equals方法和hashCode方法;对于自定义的类型,需要重写equals和hashCode方法以实现自定义的对象规则.
 
 注意: java中规定,两个内容相同的对象应该有相等的hashCode.
+
+
+## Set接口
+- Set 接口是Collection的子接口，Set接口没有提供额外的方法，Set接口的特性是容器类中的元素是没有顺序的，而且不可以重复。
+- Set容器可以与数学中的“集合”的概念相对应。
+- JavaEE API中所提供的Set容器类有HashSet，TreeSet等。
+- 
