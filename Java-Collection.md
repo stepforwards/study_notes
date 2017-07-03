@@ -67,3 +67,39 @@ class 类名<字母列表>{
 	- E 代表Element.
 	- ? 代表不确定的类型 
 	
+	
+- 泛型方法
+	- 定义使用:<字母>
+		
+
+``` stylus
+修饰符<字母> 返回类型 方法名(字母){
+}
+```
+要定义泛型方法,只需要将字母放到返回值的前面
+
+``` stylus
+public static <T> void test(T t){
+		System.out.println(t);
+	}
+	
+	// extends <==
+	public static <T extends Closeable> void test(T... a){
+		for (T temp : a) {
+			try {
+				if(null != temp){
+					
+					temp.close();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+```
+**泛型方法<> 返回类型前面**
+**只能访问对象的信息,不能修改信息**
+
+
+
