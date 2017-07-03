@@ -26,4 +26,5 @@ Collection类对象在调用 remove,contains等方法时需要比较对象是否
 - Set 接口是Collection的子接口，Set接口没有提供额外的方法，Set接口的特性是容器类中的元素是没有顺序的，而且不可以重复。
 - Set容器可以与数学中的“集合”的概念相对应。
 - JavaEE API中所提供的Set容器类有HashSet，TreeSet等。
-- 
+
+## 泛型
