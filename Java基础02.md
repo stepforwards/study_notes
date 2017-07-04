@@ -1,6 +1,4 @@
+# Java基础
+## Scanner
 
-
-Java基础
-Scanner
-
-Random
+## Random
