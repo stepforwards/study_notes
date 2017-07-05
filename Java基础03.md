@@ -128,6 +128,7 @@ private static void method2() {
 			System.out.println(intArr[i]);
 		}
 	//  for each,无法控制循环次数,并且没有索引
+	// 依次从数组中获取内容提供,赋值给element
 	for (int i : intArr) {
 		System.out.println(i);
 	}
