@@ -115,6 +115,10 @@ private static void method2() {
 	- String [] str1 = new String[]{"你","我","她"};
 	- int [] str2 = {1,2,3,4,5,6}
 ```
+### 数组的默认方式
+
+
+
 ### 取数组中的数据 
 	- str[1];  // 取str数组中的1号索引处的值
 ### 遍历数组
@@ -123,10 +127,12 @@ private static void method2() {
 	for (int i = 0; i < intArr.length; i++) {
 			System.out.println(intArr[i]);
 		}
-		
+	//  for each
 	for (int i : intArr) {
 		System.out.println(i);
 	}
 ```
+
+
 
 
