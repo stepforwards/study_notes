@@ -127,7 +127,7 @@ private static void method2() {
 	for (int i = 0; i < intArr.length; i++) {
 			System.out.println(intArr[i]);
 		}
-	//  for each
+	//  for each,无法控制循环次数,并且没有索引
 	for (int i : intArr) {
 		System.out.println(i);
 	}
