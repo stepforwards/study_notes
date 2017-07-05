@@ -1,6 +1,6 @@
 [TOC]
 
-## 作业
+## for循环作业
 
 ### 格式化输入书的章节
 
@@ -168,5 +168,6 @@ private static void method2() {
 ```
 
 - 二维数组遍历
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499238453222.jpg
