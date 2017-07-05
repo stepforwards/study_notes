@@ -133,6 +133,13 @@ private static void method2() {
 		System.out.println(i);
 	}
 ```
+### 一维数组内存原理
+
+> 1.ArrayDemo.class先进入JVM的方法区
+> 2. 代码执行main方法,main方法复制压栈开始执行
+> 3. 遇到创建数组的代码,在堆中创建一块内存空间,开辟4个空间,给每个变量有一个默认值0
+> 4. 将数组的首地址给栈中的arr变量,所以arr变量就有了对堆得引用
+> 5.代码
 
 
 
