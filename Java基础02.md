@@ -19,7 +19,11 @@
 ## switch-case
 
 ## Scanner
-
+- 属于引用类型,创建的时候需要固定格式**数据类型 变量 = new 数据类型();**
+- 需要导入所在的包,导包格式: import java.util.Scanner;
+- 创建对象 Scanner  sc = new Scanner(System.in);
+- 获取输入的整数 int a = sc.nextInt();
+- 获取输入的字符串 String str = sc.nextLine();
 ## Random
 
 ## while循环与do-while循环
