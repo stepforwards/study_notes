@@ -116,4 +116,7 @@ private static void method2() {
 	- int [] str2 = {1,2,3,4,5,6}
 ```
 
+- 取数组中的数据 
+	- str[1];  // 取str数组中的1号索引处的值
+
 
