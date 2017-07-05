@@ -118,5 +118,17 @@ private static void method2() {
 
 - 取数组中的数据 
 	- str[1];  // 取str数组中的1号索引处的值
+- 遍历数组
+
+``` stylus
+	// for循环遍历数组
+	for (int i = 0; i < intArr.length; i++) {
+			System.out.println(intArr[i]);
+		}
+		
+	for (int i : intArr) {
+		System.out.println(i);
+	}
+```
 
 
