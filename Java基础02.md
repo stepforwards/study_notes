@@ -24,6 +24,7 @@
 - 创建对象 Scanner  sc = new Scanner(System.in);
 - 获取输入的整数 int a = sc.nextInt();
 - 获取输入的字符串 String str = sc.nextLine();
+- 注意next不读空格,nextLine读取空格
 ## Random
 
 ## while循环与do-while循环
