@@ -108,18 +108,16 @@ private static void method2() {
 
 ## 数组
 
-- 数组的三种定义方式
+###  数组的三种定义方式
 
 ``` stylus
 	- String [] str = new String[4];
 	- String [] str1 = new String[]{"你","我","她"};
 	- int [] str2 = {1,2,3,4,5,6}
 ```
-
-- 取数组中的数据 
+### 取数组中的数据 
 	- str[1];  // 取str数组中的1号索引处的值
-- 遍历数组
-
+### 遍历数组
 ``` stylus
 	// for循环遍历数组
 	for (int i = 0; i < intArr.length; i++) {
