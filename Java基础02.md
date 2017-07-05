@@ -26,11 +26,15 @@
 - 获取输入的字符串 String str = sc.nextLine();
 - 注意next不读空格,nextLine读取空格
 ## Random
-
+- 需要导入所在的包,导包个税: import java.util.Random;
+- 创建对象 Random random = new Random();
+- 获取随机整数范围是[0,50); int a = random.nextInt(50);
+- 获取随机小数范围是[0,1): double b = random.nextDouble();
+- 如何获取一个[a,b]的随机数 int a = randrom.nextInt(b - a + 1) + a;
 ## while循环与do-while循环
 
 ## break
-
+跳出当前循环
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499165918356.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499165988986.jpg
