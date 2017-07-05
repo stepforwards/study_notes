@@ -113,6 +113,7 @@ private static void method2() {
 ``` stylus
 	- String [] str = new String[4];
 	- String [] str1 = new String[]{"你","我","她"};
+	- int [] str2 = {1,2,3,4,5,6}
 ```
 
 
