@@ -135,6 +135,8 @@ private static void method2() {
 ```
 ### 一维数组内存原理
 
+![数组内存分析图][1]
+
 > 1.ArrayDemo.class先进入JVM的方法区
 > 2. 代码执行main方法,main方法复制压栈开始执行
 > 3. 遇到创建数组的代码,在堆中创建一块内存空间,开辟4个空间,给每个变量有一个默认值0
@@ -142,6 +144,29 @@ private static void method2() {
 > 5.代码执行到输出语句,就会输出arr所引用的堆中的内存地址
 >**注意:** 对引用类型,只要 new一次,就代表在堆中开辟了一块内存空间.
 
+### 二维数组
+- 定义初始化
 
+``` stylus
+		// 第一种
+		int [][] arr = new int[2][3];
+		arr[0][0] = 1;
+		arr[0][1] = 2;
+		arr[0][2] = 3;
+		
+		// 第二种
+		// 大数组中又三个数组,小数组的中元素不确定
+		int [][] arr2 = new int[3][];
+		arr2[0] = new int[]{1,2,3};
+		// 不能这样写
+		//arr2[0] = {1,2,3};
+		arr2[1] = new int[]{4,5};
+		arr2[2] = new int[]{6};
+		
+		//第三种
+		int [][] arr3 = {{1,2,3},{4,5},{6}};
+```
 
+- 二维数组遍历
 
+  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499238453222.jpg
