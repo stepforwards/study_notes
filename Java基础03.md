@@ -215,7 +215,6 @@ arr[2] = new int [] {6};
 1. 找出数组的最大值
 
 ``` stylus
-
 		int [] arr = {1,2,567,786,43,65,34};
 		int MAX = arr[0];
 		for (int i = 1; i < arr.length; i++) {
@@ -224,11 +223,8 @@ arr[2] = new int [] {6};
 			}
 		}
 		System.out.println(MAX);
-	
 ```
-
 2.一维数组累加求和
-
 ``` stylus
 		int [] arr = {1,2,567,786,43,65,34};
 		int sum = 0;
@@ -236,16 +232,11 @@ arr[2] = new int [] {6};
 			sum += arr[i];
 		}
 		System.out.println(sum);
-	
 ```
-
-
 3.数组倒序交换位置
 
 ``` stylus
-
 	int [] arr = {1,2,567,786,43,65,34};
-
 	for(int beginIndex = 0, endIndex = arr.length - 1;beginIndex < endIndex;beginIndex++,endIndex--)
 	{
 		arr[beginIndex] = arr[beginIndex] ^ arr[endIndex];
@@ -255,13 +246,41 @@ arr[2] = new int [] {6};
 	for (int i : arr) {
 		System.out.print(i + "\t");
 	}
+```
+4.数组的元素排序
+- 4.1 选择排序
+``` stylus
 
+		int [] arr = {1,2,567,786,43,65,34};
+		for (int i = 0; i < arr.length - 1; i++) {
+			for (int j = i + 1; j < arr.length; j++) {
+				if(arr[i] > arr[j]){
+					arr[i] = arr[i] + arr[j] - (arr[j] = arr[i]);
+				}
+			}
+		}
+		for (int i : arr) {
+			System.out.print(i + "\t");
+		}
 ```
 
+- 4.2 冒泡排序
 
-4.数组的元素排序
-	- 4.1 选择排序
-	- 4.2 冒泡排序
+
+``` stylus
+		int [] arr = {1,2,567,786,43,65,34};
+		for (int i = 0; i < arr.length -1; i++) {
+			for (int j = 0; j < arr.length - i -1; j++) {
+				if(arr[j] > arr[j + 1]){
+					arr[j] = arr[j] + arr[j + 1] - (arr[j + 1] = arr[j]);
+				}
+			}
+		}
+		for (int i : arr) {
+			System.out.print(i + "\t");
+		}
+```
+
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499238453222.jpg
