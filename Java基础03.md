@@ -213,8 +213,52 @@ arr[2] = new int [] {6};
 
 ## 作业：
 1. 找出数组的最大值
+
+``` stylus
+
+		int [] arr = {1,2,567,786,43,65,34};
+		int MAX = arr[0];
+		for (int i = 1; i < arr.length; i++) {
+			if(MAX < arr[i]){
+				MAX = arr[i];
+			}
+		}
+		System.out.println(MAX);
+	
+```
+
 2.一维数组累加求和
+
+``` stylus
+		int [] arr = {1,2,567,786,43,65,34};
+		int sum = 0;
+		for (int i = 0; i < arr.length; i++) {
+			sum += arr[i];
+		}
+		System.out.println(sum);
+	
+```
+
+
 3.数组倒序交换位置
+
+``` stylus
+
+	int [] arr = {1,2,567,786,43,65,34};
+
+	for(int beginIndex = 0, endIndex = arr.length - 1;beginIndex < endIndex;beginIndex++,endIndex--)
+	{
+		arr[beginIndex] = arr[beginIndex] ^ arr[endIndex];
+		arr[endIndex] = arr[beginIndex] ^ arr[endIndex];
+		arr[beginIndex] = arr[beginIndex] ^ arr[endIndex];
+	}
+	for (int i : arr) {
+		System.out.print(i + "\t");
+	}
+
+```
+
+
 4.数组的元素倒序
 5.数组的元素排序
 	- 5.1 选择排序
