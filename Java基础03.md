@@ -158,7 +158,7 @@ private static void method2() {
 		// 第一种
 		int [][] arr = new int[2][3];
 		arr[0][0] = 1;
-		arr[0][1] = 2;
+		arr[0][2] = 2;
 		arr[0][2] = 3;
 		
 		// 第二种
@@ -209,4 +209,9 @@ arr[2] = new int [] {6};
  4.在堆中创建一个数组，数组的长度为2，数组中有两个对之前数组的引用
  5.让arr引用二维数组的地址
 
+![ 二维数组内存分析图][3]
+
+
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499238453222.jpg
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499238453222.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499302758743.jpg
