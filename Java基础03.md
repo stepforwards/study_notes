@@ -211,6 +211,14 @@ arr[2] = new int [] {6};
 
 ![ 二维数组内存分析图][3]
 
+## 作业：
+1. 找出数组的最大值
+2.一维数组累加求和
+3.数组的元素倒序
+4.数组的元素排序
+	- 4.1 选择排序
+	- 4.2 冒泡排序
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499238453222.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499238453222.jpg
