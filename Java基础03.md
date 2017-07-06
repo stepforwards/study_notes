@@ -259,10 +259,9 @@ arr[2] = new int [] {6};
 ```
 
 
-4.数组的元素倒序
-5.数组的元素排序
-	- 5.1 选择排序
-	- 5.2 冒泡排序
+4.数组的元素排序
+	- 4.1 选择排序
+	- 4.2 冒泡排序
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1499238453222.jpg
