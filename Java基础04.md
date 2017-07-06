@@ -47,4 +47,44 @@ grammar_cjkRuby: true
 	}
 ```
 
+## 方法的内存分析
+
+``` stylus
+public class PassParameter {
+
+	// 方法中不能修改基本数据类型参数的值,但是引用类型
+	public static void main(String[] args) {
+		int a = 100;
+		testMethod(a);
+		System.out.println(a);
+	}
+	
+	public static void testMethod(int a){
+		a = 101;
+	}
+}
+```
+- 在main中定义的变量a的值是100
+- 调用testMethod(a);此时在内存中testMethod压栈执行,并且将a的值赋值给参数
+- 在testMethod中修改a的值.,此时的参数仅仅和main中定义的变量a的值相同,所以修改参数的值,并不影响a的值.
+
+
+``` stylus
+public static void main(String[] args) {
+		int [] a = {1,2,3};
+		testMethod(a);
+		System.out.println(a[0]);
+	}
+	
+	public static void testMethod(int [] arr){
+		arr[0] = 101;
+	}
+```
+
+- 在main中定义引用类型a,初始化值1,2,3
+- 调用testMethod(a),将数组a的地址赋值给形参数组arr,此时形参arr和实参a指向同一个地址,testMethod压栈执行,修改arr[0] = 101的值,然后testMethod方法结束,testMethod出栈.
+- main方法中的数组a的值已经被testMethod修改,所以数组a中的值被改变.a[0] = 101
+- 如果让arr开辟一块新的空间,则不影响main方法中数组的值
+
+
 
