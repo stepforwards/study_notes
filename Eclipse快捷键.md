@@ -3,7 +3,7 @@ title: Eclipse快捷键
 tags: Eclipse,快捷键
 grammar_cjkRuby: true
 ---
-
+[TOC]
 ### 1.几个最重要的快捷键
 
 代码助手:Ctrl+Space（简体中文操作系统是Alt+/）
@@ -146,7 +146,7 @@ F8：Resume（debug）
 F11：debug上一个应用（debug）
 F12：激活编辑器
 
-### 最长用的快捷键
+### 最常用的快捷键
 - ctrl+shift+r：打开资源
 
 这可能是所有快捷键组合中最省时间的了。这组快捷键可以让你打开你的工作区中任何一个文件，而你只需要按下文件名或mask名中的前几个字母，比如applic*.xml。美中不足的是这组快捷键并非在所有视图下都能用。
