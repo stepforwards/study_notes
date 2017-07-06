@@ -130,5 +130,5 @@ public class 类名{
 - 局部变量默认初始化,成员变量不初始化不能使用
 ## set方法和get方法
 ### private 关键字
-- private关键字
+- private是修饰符,使用private修饰符
 
