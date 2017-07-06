@@ -117,6 +117,13 @@ private static void method2() {
 ```
 ### 数组的默认方式
 
+|  类型   |  初始化的值   |
+| --- | --- |
+|  byte ，short ，int， long  |  0   |
+|  float，double   |   0.0  |
+|   char  |  空格   |
+|  boolean   |  false   |
+|   引用类型  |   null  |
 
 
 ### 取数组中的数据 
