@@ -1,5 +1,5 @@
 # Java基础
-
+[TOC]
 ## if-else,if-else if-else
 - if控制语句
 - 当括号的内容是true的时候,执行{}中的内容
@@ -11,13 +11,14 @@
 ![enter description here][2]
 
 - if--else if--else 控制语句
+
 ![enter description here][3]
 
 - 多条件判断
 
 ![enter description here][4]
 ## switch-case
-
+- switch后面的表达式只能是整数字符型(byte,short,int,char),枚举类型,其中jdk7之后支持字符串.
 ## Scanner
 - 属于引用类型,创建的时候需要固定格式**数据类型 变量 = new 数据类型();**
 - 需要导入所在的包,导包格式: import java.util.Scanner;
