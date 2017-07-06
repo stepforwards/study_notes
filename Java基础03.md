@@ -1,3 +1,8 @@
+---
+title: Java基础03
+tags: 方法 
+grammar_cjkRuby: true
+---
 [TOC]
 
 ## for循环作业
