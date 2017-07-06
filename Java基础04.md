@@ -49,6 +49,7 @@ grammar_cjkRuby: true
 ## 方法重载的目的
 方法的重载,解决仅仅参数不同的时候,我们不用再去创建很多名称不一致的方法,方便我们使用方法.
 ## 方法的内存分析
+
 ``` stylus
 public class PassParameter {
 
