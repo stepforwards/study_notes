@@ -4,7 +4,7 @@ tags: Eclipse,快捷键
 grammar_cjkRuby: true
 ---
 
-### 几个最重要的快捷键
+### 1.几个最重要的快捷键
 
 代码助手:Ctrl+Space（简体中文操作系统是Alt+/）
 快速修正：Ctrl+1
@@ -27,7 +27,7 @@ grammar_cjkRuby: true
 
 组织导入：Ctrl+Shift+O
 
-2 定位 
+### 2.定位 
 2.1行内定位 
 行末/行首：End/Home
 前一个/后一个单词：Ctrl+Right/Left
@@ -52,7 +52,7 @@ grammar_cjkRuby: true
 
  
 
-3 选中 
+### 3 选中 
 3.1行内选中 
 选中到行末/行首：Shift+End/Home
 选中上一个/下一个单词：Ctrl+Shift+Left/Right
@@ -63,7 +63,7 @@ grammar_cjkRuby: true
 
  
 
-4 定位/选中/操作同时 
+### 4 定位/选中/操作同时 
 删除行：Ctrl+D
 删除下一个/上一个单词：Ctrl+Delete/Backspace
 删除到行末：Ctrl+Shift+Delete
@@ -74,7 +74,7 @@ grammar_cjkRuby: true
 
  
 
-5其它的代码编辑类快捷键 
+### 5其它的代码编辑类快捷键 
 保存：Ctrl+S
 保存所有：Ctrl+Shift+S
 下一个命中的项（搜索之后）：Ctrl+.
@@ -85,7 +85,7 @@ grammar_cjkRuby: true
 
  
 
-6 重构 
+### 6 重构 
 显示重构菜单：Alt+Shift+T
 重构-改变方法签名：Alt+Shift+C
 重构-移动：Alt+Shift+V
@@ -93,7 +93,7 @@ grammar_cjkRuby: true
 
  
 
-7 编辑器、视图、透视图切换 
+### 7 编辑器、视图、透视图切换 
 下一个编辑器：Ctrl+F6
 下一个视图：Ctrl+F7
 下一个透视图：Ctrl+F8
@@ -102,7 +102,7 @@ grammar_cjkRuby: true
 
  
 
-8 Debug 
+### 8 Debug 
 F5：Step Into（debug）
 F6：Step over（debug）
 F7：Step return（debug）
@@ -111,7 +111,7 @@ F11：debug上一个应用（debug）
 
  
 
-9 Up/Down/Right/Left类快捷键 
+### 9 Up/Down/Right/Left类快捷键 
 Ctrl
 前一个/后一个单词：Ctrl+Right/Left
 上下滚屏：Ctrl+Up/Down
@@ -134,7 +134,7 @@ Ctrl+Alt
 
  
 
-10 F类快捷键 
+### 10 F类快捷键 
 F2：显示提示/重命名
 F3：打开选中元素的声明
 F4：打开选中元素的类型继承结构
@@ -146,6 +146,7 @@ F8：Resume（debug）
 F11：debug上一个应用（debug）
 F12：激活编辑器
 
+##最长用的快捷键
 - ctrl+shift+r：打开资源
 
 这可能是所有快捷键组合中最省时间的了。这组快捷键可以让你打开你的工作区中任何一个文件，而你只需要按下文件名或mask名中的前几个字母，比如applic*.xml。美中不足的是这组快捷键并非在所有视图下都能用。
