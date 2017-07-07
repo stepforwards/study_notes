@@ -70,11 +70,11 @@ private static void method1() {
 	int shortNum = 65;
 	int bigNum = 97;
 	for (int i = 0; i < 26; i++) {
-		char shortLetter = (char) shortNum;
-		char bigLetter = (char) bigNum;
-		System.out.println(shortLetter + "------" + bigLetter);
-		shortNum++;
-		bigNum++;
+	char shortLetter = (char) shortNum;
+	char bigLetter = (char) bigNum;
+	System.out.println(shortLetter + "------" + bigLetter);
+	shortNum++;
+	bigNum++;
 	}
 }
 ```
