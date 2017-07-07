@@ -21,7 +21,7 @@ for (int i = 1; i < 6; i++) {
 				System.out.println("第" + i + "章,第" + j + "节");
 
 			}
-		}
+	}
 ```
 
 ### 打印乘法表
