@@ -11,28 +11,28 @@ grammar_cjkRuby: true
 
 ``` stylus
 for (int i = 1; i < 6; i++) {
-			if (i == 5) {
-				break;
-			}
-			for (int j = 1; j < 5 + i; j++) {
-				if (j == 3) {
-					continue;
-				}
-				System.out.println("第" + i + "章,第" + j + "节");
-
-			}
+	if (i == 5) {
+		break;
 	}
+	for (int j = 1; j < 5 + i; j++) {
+		if (j == 3) {
+			continue;
+		}
+		System.out.println("第" + i + "章,第" + j + "节");
+
+	}
+}
 ```
 
 ### 打印乘法表
 
 ``` stylus
 for (int i = 1; i < 10; i++) {
-			for (int j = 1; j < i+1; j++) {
-				System.out.print(j + "*" + i + "=" + i*j + "\t");
-			}
-			System.out.println();
-		}
+	for (int j = 1; j < i+1; j++) {
+		System.out.print(j + "*" + i + "=" + i*j + "\t");
+	}
+	System.out.println();
+}
 ```
 
 
