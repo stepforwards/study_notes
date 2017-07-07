@@ -132,15 +132,15 @@ private static void method1() {
 	- str[1];  // 取str数组中的1号索引处的值
 ### 遍历数组
 ``` stylus
-	// for循环遍历数组
-	for (int i = 0; i < intArr.length; i++) {
-			System.out.println(intArr[i]);
-		}
-	//  for each,无法控制循环次数,并且没有索引
-	// 依次从数组中获取内容提供,赋值给element
-	for (int i : intArr) {
-		System.out.println(i);
+// for循环遍历数组
+for (int i = 0; i < intArr.length; i++) {
+	System.out.println(intArr[i]);
 	}
+//  for each,无法控制循环次数,并且没有索引
+// 依次从数组中获取内容提供,赋值给element
+for (int i : intArr) {
+System.out.println(i);
+}
 ```
 ### JVM构造
 > 1.程序计数器: 记录CPU该去执行内存中的那条指令
