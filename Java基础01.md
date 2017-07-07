@@ -1,3 +1,5 @@
+
+[TOC]
 ## Java简介
 ### 概述
 - Java是一种面向对象的程序设计语言,有Sun公司的James Gosling等人于1990年开发.它最初被命名为Oak,作为一种小家用电器的编程语言,来解决电视机、电话、闹钟、烤面包机等家用电器。由于这些智能化家电的市场没有预期的高，Sun放弃了该项计划。就在Oak几近夭折时，随着Internet的发展，Sun看到了Oak在计算机网络上的广阔应用前景，于是改造了Oak，在1995年5月以“Java“的名称正式发布了。Java伴随着Internet的迅猛发展而发展，逐渐成为重要的Internet编程语言，2009年4月20日这个曾经高达2000亿美元的Sun公司以74亿美元的价格被Oracle收购。
@@ -40,14 +42,6 @@
 * JRE（Java Runtime Kit）,java 的运行环境，虚拟机就在JRE中，JRE又包含在JDK中
 * JVM（Java Virtual Machine）java虚拟机，运行java的工具，jvm又包含早jre中
 *  jdk的下载地址 www.oracle.com/cn/index.html
-
-
-
-
-
-
-
-
 
 ## Java环境搭建
 安装JDK 选择安装目录 安装过程中会出现两次 安装提示 。第一次是安装 jdk ，第二次是安装 jre 。建议两个都安装在同一个java文件夹中的不同文件夹中。（不能都安装在java文件夹的根目录下，jdk和jre安装在同一文件夹会出错）
@@ -118,7 +112,6 @@ public class HelloWorld {
 
 ### 标识符
 * 由字母（a-zA-Z），数字（0-9），$和_组成
-* 不能以数字开头
 * 不能以数字开头
 * 不能是系统的关键字
 * 严格区分大小写，不限制长度，见名知意
