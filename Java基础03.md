@@ -46,7 +46,6 @@ for (int i = 1; i < 10; i++) {
 			bai = i / 100;
 			shi = i / 10 %10;
 			ge = i % 10;
-			
 			if(bai*bai*bai + shi*shi*shi + ge*ge*ge == i){
 				System.out.println(i + " 是水仙花数");
 			}
@@ -59,56 +58,54 @@ for (int i = 1; i < 10; i++) {
 
 ``` stylus
 private static void method2() {
-		char litterLetter = 'a';
-		char bigLetter = 'A';
-		for (int i = 0; i < 26; i++) {
-			System.out.println(litterLetter + "---" + bigLetter);
-			litterLetter++;
-			bigLetter++;
-		}
+	char litterLetter = 'a';
+	char bigLetter = 'A';
+	for (int i = 0; i < 26; i++) {
+		System.out.println(litterLetter + "---" + bigLetter);
+		litterLetter++;
+		bigLetter++;
 	}
-	
-	private static void method1() {
-		int shortNum = 65;
-		int bigNum = 97;
-		for (int i = 0; i < 26; i++) {
-			char shortLetter = (char) shortNum;
-			char bigLetter = (char) bigNum;
-			System.out.println(shortLetter + "------" + bigLetter);
-			shortNum++;
-			bigNum++;
-			
-		}
+}
+private static void method1() {
+	int shortNum = 65;
+	int bigNum = 97;
+	for (int i = 0; i < 26; i++) {
+		char shortLetter = (char) shortNum;
+		char bigLetter = (char) bigNum;
+		System.out.println(shortLetter + "------" + bigLetter);
+		shortNum++;
+		bigNum++;
 	}
+}
 ```
 
 
 ### 求1-100的和
 
 ``` stylus
-		int sum = 0;
-		for (int i = 0; i <= 100; i++) {
-			sum +=i;
-		}
-		System.out.println(sum);
+	int sum = 0;
+	for (int i = 0; i <= 100; i++) {
+		sum +=i;
+	}
+	System.out.println(sum);
 ```
 
 ### 猜数字游戏
 
 ``` stylus
-		Random random = new Random();
-		int number = random	.nextInt(100) + 1;
-		
-		System.out.println("请输入1-100之间的数");
-		while(true){
-			Scanner scanner = new Scanner(System.in);
-			int nextInt = scanner.nextInt();
-			if(nextInt==number){
-				System.out.println("你真棒");
-				break;
-			}
-			System.out.println(nextInt > number ?  "猜大了":"猜小了");
+	Random random = new Random();
+	int number = random	.nextInt(100) + 1;
+
+	System.out.println("请输入1-100之间的数");
+	while(true){
+		Scanner scanner = new Scanner(System.in);
+		int nextInt = scanner.nextInt();
+		if(nextInt==number){
+			System.out.println("你真棒");
+			break;
 		}
+		System.out.println(nextInt > number ?  "猜大了":"猜小了");
+	}
 ```
 
 ## 数组
