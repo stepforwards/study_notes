@@ -41,7 +41,19 @@ public interface 接口名{
 	抽象方法3;
 }
 ```
+- 因为接口是供别的类去实现的,并且要实现他的抽象方法,所以接口中方法的修饰符必须定义成public
+- 接口中不能定义普通的成员变量,只能定义成**public  static  final 成员变量**
 
+>注意如果定义方法的时候,不写public  abstract,不会报错,但是系统会默认添加;定义成员变量的时候使用** public static final **,如果不这样写,不会报错,但是系统会默认添加.
+## 接口的实现
+- 一个实现类接口的格式为:
+
+``` stylus
+class 类名 implements 接口1,接口2{
+	重写接口中方法
+}
+```
+- 一个类可以同时实现多个接口,但是需要将抽象方法进行实现,创建接口的时候修饰符可以省略,系统会自动加上,但是实现的时候,就必须添加public
 
 ## 接口的特点
 - 接口不能创建对象
@@ -50,6 +62,21 @@ public interface 接口名{
 
 ## 接口可以多继承
 因为接口中的方法都是没有实现的,所以就算有两个父类接口的方法名称相同,子类实现接口的时候也不会有什么影响,重写即可,所以接口与接口之间是存在多继承的.
+
+``` stylus
+interface MyInterface{
+	void method1();
+}
+interface MyInterface2{
+	void method2();
+}
+interface MyInterface3{
+	void method3();
+}
+interface MyInterface4 extends MyInterface1,MyInterface2,MyInterface3{
+	void method4();
+}
+```
 
 ## 接口的意义
 - 扩展原有类的功能
@@ -66,9 +93,66 @@ public interface 接口名{
 	- 抽象类可以定义非抽象方法,避免子类重复实现这些方法,提高代码的复用率,接口只能包含抽象方法
 
 
-## 多态
+## 多态(为什么使用多态,多态是解决哪一类问题的)
 - 多态的表现形式为父类的变量指向子类的对象
 - 多态的前提是必须有子类关系或者类实现接口关系,否则无法完成多态
 - 父类类型的变量调用方法的时候,实际上会调用子类重写的方法.
+## 定义格式
+- 普通类多态定义的格式:**父类 变量名 = new 子类();**
+
+``` stylus
+class Father{ }
+class Child extends Father{ }
+//类的多态使用
+Father f = new Child();
+```
+
+- 抽象类多态定义的格式:**抽象类 变量名 = new 抽象类子类();**
+
+``` stylus
+abstract class Father{
+	public abstrct void method();
+}
+class Child extends Father{
+	public void method(){
+		System.out.println("重写父类抽象方法");
+	}
+}
+```
+- 接口多态定义的格式:**接口 变量名 = new 接口实现类();**
+
+``` stylus
+interface Facher {
+	public abstract void method();
+}
+class Child implements Father {
+	public void method(){
+		System.out.println("重写接口抽象方法");
+	}
+}
+
+// 接口的多态使用
+Father f = new Child();
+```
+>注意:同一个父类的方法会被不同的子类重写.在调用方法时,调用的是各个子类重写后的方法.
+
+## 多态的特点
+- 对于成员方法: 编译的时候看=左边,运行的时候看=右边
+- 对于成员变量:编译的时候看=左边,运行的时候看=左边
+
+## 多态的转型
+- 如果是多态的话,程序在进行编译的时候只会看变量的类型,而实际运行的时候则是看具体的对象,那么如果想要调用父类中没有,但是子类中有的方法**该怎么办?**
+- 可以使用强制类型转换,也叫做多态的向下转型,将父类类型再转换为子类类型 **子类类型 变量 = (子类类型) 变量名称**
+- 注意:如果强制类型转换的话,必须要保证变量的原始类型就是需要转换的类型,否则会抛出异常**子类变量 变量名 = (转换类型) 变量名称**
+
+## instanceof关键字
+如果直接进行强制类型转换的时候可能出现问题,所以可以使用instanceof进行判断,如:**对象 instanceof 类名**
+
+``` stylus
+if(a instanceof Child){
+	Child c = (Child)a;
+}
+```
+
 
 ## 构造方法
