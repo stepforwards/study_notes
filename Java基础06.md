@@ -8,6 +8,7 @@ grammar_cjkRuby: true
 这个类为抽象的类.
 ### 抽象类的格式
 - 抽象方法和抽象类需要使用特定的修饰符进行修饰,这个修饰符就是 abstract ­ 抽象类的格式为 **public abstract class 类名 { }**
+- 抽象方法的格式为 **public abstract 返回值类型 方法名(参数);**
 
 ### 抽象类特点
 1. 抽象类和抽象方法都需要被abstract修饰,抽象方法一定要定义在抽象类中.
