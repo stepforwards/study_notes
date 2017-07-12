@@ -30,14 +30,23 @@ grammar_cjkRuby: true
 - 内容结构
 
 ``` stylus
+<!---dtd声明,html5的声明-->
 <!DOCTYPE html>
-<html>
+<html lang="en">
+	<!--头标签,一般用于引用脚本,样式导入,设置编码,字符编码-->
 	<head>
+	<!-- 设置编码格式-->
 		<meta charset="UTF-8">
+		<!--设置网页标题-->
 		<title>HelloWorld</title>
 	</head>
+	
 	<body>
 		中华人民共和国万岁
 	</body>
 </html>
 ```
+- 注释格式`<!--注释内容-->`
+
+## HTML中的常用标签
+
