@@ -3,7 +3,7 @@ title: HTML基础
 tags: HTML,CSS
 grammar_cjkRuby: true
 ---
-
+[TOC]
 ## HTML
 > HTML是超文本标记语言,我们可以这样认为,HMTL就是普通的文本文件,只不过在文本中的内容如果被一些特殊的标签进行包裹就有了特殊的含义,这些被那些标记文本,就成了超文本
 > 我们平时在浏览器中浏览的网页就是使用HTML语言进行编写的
@@ -50,7 +50,7 @@ grammar_cjkRuby: true
 
 ## HTML中的常用标签
 
-1. h系列标签
+### h系列标签
 >定义标题1-6,由大到小,独占一行
 
 -  格式
@@ -66,7 +66,7 @@ grammar_cjkRuby: true
 	<h7>标题只到6,如果写成7就和普通文字效果相同</h7>
 ```
 
-2. p标签
+### p标签
 
 > 段落标签,会独占一行
 
@@ -75,7 +75,7 @@ grammar_cjkRuby: true
 ``` stylus
 <p>我是p标签,我独占一行</p>
 ```
-3. hr标签
+### hr标签
 
 > 分割线标签,会在页面上显示一条分割线
 > size属性:水平线的高度
@@ -85,12 +85,13 @@ grammar_cjkRuby: true
 ``` stylus
 <hr size="10px">
 ```
-4. span标签
+
+###  span标签
 
 ``` stylus
 <span>span标签</span>
 ```
-5. font标签
+### font标签
 
 > 设置文本的大小颜色等信息,不独占一行
 > size属性:可以是#xxxxxx表示3原色,也可以是red,blue,green等
@@ -103,7 +104,7 @@ grammar_cjkRuby: true
 <font color="#3284c7">我是font标签1</font>
 <font size="100px" color="red">我是font标签2</font>
 ```
-6. b标签
+###  b标签
 
 > 出题标签,不会独占一行
 
@@ -112,7 +113,7 @@ grammar_cjkRuby: true
 ``` stylus
 <b>粗体</b>
 ```
-7. br标签
+###  br标签
 > 换行标签
 
 - 格式
@@ -123,7 +124,7 @@ grammar_cjkRuby: true
 <i>斜体</i>
 ```
 
-8. i标签
+###  i标签
 
 > 斜体标签,不会独占一行
 
@@ -132,7 +133,7 @@ grammar_cjkRuby: true
 ``` stylus
 <i>斜体标签</i>
 ```
-9. img标签
+###  img标签
 
 > 显示图片的标签,不会独占一行
 > src属性:路径,注意路径问题
@@ -148,7 +149,7 @@ grammar_cjkRuby: true
 <img alt="小清新" src="img/1.jpg">
 <img alt="小清新" src="img/2.jpg" title="标题" width="100%" height="500px">
 ```
-10. a标签
+### a标签
 
 > 超链接标签,不会独占一行
 > href属性,指定点击后跳转的路径(url),如果需要点击后没有反应,需要写成:`javascript:void(0)`
@@ -161,7 +162,7 @@ grammar_cjkRuby: true
 <a href="javascript:void(0)">不会问度娘</a>
 ```
 
-11. ol标签
+### ol标签
 
 > 有序列表,是组合标签,ol内部嵌套li标签
 > type属性: 取值范围 , "A", "a", "I", "i", "1";
@@ -202,7 +203,7 @@ grammar_cjkRuby: true
 	</ol>
 
 ```
-12.ul标签
+### ul标签
 
 > 无序列表,是组合标签,ul内部嵌套li标签
 > type属性值: 取值范围是,disc(实心圆),circle(空心圆),square(方块)
