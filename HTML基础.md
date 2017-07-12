@@ -210,7 +210,196 @@ grammar_cjkRuby: true
 - 格式
 
 ``` stylus
+	<ul>
+		<li>北京</li>
+		<li>上海</li>
+		<li>杭州</li>
+	</ul>
+	<ul type="square">
+		<li>北京</li>
+		<li>上海</li>
+		<li>杭州</li>
+	</ul>
+	<ul type="circle">
+		<li>北京</li>
+		<li>上海</li>
+		<li>杭州</li>
+	</ul>
+	<ul type="disc">
+		<li>北京</li>
+		<li>上海</li>
+		<li>杭州</li>
+	</ul>
+```
+### table标签
+> 表格标签,是组合标志,内置了很多子标签
+
+- table标签的组成
+	- `<table>`父标签,相当于表格容器
+	- `<caption>`表格的标题,写在`<table>`内的第一行,用于指定表格的标题,会显示在表格的正上方
+	- `<tr>`表示表格一行
+	- `<th>`表格每一列的标题,写在`<tr>`内
+	- `<td>`表格的每个单元格,写在`<tr>`内
+
+``` stylus
+	<table>
+	<caption><h2>表格标题</h2></caption>
+		<tr >
+			<th>标题1</th>
+			<th>标题2</th>
+			<th>标题3</th>
+		</tr>
+		<tr align="center">
+			<td>1.1</td>
+			<td>1.2</td>
+			<td>1.3</td>
+		</tr>
+		<tr align="center">
+			<td>2.1</td>
+			<td>2.2</td>
+			<td>2.3</td>
+		</tr>
+		<tr align="center">
+			<td>3.1</td>
+			<td>3.2</td>
+			<td>3.3</td>
+		</tr>	
+	</table>
+```
+- table标签的属性
+	- border:表格边框的宽度
+	- width:宽度,可以是像素也可以是百分比
+	- height:高度,可以是像素也可以是百分比
+	- align:水平对齐方式,常用left, center, right
+	- valign:垂直对齐方式,常用 top, middle, bottom
+	- cellspacing: 外边距,单元格与单元格之间的距离
+	- cellpadding: 内边距,单元格与单元格之间的距离
+	- bgcolor: 背景颜色
+
+- table属性注意点
+- 宽度和高度可以设置table标签和td标签
+	-  1.1  table设置width和height设置表格宽度和高度
+	- 1.2 td设置width和height,只会影响当前单元格,不会影响表格的宽度
+
+- 水平对齐
+	- 水平对齐可以设置table tr  td
+	- table设置align,可以控制表格在水平方向的对齐方式
+	- tr 设置align,可以控制当前行所有单元格内容的水平对齐方式
+	- td 设置align,设置之前按照tr的对齐方式,设置后是控制当前单元格内容在水平方向的对齐方式
+
+- 垂直对齐
+	- 垂直对齐可以设置tr td
+	- tr 设置valign,可以控制当前行所有单元格的垂直对齐方式
+	- td 设置valign,设置之前按照tr 的对齐方式,设置后是控制当前单元格内容在垂直方向的对齐方式
+
+- 单元格与单元格之间的距离叫外边距
+	- 外边距cellspacing 只能给table设置,默认情况下边距是2px
+
+- 单元格内容和单元格之间的距离叫做内边距
+	- 内边距cellpadding 只能给table设置,默认是1px
+
+- 背景颜色
+	- table tr td 都可以设置
+	- table设置整个表格背景颜色,tr设置当前行,td设置单元格
+	- 如果都进行设置,就近原则
+
+``` stylus
+	<table  width="500px" height="300px" align="center" cellspacing = "1px" cellpadding= "0px" bgcolor="black">
+	<caption><h2>表格标题</h2></caption>
+		<tr bgcolor="white">
+			<th>标题1</th>
+			<th>标题2</th>
+			<th>标题3</th>
+		</tr>
+		<tr align="center" bgcolor="white">
+			<td>1.1</td>
+			<td>1.2</td>
+			<td>1.3</td>
+		</tr>
+		<tr align="center" bgcolor="white">
+			<td>2.1</td>
+			<td>2.2</td>
+			<td>2.3</td>
+		</tr>
+		<tr align="center" bgcolor="white">
+			<td>3.1</td>
+			<td>3.2</td>
+			<td>3.3</td>
+		</tr>	
+	</table>
 
 ```
+- 细线表格
+	- 去除边框
+	- 设置表格背景颜色为black
+	- 设置单元格背景颜色weiwhite
+	- 设置外边距为1px
 
 
+``` stylus
+	<table  width="500px" height="300px" align="center" cellspacing = "1px" cellpadding= "0px" bgcolor="black">
+	<caption><h2>表格标题</h2></caption>
+		<tr bgcolor="white">
+			<th>标题1</th>
+			<th>标题2</th>
+			<th>标题3</th>
+		</tr>
+		<tr align="center" bgcolor="white">
+			<td>1.1</td>
+			<td>1.2</td>
+			<td>1.3</td>
+		</tr>
+		<tr align="center" bgcolor="white">
+			<td>2.1</td>
+			<td>2.2</td>
+			<td>2.3</td>
+		</tr>
+		<tr align="center" bgcolor="white">
+			<td>3.1</td>
+			<td>3.2</td>
+			<td>3.3</td>
+		</tr>	
+	</table>
+
+```
+- 单元格的合并们对于td而言
+	- 水平方向上占据的列数`colspan`
+	- 垂直方向上占据的行数`rowspan`
+
+``` stylus
+	<table  width="500px" height="300px" align="center" cellspacing = "1px" cellpadding= "0px" bgcolor="black">
+	<caption><h2>单元格合并</h2></caption>
+		<tr bgcolor="white">
+			<th>标题1</th>
+			<th>标题2</th>
+			<th>标题3</th>
+		</tr>
+		<tr align="center" bgcolor="white">
+			<td colspan="2">1.1</td>
+			<td>1.2</td>
+		</tr>
+		<tr align="center" bgcolor="white">
+			<td>2.1</td>
+			<td rowspan="2">2.2</td>
+			<td>2.3</td>
+		</tr>
+		<tr align="center" bgcolor="white">
+			<td>3.1</td>
+			<td>3.3</td>
+		</tr>	
+	</table>
+```
+## HTML中的表单标签
+> 一般用于向服务器提交的时候将form标签中的数据进行提交
+> action属性表示请求路径,表单提交到服务器的具体url
+> method属性表示请求方式,一般取值为POST和GET,GET是默认值,提交的数据会追加到请求路径上,如.../...servlet?username=tom&password=123,数据以这种格式进行提交,多个数据之间用&链接,因为请求路径长度有限制,所以GET请求提交的数据有限
+> POST提交,提交的数据不在网址的后面,我们是看不到的,是放在请求的请求体中,格式还是GET请求的格式
+
+``` stylus
+	<form action="#" method="POST">
+			用户名:<input type="text" name="username"><br>
+			密&nbsp;&nbsp;&nbsp;码:<input type="password" name="password"><br>
+			<input type="submit">
+		</form>
+```
+### input标签
