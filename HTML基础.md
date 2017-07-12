@@ -465,3 +465,11 @@ grammar_cjkRuby: true
 ``` stylus
 <textarea rows="10" cols="40" name="textarea"></textarea>
 ```
+### button标签
+> 按钮标签,根据不同的type, 属性不同,功能不同,完全可以使用input进行替代,所以一般不用button. 
+> type属性可以有三个值 button, submit, reset
+> button相当于input的button,需要使用js进行绑定事情,submit相当于input的submit功能,resert相当于input的reset的功能
+
+``` stylus
+<button type="button">按钮</button>
+```
