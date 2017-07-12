@@ -405,4 +405,63 @@ grammar_cjkRuby: true
 ```
 ### input标签
 > 用来获取用户输入信息的标签
+- type属性有很多种,并且不同的属性显示的方式不同
+	- text:文本框,输入文本
+	- password:密码框
+	- radio:互斥的单选按钮
+	- checkBox:复选框
+	- submit:提交按钮,将表单数据提交到服务器
+	- file:上传文件组件
+	- image:图片提交按钮,通过src设置图片
+	- reset:重置按钮,恢复表单
+	- hidden:隐藏字段,数据会发送给服务器,浏览器页面中不会显示,一般可用于发送用户的id
+	- button:普通按钮,一般和js结合使用
 
+- name属性:表单数据提交到服务器,必须提供name属性
+- value属性:设置默认值
+- checeked属性:单选按钮或者复选框被选中
+- readonly:是否只读
+- disabled:是否可用
+- size:大小,一般用于设置文本框的大小
+- maxlength:允许输入的最大长度,一般用于显示文本框中文本内容的长度
+- placeholder:占位符属性,常用来设置文本框的提示信息
+
+### select标签
+> 下拉列表常用语单选和多选,是组合标签,需要子标签`<option>`,不会独占一行
+
+- `<select>`标签
+> name属性,发送给服务器的名称
+> multiple属性,不写默认单选,取值为multiple表示多选,一般我们只使用单选
+> size属性,可见选项的数目
+
+- `<option>`标签
+
+> selected属性,表示勾选当前选项
+> value属性,发送给服务器的选项值
+
+> 注意:
+> 1. 如果使用多选,那么选择的时候需要按住ctrl键进行选择
+> 2. size属性我们一般不去设置
+> 3. selected属性如果不设置的时候默认是列表中的第一个被选中
+> 4. value属性如果不设置的时候,发送给服务器的时候value值默认是`<option>文本值</option>`文本值,如果设置了就是value属性值,一般情况下都需要设置.
+
+``` stylus
+   <select name="select" multiple="multiple" size="2">
+			<option value="bj">北京</option>
+			<option value="sh">上海</option>
+			<option value="tj">天津</option>
+			<option value="wh">武汉</option>
+			<option value="zz">郑州</option>
+			<option value="hz">杭州</option>
+	</select>
+```
+### textarea
+> 文本域,用于多行输入文本
+> cols属性,文本域的列数
+> rows属性,文本域的行数
+> name属性,发送给服务器的名称
+> value属性,textarea的内容
+
+``` stylus
+<textarea rows="10" cols="40" name="textarea"></textarea>
+```
