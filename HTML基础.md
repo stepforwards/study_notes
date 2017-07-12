@@ -447,12 +447,12 @@ grammar_cjkRuby: true
 
 ``` stylus
    <select name="select" multiple="multiple" size="2">
-			<option value="bj">北京</option>
-			<option value="sh">上海</option>
-			<option value="tj">天津</option>
-			<option value="wh">武汉</option>
-			<option value="zz">郑州</option>
-			<option value="hz">杭州</option>
+		<option value="bj">北京</option>
+		<option value="sh">上海</option>
+		<option value="tj">天津</option>
+		<option value="wh">武汉</option>
+		<option value="zz">郑州</option>
+		<option value="hz">杭州</option>
 	</select>
 ```
 ### textarea
