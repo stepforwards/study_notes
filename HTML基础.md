@@ -403,3 +403,5 @@ grammar_cjkRuby: true
 		</form>
 ```
 ### input标签
+> 用来获取用户输入信息的标签
+
