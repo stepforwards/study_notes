@@ -473,3 +473,10 @@ grammar_cjkRuby: true
 ``` stylus
 <button type="button">按钮</button>
 ```
+## 关于表单标签总结
+> 需要提交到服务器中的数据,必须都放在form表单中,否则是提交不过去的
+> 最后提交的形式就是name=value&name=value&name=value
+> form中不需要提交的内容,不设置name属性,如按钮本身就是作为提交功能的触发,所以就不需要设置name属性
+
+## div标签
+> 普通的标签,独自使用没有任何效果,主要用于页面中区域的划分,会独占一行
