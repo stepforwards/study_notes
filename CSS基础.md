@@ -224,3 +224,73 @@ font: italic bold 100px "楷体";
 
 ### 连写形式
 > background:   颜色 图片 平铺方式 关联方式 定位方式,任意写都可以
+
+``` stylus
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>背景</title>
+<style type="text/css">
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+	
+	.box1{
+		width: 100%;
+		height:1300px;
+		background-color: rgb(255,255,0);
+		background-image: url("img/1.jpg");
+		background-repeat: no-repeat;
+		/* background-position: right(水平) bottom(垂直); */
+		background-position: 50px 50px;
+		background-attachment:  fixed;
+		
+		background: red url("img/1.jpg") no-repeat 50px 50px fixed;
+	}
+</style>
+</head>
+<body>
+<div class="box1"></div>
+</body>
+</html>
+```
+## 边框
+> border属性,连写形式 宽度 样式 颜色
+
+``` stylus
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>边框相关</title>
+<style type="text/css">
+	#box{
+		width: 200px;
+		height: 200px;
+		background: red;
+		border-radius: 10px;
+		border: solid 2px black;
+	}
+</style>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>
+```
+## 盒子模型
+
+### padding
+
+> 内容到边框的距离叫做内边距,内边距属性按照的顺序是**逆时针方向--上右下左**
+> margin设置为0 auto就代表距离上方0像素,距离左右两边水平居中
+
+> 1. 元素的宽度: 左边边框 + 左边内边距 + 内容宽度 + 右边内边距 + 右边边框
+>  2. 元素的高度: 上边边框 + 上边内边距 + 内容高度 + 下边的内边距 + 下边边框
+>   3. 元素空间的宽度: 左边的外边距 + 元素的宽度 + 右边的外边距
+>   4. 元素空间的高度: 上边的外边距 + 元素的高度 + 下边的外边距
+
+
+## 标准流
