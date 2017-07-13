@@ -294,3 +294,80 @@ font: italic bold 100px "楷体";
 
 
 ## 标准流
+
+> 1. HTML标签被分为两种类型,一种是块级标签(独占一行,可以设置宽高),一种是行内标签(不独占一行,不能设置宽高)
+> 2. display属性: inline(行内), block(块级), inline-block(行内块级,能够设置宽高), none(隐藏,不占空间)
+
+``` stylus
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>display属性</title>
+<style type="text/css">
+	span {
+	width:100px;
+	height:100px;
+	background-color: red;
+	display: inline-block;
+}
+</style>
+</head>
+<body>
+<span >xxxxxxxxxxx</span><span style="background-color: blue;">qqqqqqqqqqqq</span><span >wwwwwwwww</span>
+
+
+</body>
+</html>
+```
+## 浮动流
+### float
+
+> 浮动流,设置属性float能让元素向左或向右进行浮动元素会脱离标准流,那么标准流的元素会相应定上来,其次脱离标准流,会在相应的标准流的行号上进行浮动
+> 如果向左或向右进行浮动后,左右两边又有其他元素,就会紧贴那个元素浮动流不分行内和块级元素都可以设置宽高
+
+### clear
+> 设置clear属性,能够使元素在浮动的过程中不去贴靠其他元素,只能影响自己,不能影响其他元素
+
+``` stylus
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>浮动流</title>
+<style type="text/css">
+	.box1{
+		width: 100px;
+		height: 100px;
+		background-color: orange;
+		float: left;
+		
+	}
+	/* 
+		浮动是相对父标签进行浮动的
+		浮动流会托标,在标准流的第几行,浮动后也在第几行
+		如果浮动了,并且左浮找右浮,进行贴靠
+		clear清除自身浮动,清除自身不去贴靠其他
+	 */
+	.box2{
+		width: 100px;
+		height: 100px;
+		background-color: purple;
+		float: left;
+		clear: left;
+	}
+	.box3{
+		width: 100px;
+		height: 100px;
+		background-color: silver;
+		float: left;
+	}
+</style>
+</head>
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+</body>
+</html>
+```
