@@ -61,9 +61,29 @@ grammar_cjkRuby: true
 <title>Insert title here</title>
 </head>
 <body>
-<h1 style="color: red;">好好学习,不要捣蛋</h1>
+<h1>好好学习,不要捣蛋</h1>
 </body>
 </html>
 ```
+### 外部样式
+> 单独写一个文件名为xxx.css,将css代码写入文件,在`<head>`z中进行引用
 
+``` stylus
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+	<!-- 外部样式 -->
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+
+</head>
+<body>
+<h1>好好学习,不要捣蛋</h1>
+</body>
+</html>
+```
+> 注意: 如果一个标签有多个css样式,按照就近原则进行覆盖
 
