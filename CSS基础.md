@@ -49,6 +49,21 @@ grammar_cjkRuby: true
 </body>
 </html>
 ```
+### 行内样式
 
+> 直接在标签中写style属性进行赋值,style属性的"" 就相当于内联样式的{},把需要的属性按照上述要求写进去即可
+
+``` stylus
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 style="color: red;">好好学习,不要捣蛋</h1>
+</body>
+</html>
+```
 
 
