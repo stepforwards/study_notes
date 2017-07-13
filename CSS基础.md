@@ -371,3 +371,156 @@ font: italic bold 100px "楷体";
 </body>
 </html>
 ```
+## 定位流
+
+### 相对定位
+> 不会脱离标准流,相对于在标准流的位置进行偏移,所以下面元素不会顶上来position属性为relative,再结合 top right bottom left 四个属性进行位置的确定
+
+``` stylus
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>相对定位流</title>
+<style type="text/css">
+	/* 相对定位不脱离标准流 
+		top和left 相对于当前标签的位置进行偏移 
+	 */
+	.box1{
+		width: 100px;
+		height: 100px;
+		background-color: orange;
+		
+	}
+	
+	.box2{
+		width: 100px;
+		height: 300px;
+		background-color: purple;
+		position: relative;
+		top: 10px;
+		left: 100px;
+		
+	}
+	.box3{
+		width: 100px;
+		height: 100px;
+		background-color: silver;
+	}
+	.big{
+		width: 500px;
+		height: 500px;
+		background-color: red;
+		
+	}
+	.small{
+		width: 200px;
+		height: 200px;
+		background-color: gray;
+		position: relative;
+		left: 150px;
+		top: 150px;
+	}
+</style>
+</head>
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+	
+	<div class="big">
+		<div class="small"></div>
+	</div>
+</body>
+</html>
+```
+### 绝对定位
+
+> 会脱离标准流,所以下面元素不会顶上来,相对于在标准流的位置进行偏移设置postion为absolute,通过top right bottom left定位如果祖先元素没有定位流(相对定位,绝对定位,固定定位),绝对定位相对于body定位,如果祖先元素是定位流,绝对定位相对于祖先元素(就近原则)绝对定位不分行内和块级元素都可以设置宽高
+
+``` stylus
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>绝对定位</title>
+<!-- 
+	绝对定位脱离标准流,不分行内和块级都能设置宽和高
+	绝对定位的相对位置,会找到它的父标签,直到找到相对定位或者绝对定位的标签,如果没有找到,则找body
+	一般设置"子绝父相"
+ -->
+<style type="text/css">
+	 *{
+	 	margin: 0px;
+	 	padding: 0px;
+	 }
+	.box1{
+		width: 100px;
+		height: 100px;
+		background-color: orange;
+		
+	}
+	
+	.box2{
+		width: 100px;
+		height: 300px;
+		background-color: purple;
+		position: absolute;
+		top: 10px;
+		left: 100px;
+		
+	}
+	.box3{
+		width: 100px;
+		height: 100px;
+		background-color: silver;
+	}
+	
+	.big{
+		width: 500px;
+		height: 500px;
+		background-color: red;
+		position:absolute; 
+		
+	}
+	.small{
+		width: 200px;
+		height: 200px;
+		background-color: gray;
+		position: absolute;
+		top: 150px;
+		left: 150px;
+	}
+	
+	span{
+		width: 100px;
+		height: 100px;
+		position:absolute;
+		background-color: orange;
+	}
+</style>
+</head>
+<body>
+<!-- 	<div class="box1"></div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+	
+	<div class="big">
+		<div class="small"></div>
+	</div> -->
+	
+	<span>aaaaaaaaaa</span>
+</body>
+</html>
+```
+> 注意一般定位的时候注意准则为**子绝父相**
+
+### 固定定位
+> 固定定位脱离标准流
+> 设置postion为fixed,通过top right bottom left定位
+> 不区分行内和块级
+> 和绝对定位相同,唯一不同就是不会随着滚动条滚动而滚动
+
+``` stylus
+
+```
