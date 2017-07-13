@@ -522,5 +522,87 @@ font: italic bold 100px "楷体";
 > 和绝对定位相同,唯一不同就是不会随着滚动条滚动而滚动
 
 ``` stylus
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>固定定位</title>
+	<style type="text/css">
+	 div{
+	 	width: 100px;
+		height: 100px;
+	 }
+	.box1{
+		background-color: orange;
+	}
+	
+	.box2{
+		height: 300px;
+		background-color: purple;
+		position: fixed;
+		z-index: 1;
+	}
+	.box3{
+		width: 100px;
+		height: 2000px;
+		background-color: silver;
+		position: absolute;
+		left: 0px;
+		top: 0px;
+	}
+	
+	</style>
+</head>
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+</body>
+</html>
+```
+## z-index
+> z- index改变定位流中的前后顺序
+> 默认情况下定位流会覆盖标准流
+> 默认情况下后来的覆盖之前的
+> 定位流中设置z-index,谁的值大谁在前面
+> 如果父元素设置z-index,子元素的z-index就失效,谁的父元素大,谁就会显示在上方(从父原则)
 
+``` stylus
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>固定定位</title>
+	<style type="text/css">
+	 div{
+	 	width: 100px;
+		height: 100px;
+	 }
+	.box1{
+		background-color: orange;
+	}
+	
+	.box2{
+		height: 300px;
+		background-color: purple;
+		position: fixed;
+		z-index: 1;
+	}
+	.box3{
+		width: 100px;
+		height: 2000px;
+		background-color: silver;
+		position: absolute;
+		left: 0px;
+		top: 0px;
+	}
+	
+	</style>
+</head>
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+</body>
+</html>
 ```
