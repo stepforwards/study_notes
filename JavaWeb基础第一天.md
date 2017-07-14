@@ -364,6 +364,121 @@ public class ServletDemo extends HttpServlet {
 - 方法中的两个参数request和response就是请求的对象和响应对象
 
 
+### request和response内部原理
+
+- 参照客户端和服务器发送数据的具体原理
+
+### ServletContext对象
+
+> ServletContext代表是一个web应用的环境（上下文）对象，ServletContext对象 内部封装是该web应用的信息一个web应用只有一个ServletContext对象
+
+### ServletContext的生命周期
+
+- 创建:当前的web应用创建的时候,一般web应用会随着服务器的启动而创建(或者发布的时候)
+- 销毁:web应用被卸载(服务器关闭,或者删除当前的web应用)
+
+### 如何得到ServletContext对象
+
+> 在doGet或者doPost方法中调用 this.getServletContext(); ,注意在当前web应用中所有的servlet中调用此方法获取的servletContext对象是全局唯一的
+
+### ServletContext作用
+
+- 因为ServletContext对象随着服务器的启动而启动,所以可以通过ServletContext获得web应用全局的初始化参数,在我们日后学习的spring中,就是将Spring文件的路径配置在初始化参数中
+
+``` stylus
+<context-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>classpath:applicationContext.xml</param-value>
+</context-param>
+```
+
+
+
+``` stylus
+public void init() throws ServletException {
+	super.init();
+	String str= this.getServletContext().getInitParameter("contextConfigLocation");
+	System.out.println(str);
+}
+```
+- ServletContext是一个域对象,因为它随着服务器的启动而创建,服务器的关闭而销毁,所以存放在ServletContext中的数据是整个web应用所共享的
+	- 向ServletContext域中放入数据 setAtrribute(String name,Object obj);
+	- 从ServletContext域中获取数据 getAttribute(String name);
+	- 从ServletContext域中删除数据 removeAttribute(String name);
+
+### HttpServletResponse
+
+> service 方法中的response的类型是Servlet的类型是ServletResponse，而doGet/doPost方法的response的类型是HttpServletResponse，HttpServletResponse是ServletResponse的子接口
+
+### response运行流程
+
+> tomcat内核发送一个空内容的response对象,供我们去将需要的内容放入
+
+### response设置响应行
+
+- 如果使用response设置了状态码,那么tomcat就不会再去设置状态码了
+
+``` stylus
+response.setStatus(302);
+```
+
+### response设置响应头
+
+> 设置不同的头,客户端收到消息后会做响应的操作
+
+``` stylus
+response.setStatus(302);
+response.setHeader("Location", "/WebTest/index.html");
+```
+
+- 以上功能能够实现重定向,原理就是当客户端收到响应后,响应头信息中含有 Location是 /WebTest/index.html ,所以客户端就会自动跳转,当然我们如果要去实现重定向,可以直接使用封装好的方法,但是其内部实现还是上述内容.
+
+### response重定向
+
+> 重定向相当于客户端发送第二次请求
+
+``` stylus
+response.sendRedirect("/WebTest/index.html");
+```
+## 重定向的过程分析
+
+![enter description here][23]
+
+### 重定向特点
+
+- 重定向过程是客户端收到消息后,再做的请求,所以浏览器的地址会发生改变
+- 服务器收到的请求是两次请求
+
+
+### response设置响应体
+
+> 通过response可以将客户端需要的数据放入响应体中,其过程是先将返回的信息放在response的缓冲区中,然后由tomcat读取缓冲区的内容,封装成http的响应内容发送给客户端
+
+``` stylus
+response.getWriter().write("大家好");//将数据写入response缓冲区
+```
+
+- 乱码原因分析
+
+![enter description here][24]
+
+- 此过程会出现乱码,原因是将字符串写入缓冲区的时候,使用的是默认的ISO8859-1码表,所以出现乱码,所以我们要设置response查询的码表
+
+``` stylus
+response.setCharacterEncoding("UTF-8");
+```
+
+- 但是客户端进行显示的时候有可能还会出现乱码,原因是因为客户端浏览器可能解码的时候不是使用UTF-8,所以我们需要设置一个响应头,通知客户端使用响应的码表进行解码
+
+``` stylus
+response.setHeader("Content-Type", "text/html;charset=UTF-8");
+```
+
+- 但是如果我们设置了`response.setHeader("Content-Type","text/html;charset=UTF-8");` tomcat会自动为我们将response缓冲区的编码表设置为utf-8,所以我们只设置这一个就行了
+
+
+
+
   [1]: http://tomcat.apache.org/download-90.cgi
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500032251853.jpg
   [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500032342340.jpg
@@ -386,3 +501,5 @@ public class ServletDemo extends HttpServlet {
   [20]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500034332303.jpg
   [21]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500034391972.jpg
   [22]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500029304717.jpg
+  [23]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500036969211.jpg
+  [24]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500037088548.jpg
