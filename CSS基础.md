@@ -66,7 +66,7 @@ grammar_cjkRuby: true
 </html>
 ```
 ### 外部样式
-> 单独写一个文件名为xxx.css,将css代码写入文件,在`<head>`z中进行引用
+> 单独写一个文件名为xxx.css,将css代码写入文件,在`<head>`中进行引用
 
 ``` stylus
 <!DOCTYPE html>
