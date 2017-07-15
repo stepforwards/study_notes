@@ -375,7 +375,7 @@ font: italic bold 100px "楷体";
 ```
 ## 定位流
 
-### 相对定位
+### 相对定位（不会脱离标准流）
 > 不会脱离标准流,相对于在标准流的位置进行偏移,所以下面元素不会顶上来position属性为relative,再结合 top right bottom left 四个属性进行位置的确定
 
 ``` stylus
