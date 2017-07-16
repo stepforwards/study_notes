@@ -119,9 +119,10 @@ grammar_cjkRuby: true
 > 请求转发：服务器行为，request.getRequestDispatcher().forward(req,resp);是一次请求，然后请求对象会保存，地址栏的URL地址不会改变。
 > 请求重定向是客户器端行为而请求转发是服务器端行为
 
-
 ### session对象
-
+> session 表示客户端与服务器的一次会话
+> Web中的session指的是用户在浏览某个网站时，从进入网站到浏览器关闭所经过的这段时间，也就是用户浏览这个网站所花费的时间，实际上，session是一个特定的时间概念
+> 
 ### application对象
 ### Page对象
 ### pageContext对象
