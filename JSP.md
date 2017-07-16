@@ -113,6 +113,10 @@ grammar_cjkRuby: true
 	- void setContentType(String type) 设置响应的MIME类型
 	- PrintWriter getWriter() 返回可以向客户端输出字符的一个对象（注意比较：PrintWriter与内置out对象的区别：PrintWriter输出的语句提前于out输出的，解决的办法是，out.flush()）
 	- sendRedirect(java.lang.String location) 重定向客户端的请求
+#### 请求重定向和转发的区别
+
+> 
+
 
 ### session对象
 
