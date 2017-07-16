@@ -151,8 +151,46 @@ session的销毁：
 ![session的生命周期][2]
 
 ### application对象
+- 和JavaSE中的static相似。
+- application对象实现了用户间数据的共享，可存放全局变量。
+- application开始于服务器的启动，终止于服务器的关闭。
+- 在用户的前后链接或不同用户之间的链接中，可以对application对象的同一个属性进行操作。
+- application对象是ServletContext类的实例。
+
+> 常用方法
+
+- public void setAttribute(String name,Object value)使用指定名称将对象绑定到此会话。
+- public Object getAttribute(String name) 返回与此会话中指定名称绑定在一起的对象，如果没有对象绑定在该名称下，则返回null
+- Enumeration getAttributeNames() 返回所有可用属性名的枚举
+- String getServerInfo() 返回JSP（servlet）引擎名和版本号
+
 ### Page对象
+
+> page对象就是指向当前JSP页面本身，有点像类中的this指针，它是java.lang.Object类的实例。常用方法如下：
+
+- class getClass() 返回此类Object的类
+- int hashCode() 返回此Object的hash码
+- boolean equals(Object obj) 判断此Object是否与指定的Object对象相等
+- void copy(Object obj) 把此Object拷贝到指定的Object对象中
+- Object clone()克隆Object对象
+- String toString() 把此Object对象转换成String类的对象
+- void notity() 唤醒一个等待的线程
+- void notityAll() 唤醒所有等待的线程
+- void wait(int timeout) 使一个线程处于等待直到timeout结束或被唤醒
+- void wait() 使一个线程处于等待直到被唤醒
+
 ### pageContext对象
+
+- pageContext对象提供了对JSP页面内所有的对象及名字空间的访问
+- pageContext对象可以访问到本页面所在的session，也可以取本页面所在的application的某一属性值
+- pageContext对象相当于页面中所有功能的集大成者
+- pageContext对象的本类名也叫pageContext
+
+>常用方法
+
+- JspWriter getOut() 返回当前客户端响应被使用的JspWriter流(out)
+- HttpSession getSession() 返回当前页中的HttpSession对象(session)
+
 ### exception对象
 ### config对象
 
