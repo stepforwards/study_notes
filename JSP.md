@@ -199,7 +199,21 @@ session的销毁：
 - void include(String realtiveUrlPath)在当前位置包含另一个文件
 
 ### exception对象
+> exception对象是一个异常对象，当一个页面在运行过程中发生了异常，就产生这个对象。如果一个JSP页面应用此对象，就必须把isErrorPage设置为true，否则无法编译。它实际上是java。lang。Throwable的对象，常用方法如下：
+
+- String getMessage() 返回描述异常的消息
+- String toString() 返回关于异常的简短描述信息
+- void printStackTrace() 显示异常及其栈轨迹
+- Throwable FillInStackTrace() 重写异常的执行轨迹
+
 ### config对象
+> config 对象是在Servlet初始化时，JSP引擎向它传递信息用的，此信息包括Servlet初始化时所要用到的参数(通过属性名和属性值构成)以及服务器的有关信息（通过传递一个ServletContext对象），常用方法如下：
+
+- ServletContent getServletContext() 返回含有服务器相关信息的ServletContext对象
+- StringgetInitParameter(String name) 返回初始化参数的值
+- Enumeration getInitParameterNames() 返回Servlet初始化所有参数的枚举
+
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500174427823.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500195279179.jpg
