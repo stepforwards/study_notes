@@ -79,6 +79,17 @@ grammar_cjkRuby: true
 > Jsp内置对象是web容器创建的一组对象，不使用new关键字就可以使用的内置对象。
 
 ### out对象
+> out对象是JspWriter类的实例，是向客户端输出内容常用的对象。
+- 常用方法：
+	- void  println()向客户端打印字符串
+	- void clear() 清除缓冲区的内容，如果在flush之后调用会抛出异常。
+	- void clearBuffer() 清除缓冲区的内容，如果在flush之后调用不会抛出异常。
+	- void flush() 将缓冲区内容输入到客户端
+	- int getBufferSize() 返回缓冲区以字节数的大小，如不设缓冲区为0
+	- int getRemaining() 返回缓冲区还剩余多少可用
+	- boolean isAutoFlush() 返回缓冲区满时，是自动清空，还是抛出异常
+	- void close() 关闭输出流
+
 ### request对象
 ### response对象
 ### session对象
