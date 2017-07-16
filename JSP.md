@@ -76,6 +76,21 @@ grammar_cjkRuby: true
 ![JSP生命周期][1]
 
 ## JSP内置对象
+> Jsp内置对象是web容器创建的一组对象，不使用new关键字就可以使用的内置对象。
+
+### out对象
+### request对象
+### response对象
+### session对象
+
+### application对象
+### Page对象
+### pageContext对象
+### exception对象
+### config对象
+
+
+
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500174427823.jpg
