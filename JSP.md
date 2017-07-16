@@ -122,7 +122,9 @@ grammar_cjkRuby: true
 ### session对象
 > session 表示客户端与服务器的一次会话
 > Web中的session指的是用户在浏览某个网站时，从进入网站到浏览器关闭所经过的这段时间，也就是用户浏览这个网站所花费的时间，实际上，session是一个特定的时间概念
-> 
+
+
+
 ### application对象
 ### Page对象
 ### pageContext对象
