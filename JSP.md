@@ -100,12 +100,19 @@ grammar_cjkRuby: true
 	- String[] getParameterValues(String name) 返回包含name的所有组的数组
 	- void setAttribute(String , Object) 存储此请求的属性值
 	- object getAttribute(String name) 返回指定属性的属性值
-	- String getContentType() 得到 
+	- String getContentType() 得到请求体的MIME类型
 	- String getProtocol() 返回请求用的协议类型及版本号
 	- String getServerName() 返回接收请求的服务器主机名
 
 
 ### response对象
+> response 对象包含了响应客户端请求的有关信息，但是在JSP中很少直接使用它，它是HttpServletResponse类的实例。response对象具有页面作用域，即访问一个页面时，该页面的response对象只能对这次访问有效，其他页面的response对当前页面无效。
+
+- 常用方法：
+	- String getCharacterEncoding() 返回响应用的是何种字符编码
+	- void setContentType(String type) 设置响应的MIME类型
+	- PrintWriter getWriter() 返回可以向客户端输出字符的一个对象（注意比较：PrintWriter与内置out对象的区别）
+
 ### session对象
 
 ### application对象
