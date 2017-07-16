@@ -100,7 +100,7 @@ grammar_cjkRuby: true
 	- String[] getParameterValues(String name) 返回包含name的所有组的数组
 	- void setAttribute(String , Object) 存储此请求的属性值
 	- object getAttribute(String name) 返回指定属性的属性值
-	- String getContentType() 得到请求体的MIME类型
+	- String getContentType() 得到 
 	- String getProtocol() 返回请求用的协议类型及版本号
 	- String getServerName() 返回接收请求的服务器主机名
 
