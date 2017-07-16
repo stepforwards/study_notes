@@ -190,10 +190,16 @@ session的销毁：
 
 - JspWriter getOut() 返回当前客户端响应被使用的JspWriter流(out)
 - HttpSession getSession() 返回当前页中的HttpSession对象(session)
+- Object getPage() 返回当前页的Object对象(Page)
+- ServletRequest getRequest() 返回当前页的ServletRequest对象(request)
+- ServletResponse getResponde() 返回当前页的ServletResponse对象(Response)
+- void setAttribute(String name,Object attribute)设置属性及属性值
+- Object getAttributeScope(String name,int scope)在指定范围内取属性的值
+- void forward(String realtiveUrlPath) 使当前页面重导到另一个页面
+- void include(String realtiveUrlPath)在当前位置包含另一个文件
 
 ### exception对象
 ### config对象
-
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500174427823.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500195279179.jpg
