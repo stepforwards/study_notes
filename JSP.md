@@ -3,7 +3,7 @@ title: JSP
 tags: JSP,JSTL,EL
 grammar_cjkRuby: true
 ---
-
+[TOC]
 ## Jsp指令
 
 ### page指令
@@ -103,6 +103,7 @@ grammar_cjkRuby: true
 	- String getContentType() 得到请求体的MIME类型
 	- String getProtocol() 返回请求用的协议类型及版本号
 	- String getServerName() 返回接收请求的服务器主机名
+
 
 
 ### response对象
@@ -214,7 +215,17 @@ session的销毁：
 - StringgetInitParameter(String name) 返回初始化参数的值
 - Enumeration getInitParameterNames() 返回Servlet初始化所有参数的枚举
 
+## JavaBean
+> JavaBeans就是符合某种特定的规范的Java类。使用JavaBean的好处就是解决代码重复编写，减少代码冗余，功能区分明确，提高了代码的维护性。
 
+- JavaBean设计原则
+
+![JavaBean设计原则][3]
+
+- Jsp动作元素
+ 
+> JSP动作元素(action elements)，动作元素是为请求处理阶段提供信息。动作元素遵循XML元素的语法，有一个包含元素名的开始标签，可以有属性、可选的内容、与开始标签匹配的结束标签。
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500174427823.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500195279179.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500301307794.jpg
