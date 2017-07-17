@@ -160,7 +160,7 @@ grammar_cjkRuby: true
 - 本机地址127.0.0.1或者localhost
 - 端口配置,默认tomcat是8080端口
 - 80端口:http协议默认的端口,我们可以通过修改servler.xml设置端口
-- 配置用户名管理tomcat下所有的web应用,修改 tomcatusers.xml
+- 配置用户名管理tomcat下所有的web应用,修改 tomcat-users.xml
 
 ``` stylus
 	// 配置远程管理项目用户名，密码
@@ -228,7 +228,6 @@ grammar_cjkRuby: true
 ![步骤五][17]
 
 - 检查是否成功
-
 
 ![步骤六][18]
 
