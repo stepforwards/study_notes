@@ -148,6 +148,7 @@ session的销毁：
 - 1. 调用了session.invalidate()方法
 - 2. session过期(超时)
 - 3. 服务器重新启动
+
 ![session的生命周期][2]
 
 ### application对象
