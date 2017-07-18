@@ -117,5 +117,51 @@ grammar_cjkRuby: true
 		内部转发从/从webContent目录下开始
 ```
 
+## EL表达式
+
+> EL（Express Lanuage）表达式可以嵌入在jsp页面内部，其目的在于简化从域中获取数据的操作
+
+## 从域中获取值(重要)
+
+### 获取四个域中的数据
+
+- pageScope:能获取pageContext域中的数据
+- requestScope:能获取request域中的数据 `${requestScope.key}`
+- sessionScope:能获取session域中的数据 `${sessionScope.key }`
+- applicationScope:能获取servletContext域中的数据 `${applicationScope.key }`
+- 依次从四个域中查找对应的值,如果存在就停止查找 `${key}`
+
+
+``` stylus
+public class ELServlet extends HttpServlet {
+private static final long serialVersionUID= 1L;
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+response.setHeader("Content-Type", "text/html;charset=utf-8");
+request.setAttribute("name", "a");
+User us = new User(1, 1, "b");
+request.getSession().setAttribute("user", us);
+List<User> li = new ArrayList<User>();
+User us1 = new User(11, 1, "c");
+User us2 = new User(1231, 2, "d");
+User us3 = new User(231, 3, "三");
+User us4 = new User(16, 4, "xx");
+li.add(us1);
+li.add(us2);
+li.add(us3);
+li.add(us4);
+getServletContext().setAttribute("list", li);
+request.getRequestDispatcher("/el.jsp").forward(request, response);
+}
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	doGet(request, response);
+}
+}
+
+${requestScope.name }<br>
+${sessionScope.user.name }<br>
+${applicationScope.list[1].name }<br>
+```
+
+
 
 [1]:https://www.github.com/xiesen310/notes_Images/raw/master/images/1500382604846.jpg
