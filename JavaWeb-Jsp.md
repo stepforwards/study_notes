@@ -213,7 +213,6 @@ ${applicationScope.list[1].name }<br>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 ```
 
-
 ### jstl常用标签
 
 #### c:if判断标签
