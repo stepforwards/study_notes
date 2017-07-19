@@ -266,9 +266,5 @@ ${status.count }
 ${status.index }:${item.name }
 </c:forEach>
 ```
-
-
-
-
   [1]:https://www.github.com/xiesen310/notes_Images/raw/master/images/1500382604846.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500385268151.jpg
