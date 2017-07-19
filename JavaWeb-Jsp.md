@@ -3,6 +3,8 @@ title: JavaWeb-Jsp
 tags: jsp语法,JSTL,EL
 grammar_cjkRuby: true
 ---
+
+[TOC]
 ## JSP
 
 > 如果有个需求,不同的用户请求同一个界面在页面的最上方需要显示用户的名字我们可以使用
@@ -119,7 +121,7 @@ grammar_cjkRuby: true
 
 ## EL表达式
 
-> EL（Express Lanuage）表达式可以嵌入在jsp页面内部，其目的在于简化从域中获取数据的操作
+> EL（Express Lanuage）表达式可以嵌入在jsp页面内部，<font color="red">其目的在于简化从域中获取数据的操作</font>
 
 ## 从域中获取值(重要)
 
@@ -136,21 +138,21 @@ grammar_cjkRuby: true
 public class ELServlet extends HttpServlet {
 private static final long serialVersionUID= 1L;
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-response.setHeader("Content-Type", "text/html;charset=utf-8");
-request.setAttribute("name", "a");
-User us = new User(1, 1, "b");
-request.getSession().setAttribute("user", us);
-List<User> li = new ArrayList<User>();
-User us1 = new User(11, 1, "c");
-User us2 = new User(1231, 2, "d");
-User us3 = new User(231, 3, "三");
-User us4 = new User(16, 4, "xx");
-li.add(us1);
-li.add(us2);
-li.add(us3);
-li.add(us4);
-getServletContext().setAttribute("list", li);
-request.getRequestDispatcher("/el.jsp").forward(request, response);
+	response.setHeader("Content-Type", "text/html;charset=utf-8");
+	request.setAttribute("name", "a");
+	User us = new User(1, 1, "b");
+	request.getSession().setAttribute("user", us);
+	List<User> li = new ArrayList<User>();
+	User us1 = new User(11, 1, "c");
+	User us2 = new User(1231, 2, "d");
+	User us3 = new User(231, 3, "三");
+	User us4 = new User(16, 4, "xx");
+	li.add(us1);
+	li.add(us2);
+	li.add(us3);
+	li.add(us4);
+	getServletContext().setAttribute("list", li);
+	request.getRequestDispatcher("/el.jsp").forward(request, response);
 }
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	doGet(request, response);
@@ -162,6 +164,111 @@ ${sessionScope.user.name }<br>
 ${applicationScope.list[1].name }<br>
 ```
 
+### 内置pageContext对象
+
+- 最常用的方法就是通过el获取应用程序的名称`${pageContext.request.contextPath }`
+
+``` stylus
+<form action="${pageContext.request.contextPath}/check" method="post">
+	<input type="text" name="username">
+	<input type="password" name="pwd">
+	<input type="submit">
+	篮球<input type="checkbox" value="lq" name="hobby">
+	足球<input type="checkbox" value="zq" name="hobby">
+	乒乓球<input type="checkbox" value="ppq"name="hobby">
+</form>
+```
+### 常用表达式
+
+- ${249+1}
+- `${name eq '张三'}` 返回true或者false
+- `${empty user} ` 返回true或者false
+- `${not empty user}` 返回true或者false
+- `${user==null?true:false}`
+
+> 注意 ${empty ""} 也是true
+
+## JSTL标签库
+
+> JSTL（JSP Standard Tag Library)，JSP标准标签库，可以嵌入在jsp页面中使用标签的形式完成业务逻辑等功能。jstl出现的目的同el一样也是要代替jsp页面中的脚本代码。JSTL标准标准标签库有5个子库，但随着发展，目前常使用的是他的核心库
+
+|  标签库   |  标签库的URI   |  前缀   |
+| :---: | :---: | :---: |
+|  Core   |   http://java.sun.com/jsp/jstl/core  |  c   |
+|   I18N  |   http://java.sun.com/jsp/jstl/fmt  |  fmt   |
+| SQL    |  http://java.sun.com/jsp/jstl/sql   |   sql  |
+| XML    |   http://java.sun.com/jsp/jstl/xml    | x    |
+|  Functions   |  http://java.sun.com/jsp/jstl/functions   |  fn   |
+
+### 下载与安装
+
+下载地址为:http://archive.apache.org/dist/jakarta/taglibs/standard/binaries/
+
+![JSTL下载][2]
+
+- 下载文件是zip,进行解压将lib文件中的两个jar包拖入WEB­INF的lib文件夹中
+- 使用导入指令
+
+``` stylus
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+```
 
 
-[1]:https://www.github.com/xiesen310/notes_Images/raw/master/images/1500382604846.jpg
+### jstl常用标签
+
+#### c:if判断标签
+
+``` stylus
+	<c:if test="${1==1}">
+		判断成功
+	</c:if>
+```
+
+#### c:choose多条件判断标签
+
+``` stylus
+<c:choose>
+	<c:when test="${name == 1 }">
+	<h1 style="color: red;">判断正确了</h1>
+	</c:when>
+	<c:when test="${name == 2 }"></c:when>
+	<c:when test="${name == 3 }"></c:when>
+	<c:otherwise>上述情况均不满足</c:otherwise>
+</c:choose>
+```
+
+#### c:forEach循环遍历标签
+
+- begin表示开始索引
+- end表示结束索引
+- strp表示频率
+- varstatus表示当前的状态
+	- index属性表示循环的当前索引
+	- count属性表示循环的当前次数从1开始
+- items表示遍历的集合元素
+- var表示每次将集合中的元素赋值给的变量名
+
+#### 普通for循环(使用频率不高)
+
+``` stylus
+<c:forEach begin="0" end="100" step="1" varStatus="status">
+<!--获取当前循环的索引值-->
+${status.index }
+<!--获取当前循环的次数-->
+${status.count }
+</c:forEach>
+```
+
+#### 遍历集合
+
+``` stylus
+<c:forEach items="${list }" varStatus="status" var="item">
+${status.index }:${item.name }
+</c:forEach>
+```
+
+
+
+
+  [1]:https://www.github.com/xiesen310/notes_Images/raw/master/images/1500382604846.jpg
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500385268151.jpg
