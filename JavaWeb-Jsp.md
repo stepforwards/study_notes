@@ -206,7 +206,7 @@ ${applicationScope.list[1].name }<br>
 
 ![JSTL下载][2]
 
-- 下载文件是zip,进行解压将lib文件中的两个jar包拖入WEB­INF的lib文件夹中
+- 下载文件是zip,进行解压将lib文件中的两个jar包拖入WEB-INF的lib文件夹中
 - 使用导入指令
 
 ``` stylus
