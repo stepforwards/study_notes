@@ -29,6 +29,26 @@ grammar_cjkRuby: true
 
 ![第十一步][11]
 
+![第十二步][12]
+
+![第十三步][13]
+
+![第十四步][14]
+
+![第十五步][15]
+
+![第十六步][16]
+
+![第十七步][17]
+
+![第十八步][18]
+
+![第十九步][19]
+
+![第二十步][20]
+
+![第二十一步][21]
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500781132401.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500781165602.jpg
@@ -41,3 +61,13 @@ grammar_cjkRuby: true
   [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500781788342.jpg
   [10]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500782875294.jpg
   [11]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500782895903.jpg
+  [12]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500782920005.jpg
+  [13]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500782943202.jpg
+  [14]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500782966413.jpg
+  [15]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500782991779.jpg
+  [16]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500783018896.jpg
+  [17]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500783067479.jpg
+  [18]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500783087688.jpg
+  [19]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500783123535.jpg
+  [20]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500783148298.jpg
+  [21]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500783198634.jpg
