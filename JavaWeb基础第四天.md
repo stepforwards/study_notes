@@ -194,6 +194,78 @@ System.out.println(a);
 
 > JavaBean就是一个类，在开发中常用封装数据。具有如下特性
 
+- 需要实现接口：java.io.Serializable ，通常实现接口这步骤省略了，不会影响程序.(可以暂时不用处理)
+- 提供私有字段：private 类型 字段名;
+- 提供getter/setter方法：
+- 提供无参构造
+
+#### **ArrayHandler**
+
+``` stylus
+QueryRunner qr = new QueryRunner(DBUtils.getDataSource());
+String theSql = "select * from staff";
+Object[] objects = qr.query(theSql, new ArrayHandler());
+System.out.println(Arrays.toString(objects));
+```
+#### **ArrayListHandler**
+
+``` stylus
+QueryRunner qr = new QueryRunner(DBUtils.getDataSource());
+String theSql = "select * from staff";
+List<Object[]> objectList = qr.query(theSql, new ArrayListHandler());
+System.out.println(objectList);
+```
+#### **BeanHandler**
+
+``` stylus
+QueryRunner qr = new QueryRunner(DBUtils.getDataSource());
+String theSql = "select * from staff";
+Staff staff = qr.query(theSql, new BeanHandler<>(Staff.class));
+System.out.println(staff);
+```
+
+#### **BeanListHandler**
+
+``` stylus
+QueryRunner qr = new QueryRunner(DBUtils.getDataSource());
+String theSql = "select * from staff";
+List<Staff> list = qr.query(theSql, new BeanListHandler<>(Staff.class));
+System.out.println(list);
+```
+#### **ColumnListHandler**
+
+``` stylus
+QueryRunner qr = new QueryRunner(DBUtils.getDataSource());
+String theSql = "select * from staff";
+List<Object> query = qr.query(theSql, new ColumnListHandler<>("name"));
+System.out.println(query);
+```
+
+#### **ScalarHandler**
+
+``` stylus
+QueryRunner qr = new QueryRunner(DBUtils.getDataSource());
+String theSql = "select * from staff";
+Long num = qr.query("select count(*) from staff", new ScalarHandler<Long>());
+System.out.println("----"+num);
+```
+#### **MapHandler**
+
+``` stylus
+QueryRunner qr = new QueryRunner(DBUtils.getDataSource());
+String theSql = "select * from staff";
+Map<String, Object> map = qr.query(theSql, new MapHandler());
+System.out.println(map);
+```
+
+#### **MapListHandler**
+
+``` stylus
+QueryRunner qr = new QueryRunner(DBUtils.getDataSource());
+String theSql = "select * from staff";
+List<Map<String, Object>> query2 = qr.query(theSql, new MapListHandler());
+System.out.println(query2);
+```
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500784268264.jpg
