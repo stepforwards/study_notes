@@ -195,5 +195,6 @@ System.out.println(a);
 > JavaBean就是一个类，在开发中常用封装数据。具有如下特性
 
 
+
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500784268264.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500784408318.jpg
