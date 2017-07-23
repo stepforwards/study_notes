@@ -253,18 +253,124 @@ insert into product values (null,'波波洗衣机',4999);
 ## 多表查询
 
 ### 数据准备
-- - 
+- 一对多
+
+![一对多][1]
+
+- 多对多
+
+![多对多][2]
+
+``` stylus
+create table department (
+id int primary key auto_increment,
+name varchar(30) not null
+);
+create table staff(
+id int primary key auto_increment,
+name varchar(10) not null,
+did int not null default 1
+);
+insert into department values (null,'开发部');
+insert into department values (null,'教学部');
+insert into department values (null,'网络部');
+insert into department values (null,'运维部');
+insert into department values (null,'市场部');
+insert into staff values (null,'张三工程师',1);
+insert into staff values (null,'李四老师',2);
+insert into staff values (null,'王五装电脑',3);
+insert into staff values (null,'可老师',2);
+insert into staff values (null,'ss老师',2);
+insert into staff values (null,'li老师',2);
+insert into staff values (null,'lili网管',3);
+insert into staff values (null,'lucy工程师',1);
+insert into staff values (null,'pl',4);
+```
+
 
 ### 交叉连接
+
+``` stylus
+select * from staff , department;
+```
+
+
 ### 内连接查询
+
+> 使用关键字inner join,inner可以省略
+
+- 隐式内链接
+
+``` stylus
+select * from department d,staff s where d.id = did;
+```
+
+- 显式内链接
+
+``` stylus
+select * from department as d inner join staff as s on d.id = s.did;
+```
+
+
 
 ### 外链接查询
 
+> 关键字是outer join,outer可以省略,外连接要用on不能使用where
+
+- 左外连接
+
+``` stylus
+select * from department d left join staff on d.id = did;
+```
+
+- 右外连接
+
+``` stylus
+lect * from department d right join staff on d.id = did
+```
+
+
 ### 子查询
+
+> 一个查询的结果作为另一个查询的条件
+
+``` stylus
+select * from staff where did = (select id from department where name ='教学部');
+```
 
 ## JDBC
 
+> JDBC（Java Data Base Connectivity,java数据库连接）是一种用于执行SQL语句的JavaAPI，可以为多种关系数据库提供统一访问，它由一组用Java语言编写的类和接口组成。是Java访问数据库的标准规范
+
+
 ### 开发步骤
 
+- 在工程中导入jar包
+- 注册驱动 `Class.forName("com.mysql.jdbc.Driver");`
+- 获得连接  `Connection con =DriverManager.getConnection(“jdbc:mysql://localhost:3306/mydb”,”root”,”root”); ` 如果是本机路径可以写为 `Connection con =DriverManager.getConnection(“jdbc:mysql:///mydb”,”root”,”root”);`
+- 获取执行平台 ` Statement stmt = con.createStatement();`
+- 执行sql语句 ` int num = stmt.executeUpdate(String sql); ` 或者 `ResultSet rs=stmt.executeQuery(String sql);`
+- 处理结果集
+	
+
+``` stylus
+while( rs.next() ){
+	//方法参数为数据库表中的列名
+	String sid = rs.getString("pid");
+	//获取当前行的分类名称
+	String sname = rs.getString("pname");
+}
+```
+
+- 释放资源
+
+``` stylus
+	rs.close();
+	stmt.close();
+	con.close();
+```
 
 
+
+  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500780094375.jpg
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500780132671.jpg
