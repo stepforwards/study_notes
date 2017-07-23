@@ -117,12 +117,43 @@ UTC~2038­01­19 03:14:07UTC |
 ### 数据库表中记录的查询操作
 
 - 查询所有 `**select * from product;**`
-- 查询列 `**select pname
-- **`
+- 查询列 `**select pname ，price from product；**`
+- 查询所有商品信息使用表别名: `**select * from product as p;**`
+- 查询商品使用列别名 `**select pname as p from product**`
+- 查询去掉重复 `**select distinct(price) from product;**`
+- 将所有的商品的价格+10进行显示 `**select pname,price+10 from product;**`
 
 
 #### 条件查询
+
+|  运算符分类   |  运算符表示   |  说明   |
+| :---: | :---: | :---: |
+|  比较运算符   |  < <= >= = <>   |  大于、小于、大于(小于)等于、不等于   |
+|     |  BETWEEN …AND…   |   显示在某一区间的值(含头含尾) |
+|     |   IN(set)  | 显示在in列表中的值，例：in(100,200)    |
+|     |   LIKE 通配符  |  模糊查询，Like语句中有两个通配符:% 用来匹配多个字符；例first_name like ‘a%’;_ 用来匹配一个字符。例first_name like ‘a_’;   |
+|     |  IS NULL   |  判断是否为空 is null; 判断为空 is not null; 判断不为空   |
+|   逻辑运算符  | and    | 多个条件同时成立    |
+|     |or     |    多个条件任一成立 |
+|     | not    |  不成立，例：where not(salary>100);   |
+
+
+- 查询商品名称为洗衣机的商品信息 **select * from product where pname='洗衣机';**
+- 查询价格>60的商品信息 ** select * from product where price > 60;**
+- 查询名字中含有机的商品信息 **select * from product where pname like '%机%';** 或者**select * from product where pname like "%"'机'"%";**
+- 查询id在(3,6,9)范围的商品信息 **select * from product where pid in (3,6,9);**
+- 查询商品名称中含有机并且id为6的商品信息 **select * from product where pname like'%机%' and pid=6;**
+- 查询id为2或者6的商品信息 **select * from product where pid=2 or pid=6;**
+- 按照商品价格(升序/降序 )**select * from product order by price asc;** , **select *from product order by price desc;**
+- 查询名称含有器的并且按照价格降序排序 **select * from product where pname like '%器%' order by price desc;**
+
+
+
 #### 聚合查询
+- 根据pname字段分组,分组后统计商品的个数 **select pname,count(*) from productgroup by pname;**
+- 根据pname分组,分组后统计商品的平均价格,并且平均价格>3000 **select
+pname,avg(price) as avgprice from product group by pname having avgprice >3000 ;**
+
 
 #### 分组查询
 
