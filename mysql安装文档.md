@@ -25,6 +25,10 @@ grammar_cjkRuby: true
 
 ![第九步][9]
 
+![第十步][10]
+
+![第十一步][11]
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500781132401.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500781165602.jpg
@@ -35,3 +39,5 @@ grammar_cjkRuby: true
   [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500781277383.jpg
   [8]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500781300340.jpg
   [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500781788342.jpg
+  [10]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500782875294.jpg
+  [11]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500782895903.jpg
