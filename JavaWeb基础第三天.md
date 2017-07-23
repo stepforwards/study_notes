@@ -150,22 +150,110 @@ UTC~2038­01­19 03:14:07UTC |
 
 
 #### 聚合查询
+
+- 获取所有商品的价格总和 **select sum(price) as 价格总和 from product;**
+- 获取所有商品的平均价格 **select avg(price) as 平均价格 from product**;
+- 获取所有商品的个数 **select count(1) as 总数量 from product;**
+
+#### 分组查询
 - 根据pname字段分组,分组后统计商品的个数 **select pname,count(*) from productgroup by pname;**
 - 根据pname分组,分组后统计商品的平均价格,并且平均价格>3000 **select
 pname,avg(price) as avgprice from product group by pname having avgprice >3000 ;**
 
-
-#### 分组查询
-
 #### 分页查询
+
+> select * from product limit a,b 其中 a 代表从第几条记录开始查询,如果a是5,那么记录的条数就是从6开始, b 代表一页显示几条
+- 当显示的内容小于b的时候,sql不会发生错误,会正常显示剩余所有的条数
 
 #### 查询总结
 
+- select 一般在的后面的内容都是要查询的字段
+- from 要查询到表
+- where
+- group by
+- having 分组后带有条件只能使用having
+- order by 它必须放到最后面
+
+
 #### 设计表所需数据
+
+``` stylus
+create table product (
+pid int primary key auto_increment,
+pname varchar(30) not null,
+price int not null
+);
+insert into product values (null,'海尔洗衣机',3000);
+insert into product values (null,'荣升电冰箱',1000);
+insert into product values (null,'美的微波炉',3000);
+insert into product values (null,'西门子洗衣机',3000);
+insert into product values (null,'可可洗脚盆',300);
+insert into product values (null,'手电筒',30);
+insert into product values (null,'乖乖洗衣机',30000);
+insert into product values (null,'格力空调',8999);
+insert into product values (null,'微波炉',300);
+insert into product values (null,'电视机',2000);
+insert into product values (null,'微波炉',1000);
+insert into product values (null,'美的烤箱',399);
+insert into product values (null,'TCL电视',4500);
+insert into product values (null,'格力空调',5000);
+insert into product values (null,'联想笔记本',3111);
+insert into product values (null,'西门子冰箱',6000);
+insert into product values (null,'格力空调',8000);
+insert into product values (null,'小米洗衣机',2500);
+insert into product values (null,'便宜洗衣机',30);
+insert into product values (null,'美的电饼铛',2500);
+insert into product values (null,'美的电饼铛',2500);
+insert into product values (null,'电冰箱',3230);
+insert into product values (null,'海尔洗衣机',4000);
+insert into product values (null,'格力电风扇',3000);
+insert into product values (null,'美的电饭锅',9000);
+insert into product values (null,'自动洗衣机',4000);
+insert into product values (null,'小天鹅洗衣机',6000);
+insert into product values (null,'格力变频空调',15000);
+insert into product values (null,'小天鹅电风扇',300);
+insert into product values (null,'大力洗衣机',20000);
+insert into product values (null,'电风扇',300);
+insert into product values (null,'美的冰箱',2000);
+insert into product values (null,'买空调到格里',9000);
+insert into product values (null,'乐视大空调',5);
+insert into product values (null,'长虹电风扇',3000);
+insert into product values (null,'九阳榨汁机',300);
+insert into product values (null,'viov x9',2999);
+insert into product values (null,'nb洗衣机',30000);
+insert into product values (null,'死全家捕鼠器',888);
+insert into product values (null,'九阳电饭煲',5200);
+insert into product values (null,'美的空调',5555);insert into product values (null,'老板空调',19999);
+insert into product values (null,'海尔液晶电视',30000);
+insert into product values (null,'我的电饼铛',6666);
+insert into product values (null,'大神洗衣机',500);
+insert into product values (null,'魅族豆浆机',2000);
+insert into product values (null,'吃饱饱电饭煲',3000);
+insert into product values (null,'九阳豆浆机',1100);
+insert into product values (null,'电风扇',10);
+insert into product values (null,'飞科剃须刀',300);
+insert into product values (null,'海尔电冰箱',2975);
+insert into product values (null,'东风X-8洗衣机',11000);
+insert into product values (null,'电风扇',10);
+insert into product values (null,'三星电视机',9000);
+insert into product values (null,'iphone10',30);
+insert into product values (null,'志高空调',5000);
+insert into product values (null,'所罗门冰箱',5000);
+insert into product values (null,'爱疯打火机',666);
+insert into product values (null,'战斗机',30000000);
+insert into product values (null,'海氏（Hauswirt）多功能和面机打蛋器搅拌机',1600);
+insert into product values (null,'Max电视机',5600);
+insert into product values (null,'小飞鹅洗衣机',30000);
+insert into product values (null,'终结者T100电冰箱',300000);
+insert into product values (null,'奥斯克空调',4999);
+insert into product values (null,'波波洗衣机',4999);
+```
+
 
 ## 多表查询
 
 ### 数据准备
+- - 
 
 ### 交叉连接
 ### 内连接查询
