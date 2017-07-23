@@ -156,6 +156,44 @@ return con;
 }
 ```
 
+## DBUtils工具类
+
+> DBUtils就是JDBC的简化开发工具包。需要项目导入第三方jar包才能够正常使用DBUtils工具。
+
+### 增删改操作
+
+- 创建QueryRunner类的对象,创建对象的时候可以直接指定数据库的连接池
+- 调用 ` update(String sql,Object...params)  `方法执行
+
+``` stylus
+QueryRunner qr = new QueryRunner(DBUtils.getDataSource());
+int a = qr.update("insert into staff values (null,?,?)", "kkk",1);
+System.out.println(a);
+```
+### 查询操作
+
+- 创建QueryRunner类的对象,创建对象的时候可以直接指定数据库的连接池对象
+- 调用 query(String sql, ResultSetHandler<T> rsh, Object... params) 方法执行
+
+#### **ResultSetHandler**
+
+> ResultSetHandler是一个接口,当我们使用的时候需要他的实现类.
+
+|   名称  | 用法    |
+| :---: | :---: |
+|   ArrayHandler  |   将结果集中的第一条记录封装到一个Object[]数组中，数组中的每一个元素就是这条记录中的每一个字段的值  |
+|  ArrayListHandler   |  将结果集中的每一条记录都封装到一个Object[]数组中，将这些数组在封装到List集合中   |
+|  BeanHandler   |   将结果集中第一条记录封装到一个指定的javaBean中。  |
+|  BeanListHandler   |  将结果集中每一条记录封装到指定的javaBean中，将这些javaBean在封装到List集合中   |
+|  ColumnListHandler   |  将结果集中指定的列的字段值，封装到一个List集合中   |
+|   ScalarHandler  |  它是用于单数据。例如select count(*) from 表操作。   |
+|  MapHandler   |   将结果集第一行封装到Map集合中,Key 列名, Value 该列数据  |
+|   MapListHandler  |   将结果集每一行封装到Map集合中,Key 列名, Value 该列数据,Map集合存储到List集合  |
+
+#### **JavaJBean**
+
+> JavaBean就是一个类，在开发中常用封装数据。具有如下特性
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500784268264.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500784408318.jpg
