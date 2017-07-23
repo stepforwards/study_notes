@@ -78,6 +78,17 @@ grammar_cjkRuby: true
 
 ![步骤十][31]
 
+![步骤十一][32]
+
+![步骤十二][33]
+
+
+![步骤十三][34]
+
+![步骤十四][35]
+
+
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500781132401.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500781165602.jpg
@@ -110,3 +121,7 @@ grammar_cjkRuby: true
   [29]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500783632832.jpg
   [30]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500783656756.jpg
   [31]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500783696242.jpg
+  [32]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500783732656.jpg
+  [33]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500783754232.jpg
+  [34]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500783772907.jpg
+  [35]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500783793482.jpg
