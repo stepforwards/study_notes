@@ -1,6 +1,6 @@
 ---
 title: javaScript常用代码块
-tags: javascript,级联查询
+tags: javascript,级联查询,checkbox,全选,反选
 grammar_cjkRuby: true
 ---
 
@@ -96,6 +96,73 @@ grammar_cjkRuby: true
 	<select onchange="selectCity(this.value)" id="shi">
 		<option>请选择城市</option>
 	</select>
+</body>
+</html>
+```
+
+## 全选反选
+
+``` stylus
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+	// 全选
+	function selectAll(a) {
+		var checkboxs = document.getElementsByName("rowName");
+		for (var i = 0; i < checkboxs.length; i++) {
+			checkboxs[i].checked = a.checked;
+		}
+	}
+	// 反选
+	function backSelect() {
+		var checkboxs = document.getElementsByTagName("input");
+		for (var i = 0; i < checkboxs.length; i++) {
+			checkboxs[i].checked = !checkboxs[i].checked;
+		}
+	}
+	// 设置表格选中当前行变色
+	onload = function(){
+		var a = document.getElementsByTagName("tr");
+		for(var i = 0;i < a.length; i++){
+			a[i].onmouseover = function(){
+				this.style = "background: red";
+			}
+			a[i].onmouseout = function(){
+				this.style = "background: white";
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<input type="checkbox" onclick="selectAll(this)">全选
+	<input type="checkbox" onclick="backSelect()">反选
+	<table>
+		<tr>
+			<td><input type="checkbox" name="rowName"></td>
+			<td>1.1</td>
+			<td>1.2</td>
+			<td>1.3</td>
+		</tr>
+
+		<tr>
+			<td><input type="checkbox" name="rowName"></td>
+			<td>2.1</td>
+			<td>2.2</td>
+			<td>2.3</td>
+		</tr>
+
+		<tr>
+			<td><input type="checkbox" name="rowName"></td>
+			<td>3.1</td>
+			<td>3.2</td>
+			<td>3.3</td>
+		</tr>
+	</table>
 </body>
 </html>
 ```
