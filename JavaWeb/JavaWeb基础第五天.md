@@ -277,6 +277,101 @@ System.out.println(scae.getValue());//获取修改前value
 ### ServletRequestAttributeListener域中数据的变化(和上述相同)
 
 
+## session中的绑定的对象相关的监听器(对象感知监听器)
+
+> 对象放在session中一共有四种状态
+> 1. 绑定状态：就一个对象被放到session域中
+> 2. 解绑状态：就是这个对象从session域中移除了
+> 3. 钝化状态：是将session内存中的对象持久化（序列化）到磁盘
+> 4. 活化状态：就是将磁盘上的对象再次恢复到session内存中
+
+### 绑定与解绑的监听器HttpSessionBindingListener
+
+> 此接口是需要对象去实现,并且不需要去注册
+
+``` stylus
+public class User implements HttpSessionBindingListener{
+private int age;
+private String name;
+public int getAge() {
+return age;
+}
+public void setAge(int age) {
+this.age = age;
+} 
+public String getName() {
+return name;
+} 
+public void setName(String name) {
+this.name = name;
+} 
+@Override
+public void valueBound(HttpSessionBindingEvent event) {
+System.out.println("绑定");
+} 
+@Override
+public void valueUnbound(HttpSessionBindingEvent event) {
+System.out.println("解绑");
+}
+}
+```
+### 钝化与活化的监听器HttpSessionActivationListener
+
+> 实质上就是session中对象的序列化和反序列化,可用于服务器的优化,所以需要将放在session中的对象实现此接口,如果需要对象存在磁盘中,需要当前类实现Serializable接口
+
+``` stylus
+public class User implements HttpSessionActivationListener,Serializable{
+private int age;
+private String name;
+public int getAge() {
+return age;
+}
+public void setAge(int age) {
+this.age = age;
+} 
+public String getName() {
+return name;
+} 
+public void setName(String name) {
+this.name = name;
+} 
+@Override
+public void sessionWillPassivate(HttpSessionEvent se) {
+System.out.println("----------------------------------------钝
+化了");
+} 
+@Override
+public void sessionDidActivate(HttpSessionEvent se) {
+System.out.println("---------------------------------------活
+化了");
+} 
+@Override
+public String toString() {
+return "User [age=" + age + ", name=" + name + "]";
+}
+}
+```
+### 服务器的优化处理
+
+> 通过一个xml文件进行配置session中的对象多久被钝化
+
+- 在META-INF中创建一个名字为context.xml文件
+- 将下面代码拷贝进文件
+
+``` stylus
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+<!-- maxIdleSwap:session中的对象多长时间不使用就钝化单位是分钟 -->
+<!-- directory:钝化后的对象的文件写到磁盘的哪个目录下 配置钝化的对象文件在work/ca
+talina/localhost/钝化文件 -->
+<!--org.apache.catalina.session.PersistentManager的钝化引擎-->
+<!--org.apache.catalina.session.FileStore 用于存储文件-->
+<Manager className="org.apache.catalina.session.PersistentManager" maxIdleSwap="1">
+<Store className="org.apache.catalina.session.FileStore" directory="bigdata14" />
+</Manager>
+</Context>
+
+```
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1501858225827.jpg
