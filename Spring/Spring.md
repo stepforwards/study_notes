@@ -348,23 +348,10 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 - prototype多例模式创建,当前对象在容器中每次调用getBean返回的是新的对象
 
 ``` stylus
-<bean name="people1" class="com.zhiyou100.de
-mo01.People" scope="prototype">
-以后绝大多数的对象都使用默认值就行,在Struts2中的
-action要配置成prototype
-生命周期属性
-init­method初始化方法
-destroy­method销毁方法
-不能和prototype一起使用,如果是多例的话,spring容器将对
-象创建完成后就不再负责管理这个对象了,只有是singleton
-对象容器才会负责去管理它
-<bean name="people1" class="com.zhiyou100.de
-mo01.People" scope="singleton" init-metho
-d="init" destroy-method="destory">
-DI依赖注入
-</bean>
-</bean>
+<bean name="people1" class="com.zhiyou100.demo01.People" scope="prototype"></bean>
 ```
+> 以后绝大多数的对象都使用默认值就行,在Struts2中的action要配置成prototype
+
 
 
 
