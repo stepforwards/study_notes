@@ -174,8 +174,220 @@ meout属性,是用来测试超时操作的单位是毫秒其格式为**@Test(tim
 
 > 使用了JDK5中的静态导入，只要在import关键字后面加上static关键字，就可以把后面的类的static的变量和方法导入到这个类中，调用的时候和调用自己的方法没有任何区别。
 
+## Spring
 
+> Spring是于 2003 年兴起的一个轻量级的 Java 开发框架.Spring 的核心是控制反转（IOC）和面向切面（AOP）。Spring 是一个分层的 JavaSE/EEfull-stack(一站式) 轻量级开源框架。
+
+### 一站式框架
+
+- web层:可以使用Spring提供的SpringMVC框架进行请求的处理
+- service层:可以使用Spring的IOC进行对象的创建
+- dao层:可以使用Spring提供的JDBC模板进行处理
+- spring不但能够自身完成web应用的开发,并且能够完美兼容其他开源框架,因为spring是一个容器
+
+### Spring环境搭建以及HelloWorld案例
+
+- 下载Spring相关jar包[下载地址][3]
+
+![enter description here][4]
+
+![Spring 包结构][5]
 	
+- 导包(4+2)
+
+![Spring 模块划分][6]
+
+![Spring lib文件夹中的四个jar包][7]
+
+![依赖包中的日志包][8]
+
+![依赖中的log4j][9]
+
+- 创建普通的类,让Spring帮我们创建
+
+``` stylus
+public class People {
+	private String name;
+	private int age;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public void eat() {
+		System.out.println("吃饭了");
+	}
+
+	@Override
+	public String toString() {
+		return "People [name=" + name + ", age=" + age + "]";
+	}
+}
+```
+
+- 创建xml的配置文件,将我们写的类配置到对应的文件中,建议放在src下,建议命名为applicationContext.xml,可以认为是spring的规范,如果不按照此规范也不会出错
+- 设置schema约束,是需要按照对应的命名空间来决定标签中的顺序的,也可以认为配置后书写标签能够有提示
+- 在配置文件写 `<bean name="people"class="com.zhiyou100.demo01.People"></bean>`
+- 创建一个测试类,写一个测试方法
+
+``` stylus
+	@Test
+	public void test01(){
+		//创建spring容器对象,加载src下的配置文件
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		//从容器中通过name获取对象
+		People person = (People) context.getBean("people");
+		//调用对象的方法
+		person.eat();
+	}
+
+```
+## 配置schema约束步骤
+
+![步骤一][10]
+
+![步骤二][11]
+
+![步骤三][12]
+
+![步骤四][13]
+
+![步骤五][14]
+
+![步骤六][15]
+
+![步骤七][16]
+
+![步骤八][17]
+
+## schema讲解
+
+> 配置约束是为了在xml文件中进行配置的时候,能够按照约束进行标签的校验
+
+- 配置一个xml文件最多只能有一个匿名的命名空间,所以我们将bean这个命名空间配置为匿名,如果将其配置为xx,那么当使用bean中的标签的时候需要加 `<xx:bean></xx:bean>` ,在配置spring的时候,我们习惯于将bean标签配置为匿名的,可以认为是一种规范
+- 因为要使用schemaLocation来进行配置键值对匹配,所以我们先配置了别名为xsi的`xmlns:xsi="http://www.w3.org/2001/XMLSchemainstance"` 命名空间
+- 右配置了一个匿名的命名空间 `xmlns="http://www.springframework.org/schema/beans"`
+- 通过xsi的schemaLocation,将键值对进行对应
+
+``` stylus
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
+```
+- 将来我们引用其他的命名空间的时候也是使用相同的方法进行配置	
+
+## IOC控制反转
+> IOC控制反转(Inversion of Control)将对象的创建权交给了Spring,我们通过Spring,就不用每次去创建对象,只需要通过Spring容器调用getBean(“name属性或id属性”)获取对应的对象
+
+- ApplicationContext实现类会在创建的时候,将内部配置的所有对象加载到容器中
+- ClassPathXmlApplicationContext是ApplicationContext的接口实现类,是从classpath的目录下加载配置文件
+
+### bean元素的配置和创建
+
+> IOC控制反转(Inversion of Control)将对象的创建权交给了Spring,我们通过Spring,就不用每次去创建对象,只需要通过Spring容器调用getBean(“name属性或id属性”)获取对应的对象
+
+- ApplicationContext实现类会在创建的时候,将内部配置的所有对象加载到容器中
+- ClassPathXmlApplicationContext是ApplicationContext的接口实现类,是从classpath的目录下加载配置文件
+
+### bean元素的配置和创建
+
+> 凡是交给spring容器管理的对象,都是使用bean元素进行配置
+
+### name属性和class属性
+
+- name属性给管理的对象起名字,根据该名称能获取对象
+- class属性是获取该对象的完整类名
+- id属性跟name属性的功能和用法一模一样,和name属性相比,id属性唯一不重复,并且不能含有特殊字符,如果只设置name属性,那么name属性在容器中就必须是唯一的
+
+### bean元素的创建
+
+> 默认调用空参构造方法进行创建对象,如果没有空参构造方法就会报错误
+
+- 空参构造方法创建
+
+``` stylus
+<!--空参构造方法-->
+<bean name="people1" class="com.zhiyou100.demo01.People"></bean>
+```
+
+- 静态工厂方式创建
+
+``` stylus
+<!--静态工厂-->
+<bean name="people2" class="com.zhiyou100.create.PeopleFactory" factory-method="createPeople"></bean>
+```
+
+- 实例工厂方式创建
+
+``` stylus
+<!--实例工厂-->
+<bean name="factoryBean" class="com.zhiyou100.create.PeopleFactory"></bean>
+<bean name="people3" factory-bean="factoryBean" factory-method="CreatePeople2"></bean>
+```
+
+### scope属性
+
+> 设置bean元素的创建对象的方式
+
+- singleton单例模式创建,当前对象在容器中只会创建一个对象
+
+``` stylus
+<bean name="people1" class="com.zhiyou100.demo01.People" scope="singleton"></bean>
+```
+- prototype多例模式创建,当前对象在容器中每次调用getBean返回的是新的对象
+
+``` stylus
+<bean name="people1" class="com.zhiyou100.de
+mo01.People" scope="prototype">
+以后绝大多数的对象都使用默认值就行,在Struts2中的
+action要配置成prototype
+生命周期属性
+init­method初始化方法
+destroy­method销毁方法
+不能和prototype一起使用,如果是多例的话,spring容器将对
+象创建完成后就不再负责管理这个对象了,只有是singleton
+对象容器才会负责去管理它
+<bean name="people1" class="com.zhiyou100.de
+mo01.People" scope="singleton" init-metho
+d="init" destroy-method="destory">
+DI依赖注入
+</bean>
+</bean>
+```
+
+
+
+
+
+
+
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6.png "反射机制"
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502111809979.jpg
+  [3]: http://repo.springsource.org/libs-release-local/org/springframework/spring/
+  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502113837906.jpg
+  [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114002673.jpg
+  [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502113953603.jpg
+  [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114069245.jpg
+  [8]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114101844.jpg
+  [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114166865.jpg
+  [10]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114546056.jpg
+  [11]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114589620.jpg
+  [12]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114617581.jpg
+  [13]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114656578.jpg
+  [14]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114692838.jpg
+  [15]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114740407.jpg
+  [16]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114772296.jpg
+  [17]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114810497.jpg
