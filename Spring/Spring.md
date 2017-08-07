@@ -107,4 +107,75 @@ grammar_cjkRuby: true
 - **@BeforeClass**：所有测试方法执行前执行一次，在测试类还没有实例化就已经被加载，所以用static修饰(需要配合@Test使用)
 - **@AfterClass**：所有测试方法执行完执行一次，在测试类还没有实例化就已经被加载，所以用static修饰(需要配合@Test使用)
 - **@Ignore**：暂不执行该测试方法(需要配合@Test使用)
+
+``` stylus
+public class Test {
+
+	// 测试程序
+	@org.junit.Test
+	public void test01(){
+		System.out.println("test01()");
+	}
+	
+	// 测试静态方法,执行测试程序之前执行
+	@BeforeClass
+	public static void testBeforeClass(){
+		System.out.println("testBeforeClass()");
+	}
+	//测试静态方法,执行测试程序之后执行
+	@AfterClass
+	public static void testAfterClass(){
+		System.out.println("testAfterClass()");
+	}
+	// 测试程序之前执行
+	@Before
+	public void testBefore(){
+		System.out.println("testBefore()");
+	}
+	// 测试程序之后执行
+	@After
+	public void testAfter(){
+		System.out.println("testAfter()");
+	}
+}
+```
+懒的解释了，直接看结果
+
+![测试运行结果示意图][2]
+
+### @Test属性(了解)
+
+- expect属性,用来测试异常相关,其格式为 @Test(expect =xxxException.class) ,如果出现异常测试成功,如果未出现异常测试失败
+
+``` stylus
+@Test(expected = ArithmeticException.class)
+	public void test011() {
+		System.out.println("test02");
+		System.out.println(1 / 0);
+	}
+```
+
+- ti
+meout属性,是用来测试超时操作的单位是毫秒其格式为**@Test(timeout=毫秒值)** ,如果运行时间在设置之内,测试通过,如果超出测试失败
+
+``` stylus
+	@Test(timeout = 1)
+	public void test01() {
+		System.out.println("test01");
+		for (int i = 0; i < 10000; i++) {
+			System.out.println("sssss");
+		}
+	}
+```
+### 断言判断(了解)
+
+- 判断结果是否是预期的结果格式为 assertEquals(期望结果,实际结果);
+- 断言的包的导入 import static org.junit.Assert.*;
+
+> 使用了JDK5中的静态导入，只要在import关键字后面加上static关键字，就可以把后面的类的static的变量和方法导入到这个类中，调用的时候和调用自己的方法没有任何区别。
+
+
+	
+
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6.png "反射机制"
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502111809979.jpg
