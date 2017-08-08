@@ -353,12 +353,157 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 > 以后绝大多数的对象都使用默认值就行,在Struts2中的action要配置成prototype
 
 
+### 生命周期属性
+
+- init-method初始化方法
+- destroy-method销毁方法
+- 不能和prototype一起使用,如果是多例的话,spring容器将对象创建完成后就不再负责管理这个对象了,只有是singleton对象容器才会负责去管理它
+
+``` stylus
+<bean name="people1" class="com.zhiyou100.demo01.People" scope="singleton" init-method="init" destroy-method="destory"></bean>
+```
+
+## DI依赖注入
+
+> 依赖注入(Dependency Injection),需要有 IOC 的环境,Spring 创建这个类的过程中,Spring 将类的依赖的属性设置进去.
+
+### 注入方式
+
+> 如果是基本类型使用value,如果是引用类型就需要使用ref
+
+#### set方法注入
+
+> 类中必须要有set方法,否则属性无法正常注入
+
+``` stylus
+<bean name="user" class="com.zhiyou100.di.User">
+<bean name="car" class="com.zhiyou100.di.Car">
+<property name="price" value="8000"></bean>
+```
+#### 构造方法注入
+
+> 通过构造方法创建对象,并传递相应的参数给具体的属性
+
+``` stylus
+<!--
+构造方法注入属性
+name 表示参数名称
+value 给参数赋的具体值
+index 表示参数的索引
+type 表示参数的类型
+以上所有的属性并不是全部都要设置
+-->
+<bean name="user2" class="com.zhiyou100.di.User">
+<constructor-arg name="name" value="韩梅梅"index="1" type="java.lang.String"></constructor-arg>
+<constructor-arg name="car" ref="car"></constructor-arg>
+</bean>
+```
+#### p名称空间注入
+
+``` stylus
+xmlns:p="http://www.springframework.org/schema/p"
+<bean name="user3" class="com.zhiyou100.di.User" p:name="李雷" p:age="18" p:car-ref="car"></bean>
+```
+#### SPEL表达式注入
+
+> spring expression language(表达式语言注入),必须在前面基础上完成,比如解决类类似配置一个bean的属性是另一个bean的属性值的时候,需要使用spel注入
+
+``` stylus
+
+<bean name="user4" class="com.zhiyou100.di.U
+ser">
+<property name="age" value="#{car.price > 300000 ? 35 : 20}"></property>
+<property name="name" value="#{'zhangSan'.toUpperCase()}"></property>
+<property name="car" ref="car"></property>
+</bean>
+```
+
+## 复杂类型注入
+
+- 数组类型
+- list类型
+- map类型
+
+``` stylus
+public class ComplexTypeObject {
+	Object[] arr;
+	List<Object> list;
+	Map<Object, Object> map;
+	public Object[] getArr() {
+	return arr;
+} 
+public void setArr(Object[] arr) {
+this.arr = arr;
+} 
+public List<Object> getList() {
+return list;
+} 
+public void setList(List<Object> list) {
+this.list = list;
+} 
+public Map<Object, Object> getMap() {
+return map;
+}
+public void setMap(Map<Object, Object> map) {
+this.map = map;
+} 
+@Override
+public String toString() {
+return "ComplexTypeObject [arr=" + Arrays.toString(arr) + ", list=" + list + ",map=" + map + "]";
+}
+}
+<bean name="ct" class="com.zhiyou100.di.ComplexTypeObject">
+<property name="arr">
+	<array>
+	<value>休息</value>
+	<value>开会</value>
+	<ref bean="user4"/>
+	</array>
+</property>
+<property name="list">
+	<list>
+	<value>北京</value>
+	<value>上海</value>
+	<ref bean="car"/>
+	</list>
+</property>
+<property name="map">
+	<map>
+	<entry key="driverClass" value="com.mysql.jdbc.Driver"/>
+	<entry key="car" value-ref="car"/>
+	<entry key-ref="user4" value-ref="car"/>
+	</map>
+</property>
+</bean>
+```
+
+## Spring 的分模块配置文件的开发
+
+> 有时为了简介和便于阅读,会将配置文件按照不同的功能模块分成多个xml文件,在进行引入的时候可以使用标签<import resource="相对路径"> 进行引入,注意是相对路径,相对于当前引入到的xml文件的路径,不建议使用”/”开头
+
+- 注意是相对路径,如果a.xml中引用b.xml,那么路径应该从a.xml文件所在的文件夹为起始路径
 
 
+## 安装STS
+
+> spring tool suite是spring开源的基于eclipse的插件,能够方便我们的spring开发
+
+- 查看eclise的版本
+
+![enter description here][18]
 
 
+![enter description here][19]
 
+[下载地址][20]找到对应版本的sts插件,进行安装
 
+![enter description here][21]
+
+![enter description here][22]
+
+![enter description here][23]
+
+![enter description here][24]
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6.png "反射机制"
@@ -378,3 +523,10 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
   [15]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114740407.jpg
   [16]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114772296.jpg
   [17]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114810497.jpg
+  [18]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502196200340.jpg
+  [19]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502196242757.jpg
+  [20]: https://spring.io/tools/sts/all
+  [21]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502196522243.jpg
+  [22]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502196627342.jpg
+  [23]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502196695486.jpg
+  [24]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502196736578.jpg
