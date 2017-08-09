@@ -393,6 +393,105 @@ cglib是面向继承实现代理的。
 
 > 在spring中通知代码是通过方法的功能来实现的,需要我们写一个类将需要的通知写在不同的方法中
 
+``` stylus
+public class MyAdvice {
+
+	/*
+	* 1.前置通知
+	* 2.后置通知(出现异常不会调用)
+	* 3.环绕通知
+	* 4.异常拦截通知
+	* 5.后置通知(无论是否出现异常都会调用)
+	*/
+	
+	public void beforeAdvice(){
+		System.out.println("before()...");
+	}
+	
+	public void AfterAdvice(){
+		System.out.println("AfterAdvice()...");
+	}
+	public void AfterRuturningAdvice(){
+		System.out.println("AfterRuturningAdvice()...");
+	}
+	
+	public void aroundAdvice(ProceedingJoinPoint pjt) throws Throwable{
+		System.out.println("roundAdvice start...");
+		pjt.proceed();
+		System.out.println("roundAdvice end...");
+	}
+	public void ExceptionAdvice(){
+		System.out.println("ExceptionAdvice()...");
+	}
+}
+
+```
+### spring中通知的类型
+
+- 前置通知:目标方法之前进行调用
+- 后置通知(出现异常不会调用):目标方法之后调用
+- 环绕通知:目标方法前后调用
+- 异常拦截通知:出现异常的时候调用
+- 后置通知(无论是否出现异常都会调用):目标方法之后调用
+
+### 编写目标对象
+
+
+``` stylus
+public class UserServiceImpl implements UserService {
+
+	@Override
+	public void addUser() {
+		System.out.println("addUser()......");
+	}
+
+	@Override
+	public void deleteUser() {
+		System.out.println("deleteUser()......");
+	}
+
+	@Override
+	public void updateUser() {
+		System.out.println("updateUser()......");
+	}
+
+	@Override
+	public void selectAllUser() {
+		System.out.println("selectAllUser()......");
+	}
+
+}
+```
+### 进行文件配置
+
+``` stylus
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+<context:property-placeholder location="classpath:db.properties"/>
+<bean name="userService" class="top.xiesen.spring.service.impl.UserServiceImpl"></bean>
+
+<bean name="myAdvice" class="top.xiesen.spring.aop_annotation.MyAdvice"></bean>
+<aop:config>
+<!--配置切入点-->
+	<aop:pointcut expression="execution(* top.xiesen.spring.service.impl..*ServiceImpl.*())" id="pt"/>
+	
+	<aop:aspect ref="myAdvice">
+		<aop:before method="beforeAdvice" pointcut-ref="pt"/>
+		<aop:after method="AfterAdvice" pointcut-ref="pt"/>
+		<aop:after-returning method="AfterRuturningAdvice" pointcut-ref="pt"/>
+		<aop:after-throwing method="ExceptionAdvice" pointcut-ref="pt"/>
+		<aop:around method="aroundAdvice" pointcut-ref="pt"/>
+	</aop:aspect>
+</aop:config>
+```
+
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502258771065.jpg
