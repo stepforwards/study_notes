@@ -482,6 +482,31 @@ public class UserServiceImpl implements UserService {
 <!--配置切入点-->
 	<aop:pointcut expression="execution(* top.xiesen.spring.service.impl..*ServiceImpl.*())" id="pt"/>
 	
+<aop:config>
+	<!-- 
+		配置切入点
+		id：表示给切入点起的名字
+		expression是表达式 格式为：execution()
+		切入点表达式具体方法 public void top.xiesen.spring.service.impl.UserServiceImpl.addUser()
+		修饰符可以不写 void top.xiesen.spring.service.impl.UserServiceImpl.addUser()
+		返回值类型不限 * top.xiesen.spring.service.impl.UserServiceImpl.addUser()
+		方法民称不限 * top.xiesen.spring.service.impl.UserServiceImpl.*()
+		方法参数不限 * top.xiesen.spring.service.impl.UserServiceImpl.*(..)
+		以ServiceImpl结尾 * top.xiesen.spring.service.impl.*ServiceImpl.*()
+		包含impl子包中符合条件的 * top.xiesen.spring.service.impl..*ServiceImpl.*()
+		
+	 -->
+	<aop:pointcut expression="execution(* top.xiesen.spring.service.impl..*ServiceImpl.*())" id="pt"/>
+	<!-- 
+		配置切面,ref表示通知
+		pointcut-ref 表示切入点
+		aop:before 前置通知
+		aop:after 后置通知
+		aop:after-returning 后置通知，出现异常被阻断
+		aop:around 环绕通知
+		aop:after-throwing异常拦截通知
+		aop:after后置通知,忽略异常
+	 -->
 	<aop:aspect ref="myAdvice">
 		<aop:before method="beforeAdvice" pointcut-ref="pt"/>
 		<aop:after method="AfterAdvice" pointcut-ref="pt"/>
