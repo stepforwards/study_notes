@@ -516,6 +516,41 @@ public class UserServiceImpl implements UserService {
 	</aop:aspect>
 </aop:config>
 ```
+- 在通知类中进行注解
+
+``` stylus
+// 表示该类是一个通知类
+@Aspect
+public class MyAdvice {
+	@Pointcut("execution(* top.xiesen.spring.service.impl..*ServiceImpl.*())")
+	public void pointCut(){}
+
+	@Before("MyAdvice.pointCut()")
+	public void beforeAdvice(){
+		System.out.println("before()...");
+	}
+	@After("MyAdvice.pointCut()")
+	public void AfterAdvice(){
+		System.out.println("AfterAdvice()...");
+	}
+	@AfterReturning("MyAdvice.pointCut()")
+	public void AfterRuturningAdvice(){
+		System.out.println("AfterRuturningAdvice()...");
+	}
+	@Around("MyAdvice.pointCut()")
+	public void aroundAdvice(ProceedingJoinPoint pjt) throws Throwable{
+		System.out.println("roundAdvice start...");
+		pjt.proceed();
+		System.out.println("roundAdvice end...");
+	}
+	@AfterThrowing("MyAdvice.pointCut()")
+	public void ExceptionAdvice(){
+		System.out.println("ExceptionAdvice()...");
+	}
+}
+
+```
+
 
 
 
