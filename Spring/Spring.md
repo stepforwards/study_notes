@@ -295,13 +295,6 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 
 ### bean元素的配置和创建
 
-> IOC控制反转(Inversion of Control)将对象的创建权交给了Spring,我们通过Spring,就不用每次去创建对象,只需要通过Spring容器调用getBean(“name属性或id属性”)获取对应的对象
-
-- ApplicationContext实现类会在创建的时候,将内部配置的所有对象加载到容器中
-- ClassPathXmlApplicationContext是ApplicationContext的接口实现类,是从classpath的目录下加载配置文件
-
-### bean元素的配置和创建
-
 > 凡是交给spring容器管理的对象,都是使用bean元素进行配置
 
 ### name属性和class属性
