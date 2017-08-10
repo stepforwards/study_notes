@@ -403,8 +403,7 @@ xmlns:p="http://www.springframework.org/schema/p"
 
 ``` stylus
 
-<bean name="user4" class="com.zhiyou100.di.U
-ser">
+<bean name="user4" class="com.zhiyou100.di.User">
 <property name="age" value="#{car.price > 300000 ? 35 : 20}"></property>
 <property name="name" value="#{'zhangSan'.toUpperCase()}"></property>
 <property name="car" ref="car"></property>
