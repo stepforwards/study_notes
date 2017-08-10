@@ -266,9 +266,147 @@ public class TestJDBC {
 
 ### 添加事务管理
 - 导包4+2+1(aop)+1(aspect)+1(aop联盟)+1(weaving)
-- 配置核心事务管理器
+- 配置核心事务管理器（详细配置见银行转账案例）
 
-> 事务管理器的配置以银行转账的案例来描述
+### 银行转账案例
+
+1. 编写Dao层接口AccountDao
+
+``` stylus
+public interface AccountDao {
+	// 增加(进账)
+	void add(int to,int money);
+	// 减少(出账)
+	void sub(int to,int money);
+}
+
+```
+
+2. 编写Dao层实现类AccountDaoImpl
+
+``` stylus
+public class AccountDaoImpl  implements AccountDao{
+
+	@Autowired
+	JdbcTemplate jt;
+	
+	public void setJt(JdbcTemplate jt) {
+		this.jt = jt;
+	}
+
+	@Override
+	public void add(int to, int money) {
+		String sql = "update  t_account set money = money + ? where id = ?";
+		jt.update(sql, money,to);
+	}
+
+	@Override
+	public void sub(int to, int money) {
+		String sql = "update t_account set money = money - ? where id = ?";
+		jt.update(sql, money,to);
+	}
+
+}
+
+```
+
+3. 编写Service层接口AccountService
+
+``` stylus
+public interface AccountService {
+
+	void transfer(int from,int to,int money);
+}
+
+```
+
+4. 编写Service层实现类AccountServiceImpl
+
+``` stylus
+public class AccountServiceImpl implements AccountService{
+
+	private AccountDao ad;
+	
+	public void setAd(AccountDao ad) {
+		this.ad = ad;
+	}
+
+	@Override
+	public void transfer(int from, int to, int money) {
+		ad.sub(from, money);
+		int i = 1/0;//异常，为了测试
+		ad.add(to, money);
+	}
+}
+
+```
+
+5. 编写applicationContext配置文件
+
+``` stylus
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+	<!-- 加载配置文件 -->
+	<context:property-placeholder location="classpath:db.properties" />
+
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+	<!-- 配置连接池 -->
+	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+
+	<bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<bean name="ad" class="top.xiesen.transfer.dao.impl.AccountDaoImpl">
+		<property name="jt" ref="jdbcTemplate"></property>
+	</bean>
+	<bean name="as" class="top.xiesen.transfer.service.impl.AccountServiceImpl">
+		<property name="ad" ref="ad"></property>
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	<bean name="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!-- 配置事务通知 -->
+	<tx:advice transaction-manager="transactionManager" id="txAdvice">
+		<tx:attributes>
+			<tx:method name="transfer" isolation="REPEATABLE_READ"
+				read-only="false" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置切面 -->
+	<aop:config>
+		<aop:pointcut
+			expression="execution(* top.xiesen.transfer.service.impl..*ServiceImpl.*(..))"
+			id="pc" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pc" />
+	</aop:config>
+
+</beans>
+```
+
+
+
+
+
+
 
 
 
