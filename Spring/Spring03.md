@@ -268,6 +268,18 @@ public class TestJDBC {
 - 导包4+2+1(aop)+1(aspect)+1(aop联盟)+1(weaving)
 - 配置核心事务管理器
 
+> 事务管理器的配置以银行转账的案例来描述
+
+
+
+
+
+
+
+
+
+
+
 
 
 
