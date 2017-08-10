@@ -346,7 +346,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 > 以后绝大多数的对象都使用默认值就行,在Struts2中的action要配置成prototype
 
 
-### 生命周期属性
+### Bean生命周期属性
 
 - init-method初始化方法
 - destroy-method销毁方法
