@@ -265,7 +265,7 @@ System.out.println("容器关闭前销毁");
 
 ``` stylus
 //配置相关配置文件的路径
-@ContextConfiguration("classpath:com/zhiyou100/annotation/applicationContext.xml")
+@ContextConfiguration("classpath:top/xiesen/annotation/applicationContext.xml")
 ```
 - 在需要获取容器中的对象的时候设置为成员变量,使用Resource或者Autowired进行获取
 - 正常使用test进行测试
@@ -274,8 +274,7 @@ System.out.println("容器关闭前销毁");
 //使用这个类帮助我们去创建容器
 @RunWith(SpringJUnit4ClassRunner.class)
 //配置配置文件的路径,必须要写classpath
-@ContextConfiguration("classpath:com/zhiy
-ou100/annotation/applicationContext.xml")
+@ContextConfiguration("classpath:top/xiesen/annotation/applicationContext.xml")
 public class TestDemo {
 @Resource(name="user")
 private User u;
