@@ -282,9 +282,11 @@ public void testFindOrderWithUser(){
 }
 ```
 
-### 多对多查询
+### 一对多查询
 1.在用户的pojo中添加order的成员变量，一个用户对应多个订单，所以应该定义为`private List<Order> orders;`并生成其setter和getter方法
+
 2.编写对应的接口 `List<User> findUserWithOrder();`
+
 3.在mapper文件中编写如下代码：
 
 ``` stylus
