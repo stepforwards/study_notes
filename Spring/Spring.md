@@ -3,6 +3,7 @@ title: Spring
 tags: Spring,框架,Java
 grammar_cjkRuby: true
 ---
+[TOC]
 
 ## 注解
 
@@ -177,6 +178,8 @@ meout属性,是用来测试超时操作的单位是毫秒其格式为**@Test(tim
 ## Spring
 
 > Spring是于 2003 年兴起的一个轻量级的 Java 开发框架.Spring 的核心是控制反转（IOC）和面向切面（AOP）。Spring 是一个分层的 JavaSE/EEfull-stack(一站式) 轻量级开源框架。
+> Spring 是一个容器，通过反转控制( IoC )和依赖注入( DI )来实现高内聚、低耦合的应用。除此之外它可以整合很多第三方框架，它还提供面向切面编程（ AOP ）的能力，对数据库事务的管理尤其方便。
+> Spring 框架除了帮我们管理对象及其依赖关系，还提供像通用日志记录、性能统计、安全控制、异常处理等面向切面的能力，可以帮我们管理最头疼的数据库事务，同时，它本身提供了一套简单的 JDBC 访问实现，能与第三方数据库访问框架集成（如 Hibernate、JPA ），与各种 Java EE 技术整合（如 Java Mail、任务调度等等），提供一套自己的 web 层框架 Spring MVC 、而且还能非常简单的与第三方 web 框架集成。
 
 ### 一站式框架
 
@@ -195,7 +198,7 @@ meout属性,是用来测试超时操作的单位是毫秒其格式为**@Test(tim
 	
 - 导包(4+2)
 
-![Spring 模块划分][6]
+![Spring 某块换分][6]
 
 ![Spring lib文件夹中的四个jar包][7]
 
@@ -498,13 +501,12 @@ return "ComplexTypeObject [arr=" + Arrays.toString(arr) + ", list=" + list + ",m
 ![enter description here][24]
 
 
-
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6.png "反射机制"
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502111809979.jpg
   [3]: http://repo.springsource.org/libs-release-local/org/springframework/spring/
   [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502113837906.jpg
   [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114002673.jpg
-  [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502113953603.jpg
+  [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502502185502.jpg
   [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114069245.jpg
   [8]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114101844.jpg
   [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502114166865.jpg
