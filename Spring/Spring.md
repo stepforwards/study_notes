@@ -198,7 +198,7 @@ meout属性,是用来测试超时操作的单位是毫秒其格式为**@Test(tim
 	
 - 导包(4+2)
 
-![Spring 某块换分][6]
+![Spring 架构图][6]
 
 ![Spring lib文件夹中的四个jar包][7]
 
@@ -358,6 +358,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 ``` stylus
 <bean name="people1" class="com.zhiyou100.demo01.People" scope="singleton" init-method="init" destroy-method="destory"></bean>
 ```
+
 
 ## DI依赖注入
 
