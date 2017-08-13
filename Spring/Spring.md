@@ -195,10 +195,11 @@ meout属性,是用来测试超时操作的单位是毫秒其格式为**@Test(tim
 ![enter description here][4]
 
 ![Spring 包结构][5]
+
+![Spring 架构图][6]
 	
 - 导包(4+2)
 
-![Spring 架构图][6]
 
 ![Spring lib文件夹中的四个jar包][7]
 
@@ -233,7 +234,7 @@ public class People {
 		System.out.println("吃饭了");
 	}
 
-	@Override
+	@Override	
 	public String toString() {
 		return "People [name=" + name + ", age=" + age + "]";
 	}
@@ -313,11 +314,13 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 - 空参构造方法创建
 
 ``` stylus
-<!--空参构造方法-->
+<!--无参构造方法-->
 <bean name="people1" class="com.zhiyou100.demo01.People"></bean>
 ```
 
 - 静态工厂方式创建
+
+> 静态方法，有返回值
 
 ``` stylus
 <!--静态工厂-->
@@ -325,6 +328,8 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 ```
 
 - 实例工厂方式创建
+
+> 非静态方法，有返回值
 
 ``` stylus
 <!--实例工厂-->
