@@ -284,7 +284,7 @@ System.out.println(u);
 }
 }
 ```
-## aop(面向切面编	程)
+## aop(面向切面编程)
 
 > Aspect Oriented Programming是一种编程思想,进行重复的代码进行横向的抽取.
 
@@ -322,11 +322,12 @@ public class TargetClass implements Interface1 {
 ``` stylus
 @Test
 	public void testDynamiProxy(){
-		
+		// 获取系统的类加载器
 		ClassLoader loader = ClassLoader.getSystemClassLoader();
+		// 需要代理的目标类的接口
 		Class []interfaces = {Interface1.class}; 
+		// 目标对象
 		Interface1 i = new TargetClass();
-		
 		
 		Interface1 proxy = (Interface1) Proxy.newProxyInstance(loader, interfaces, new InvocationHandler() {
 			
@@ -347,7 +348,41 @@ public class TargetClass implements Interface1 {
 
 cglib是面向继承实现代理的。
 
+``` stylus
+public class CGLibProxyTest implements MethodInterceptor{
+	
+	public Object CGLibProxy() {
+		// 创建生成代理工具类
+		Enhancer enhancer = new Enhancer();
+		// 设置代理对象的父类
+		enhancer.setSuperclass(People.class);
+		// 调用方法的时候进行回调
+		enhancer.setCallback(this);
+		// 创建代理对象
+		Object proxy = enhancer.create();
+		return proxy;
+	}
+	
+	/**
+	 * proxyObj代理对象
+	 * method原始方法
+	 * arg2方法参数 
+	 * methodProxy代理方法 
+	 */
+	@Override
+	public Object intercept(Object proxyObj, Method method, Object[] arg2, MethodProxy methodProxy) throws Throwable {
+		System.out.println("start()........");
+		Object invokeSuper = methodProxy.invokeSuper(proxyObj, arg2);
+		System.out.println("end()...........");
+		return invokeSuper;
+	}
+
+}
+
+```
+
 #### aop中的名词解释
+
 1. Joinpoint(连接点)
 
 > 目标对象中所有可以增强的方法叫做连接点
@@ -377,13 +412,15 @@ cglib是面向继承实现代理的。
 
 ## aop-xml配置
 
+![aop配置示意图][1]
+
 ### 导包
 
 > 导包4+2+1(spring包中的aop包)+1(spring中的aspect包)+1(spring依赖包中aopalliance)+1(spring依赖包中org.spectj包中的weaver包)
 
-![enter description here][1]
-
 ![enter description here][2]
+
+![enter description here][3]
 
 
 ### 编写通知代码
@@ -438,7 +475,7 @@ public class MyAdvice {
 public class UserServiceImpl implements UserService {
 
 	@Override
-	public void addUser() {
+	public void addUser() { 
 		System.out.println("addUser()......");
 	}
 
@@ -549,7 +586,6 @@ public class MyAdvice {
 ```
 
 
-
-
-  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502258771065.jpg
-  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502258859570.jpg
+  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/aop.png "aop"
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502258771065.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502258859570.jpg
