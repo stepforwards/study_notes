@@ -3,7 +3,7 @@ title: Spring02
 tags: Spring,框架,Java
 grammar_cjkRuby: true
 ---
-
+[TOC]
 ## 注解配置Spring
 
 ### 配置步骤
@@ -23,7 +23,7 @@ grammar_cjkRuby: true
 - `@Repository`:用以区分此类是dao层
 
 ``` stylus
-@Repository("user")
+@Repository("user")	
 public class User {
 private String name;
 private int age;
@@ -284,7 +284,7 @@ System.out.println(u);
 }
 }
 ```
-## aop(面向切面编程)
+## aop(面向切面编	程)
 
 > Aspect Oriented Programming是一种编程思想,进行重复的代码进行横向的抽取.
 
@@ -314,7 +314,6 @@ public class TargetClass implements Interface1 {
 	}
 
 }
-
 ```
 
 
