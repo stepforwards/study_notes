@@ -180,7 +180,35 @@ public class RoleController {
 
 ```
 
+# 静态资源放行
 
+> 前端控制器的本质是一个servlet，所以`utl-pattern` 符合servlet的规则，但是springmvc是需要拦截请求才能使用框架进行处理的，所以关于路径匹配上一般不会使用完全路径匹配和目录匹配，一般设置为后缀名进行匹配（推荐使用这种方式），也可以使用 `/` 和 `/*` 是会对jsp进行拦截的，所以需要我们在controller中进行静态资源的放行操作，显然这种方式比较麻烦。
+> **注意：如果前端控制器配置为扩展名匹配，是不需要设置静态资源放行的，强烈建议使用扩展名匹配**
+
+
+## 方式一
+
+> tomcat内部有一个叫做默认servlet的 url-pattern为 / 其可以处理静态资源,我们可以在配置文件中配置一个默认的servlet为这个,当所有路径都不匹配的时候让这个servlet进行处理,必须要配置注解驱动才能正常使用
+
+``` xml
+<mvc:default-servlet-handler/>
+```
+## 方式二
+
+> 手动建立映射关系,  `/**`  表示可以有下一级文件夹,这种映射路径的方法,内部是由处理器映射器去执行具体的映射过程,所以必须要配置注解驱动如果不配置注解驱动会导致web应用无法访问,此方法的好处是路径可以直接在配置文件中进行指定
+
+``` xml
+<mvc:resources location="/image/" mapping="/image/**"/>
+<mvc:resources location="/css/" mapping="/css/**"/>
+<mvc:resources location="/js/" mapping="/js/**"/>
+<mvc:resources location="/lib/" mapping="/lib/**"/>
+```
+
+# SSM整合
+
+- 导包
+- 创建config的source folder文件夹存放配置文件,在其内部创建两个文件夹spring(放spring配置文件)和mybatis(放mybatis的核心配置文件)
+- 将db.properties文件和log4j.properties文件放在config的根目录
 
 
 
