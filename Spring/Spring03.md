@@ -18,7 +18,7 @@ grammar_cjkRuby: true
 
 ####  书写Dao层接口
 
-``` stylus
+``` java
 public interface UserDao {
 
 	void insertUser(User u);
@@ -30,7 +30,7 @@ public interface UserDao {
 ```
 #### 书写Dao的实现类
 
-``` stylus
+``` java
 public class UserDaoImpl implements UserDao{
 
 	@Autowired
@@ -84,7 +84,7 @@ public class UserDaoImpl implements UserDao{
 
 #### 书写配置文件
 
-``` stylus
+``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -121,7 +121,7 @@ public class UserDaoImpl implements UserDao{
 
 #### 编写测试类
 
-``` stylus
+``` java
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
 public class TestJDBC {
@@ -169,7 +169,7 @@ public class TestJDBC {
 1. 在src下创建db.properties文件
 2. 在Spring文件中引入db.properties文件
 
-``` stylus
+``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -225,7 +225,7 @@ public class TestJDBC {
 
 - read uncommitted : 读取尚未提交的数据 ：哪个问题都不能解决
 - read committed：读取已经提交的数据 ：可以解决脏读 — oracle默认的
-- repeatable read：重读读取：可以解决脏读 和 不可重复读 —mysql默认的
+- repeatable read：重复读取：可以解决脏读 和 不可重复读 —mysql默认的
 - serializable：串行化：可以解决 脏读 不可重复读 和虚读—相当于锁表
 - 查看mysql数据库默认的隔离级别： `select @@tx_isolation`
 - 设置mysql的隔离级别： set session transactionisolation level 设置事务隔离级别
@@ -272,19 +272,18 @@ public class TestJDBC {
 
 1. 编写Dao层接口AccountDao
 
-``` stylus
+``` java
 public interface AccountDao {
 	// 增加(进账)
 	void add(int to,int money);
 	// 减少(出账)
 	void sub(int to,int money);
 }
-
 ```
 
 2. 编写Dao层实现类AccountDaoImpl
 
-``` stylus
+``` java
 public class AccountDaoImpl  implements AccountDao{
 
 	@Autowired
@@ -307,12 +306,11 @@ public class AccountDaoImpl  implements AccountDao{
 	}
 
 }
-
 ```
 
 3. 编写Service层接口AccountService
 
-``` stylus
+``` java
 public interface AccountService {
 
 	void transfer(int from,int to,int money);
@@ -322,7 +320,7 @@ public interface AccountService {
 
 4. 编写Service层实现类AccountServiceImpl
 
-``` stylus
+``` java
 public class AccountServiceImpl implements AccountService{
 
 	private AccountDao ad;
@@ -343,7 +341,7 @@ public class AccountServiceImpl implements AccountService{
 
 5. 编写applicationContext配置文件
 
-``` stylus
+``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
