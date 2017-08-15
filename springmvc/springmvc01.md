@@ -250,7 +250,12 @@ public class RoleController {
 <mvc:resources location="/js/" mapping="/js/**"/>
 <mvc:resources location="/lib/" mapping="/lib/**"/>
 ```
+# classpath和classpath * 的区别
 
+> classpath：只会到你的class路径中查找找文件; 
+> classpath *：不仅包含class路径，还包括jar文件中(class路径)进行查找. 
+
+**注意：**  用classpath*:需要遍历所有的classpath，所以加载速度是很慢的，因此，在规划的时候，应该尽可能规划好资源文件所在的路径，尽量避免使用classpath*。
 # SSM整合
 
 - 导包
