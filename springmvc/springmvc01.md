@@ -4,7 +4,42 @@ tags: springmvc,Spring,Java,框架
 grammar_cjkRuby: true
 ---
 
-[TOC]
+-
+
+* [SpringMVC](#springmvc)
+	* [springmvc处理流程](#springmvc处理流程)
+* [Hello World](#hello-world)
+	* [编写springmvc的约束文件](#编写springmvc的约束文件)
+	* [配置web.xml文件](#配置webxml文件)
+	* [编写controller层](#编写controller层)
+* [springmvc架构](#springmvc架构)
+	* [springmvc组件介绍及配置](#springmvc组件介绍及配置)
+		* [DispatcherServlet：前端控制器](#dispatcherservlet前端控制器)
+		* [HandlerMapping：处理器映射器](#handlermapping处理器映射器)
+		* [Handler：处理器](#handler处理器)
+		* [HandlAdapter：处理器适配器](#handladapter处理器适配器)
+		* [ViewResolver：视图解析器](#viewresolver视图解析器)
+		* [View：视图](#view视图)
+		* [说明](#说明)
+		* [配置相关组件](#配置相关组件)
+	* [注解驱动](#注解驱动)
+	* [视图解析器](#视图解析器)
+* [静态资源放行](#静态资源放行)
+	* [方式一](#方式一)
+	* [方式二](#方式二)
+* [SSM整合](#ssm整合)
+* [参数绑定](#参数绑定)
+	* [默认支持参数类型](#默认支持参数类型)
+	* [简单参数类型](#简单参数类型)
+	* [@RequestParam](#requestparam)
+	* [参数绑定model类](#参数绑定model类)
+	* [解决乱码](#解决乱码)
+	* [参数绑定包装类](#参数绑定包装类)
+	* [数组参数绑定](#数组参数绑定)
+	* [集合类型参数绑定](#集合类型参数绑定)
+	* [自定义格式类型转换(了解即可)](#自定义格式类型转换了解即可)
+
+-
 
 # SpringMVC
 
@@ -677,6 +712,7 @@ public class DateConvert implements Converter<String,Timestamp>{
 		return mv;
 	}
 ```
+
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502715804353.jpg
