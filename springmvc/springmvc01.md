@@ -439,6 +439,38 @@ public class RoleController {
 ```
 
 
+# 参数绑定
+## 默认支持参数类型
+> 如果我们定义了请求，响应，session，springmvc就会将HttpServletRequest，HttpServletResponse，HttpSession三个对象作为参数传递过来，我们在定义的时候还可以写Model/ModelMap
+> Model/ModelMap是用来向页面进行传值使用的，这两个哪个都可以
+
+``` java
+@RequestMapping("/role/updateRole.action")
+	public ModelAndView roleListId(HttpServletRequest request,HttpServletResponse response,HttpSession session,Model model,ModelMap modelMap){
+		System.out.println(request+"---"+response+"----"+session+"------"+model+"-----"+modelMap);
+		ModelAndView mv = new ModelAndView();
+		String id = request.getParameter("id");
+		System.out.println(id);
+		Role role = rs.findRoleById(Integer.parseInt(id));
+		mv.addObject("role", role);
+		mv.setViewName("role/updateRole");
+		return mv;
+	}
+```
+
+## 简单参数类型
+
+> 参数类型推荐使用包装数据类型，因为基础数据类型不可以为null
+
+- 整形：Integer、int
+- 字符串：STring
+- 单精度：Float、float
+- 双精度：Double、double
+- 布尔值：Boolean、boolean
+
+> 说明：对于布尔类型的参数，请求的参数为true或false。或者1或0
+> 请求url：`http://localhost:8080/xxx.action?id=2&status=false
+> 处理器方法：public String editltem(Model model,Integer id, Boolean status)
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502715804353.jpg
