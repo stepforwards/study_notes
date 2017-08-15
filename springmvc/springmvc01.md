@@ -470,8 +470,213 @@ public class RoleController {
 
 > 说明：对于布尔类型的参数，请求的参数为true或false。或者1或0
 > 请求url：`http://localhost:8080/xxx.action?id=2&status=false
-> 处理器方法：public String editltem(Model model,Integer id, Boolean status)
+> 处理器方法：`public String editltem(Model model,Integer id, Boolean status)`
+
+## @RequestParam
+
+> 如果表单中的name属性和参数名称不一致的时候可以使用`@RequestParam` 建立映射关系，一旦使用了这个注解，传递的参数就必须含有改名称，就会报错误
+
+![enter description here][3]
+
+- required属性表示页面传过来的值是否是必须的，默认true
+- defaultValue表示如果没有该值默认是多少
+
+``` java
+@RequestMapping("/role/updateRole.action")
+	public ModelAndView roleListId(@RequestParam(value="id",defaultValue="1",required=true) Integer theid){
+		ModelAndView mv = new ModelAndView();
+		Role role = rs.findRoleById(theid);
+		mv.addObject("role", role);
+		mv.setViewName("role/updateRole");
+		return mv;
+	}
+```
+
+## 参数绑定model类
+
+> 需保证表单的name属性和model中的属性中的属性一一对应
+
+``` java
+@RequestMapping("/role/editRole.action")
+	public ModelAndView EditRole(Role role){
+		ModelAndView mv = new ModelAndView();
+		rs.updateRole(role);
+		mv.addObject("role", role);
+		mv.setViewName("role/success");
+		return mv;
+	}
+```
+
+![enter description here][4]
+
+## 解决乱码
+
+> 在web.xml中配置编码过滤器
+
+``` xml
+<!-- 配置全局编码 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+```
+
+## 参数绑定包装类
+
+> 如果是包装类中的属性，需要将表单信息中的name属性名设置为类中属性的属性
+
+![enter description here][5]
+
+![enter description here][6]
+
+``` java
+@RequestMapping("/role/mulSubmit.action")
+	public ModelAndView mulSubmit(RoleVo rv){
+		ModelAndView mv = new ModelAndView();
+		
+		rs.updateMulRole(rv.getList());
+		mv.setViewName("role/success");
+		return mv;
+	}
+```
+
+## 数组参数绑定
+> 在表单如果有CheckBox这种多选框，提交到controller，可以通过数组的形式进行获取，那么需要将CheckBox的name属性设置为方法的参数的名称，也可以在包装类中定义成员变量的名字为表单的name属性
+
+![enter description here][7]
+
+![enter description here][8]
+
+``` java
+@RequestMapping("/role/editRole.action")
+	public ModelAndView EditRole(RoleVo rv,String[] hobbys){
+		ModelAndView mv = new ModelAndView();
+		rs.updateRole(rv.getRole());
+		System.out.println(rv);
+		System.out.println(Arrays.toString(hobbys));
+		mv.setViewName("role/success");
+		return mv;
+	}
+```
+## 集合类型参数绑定
+
+> 在表单中如果牵扯到表单中的数据批量修改，并且每一行有多个数据都有更改且有多行，我们可以把每一行当作一个对象，把多行数据放入对象集合中进行提交，**不过这种方法仅仅适合于包装类，不能直接把值传入相应的参数**
+
+![enter description here][9]
+
+![enter description here][10]
+
+``` java
+	/**
+	 * 这种情况仅仅适合包装类，不能将集合赋值给参数
+	 * @param rv
+	 * @return
+	 */
+	@RequestMapping("/role/mulSubmit.action")
+	public ModelAndView mulSubmit(RoleVo rv /*,List<Role> list*/){
+		//System.out.println(list);
+		ModelAndView mv = new ModelAndView();
+		rs.updateMulRole(rv.getList());
+		mv.setViewName("role/success");
+		return mv;
+	}
+```
+
+## 自定义格式类型转换(了解即可)
+
+> 可以进行日期的转换,以及数据的相应格式化(比如将表单提交的数据加前后缀)springmvc给我们提供一个转换器工程,我们可以通过这个转换器工程生产很多转换类(实现Convert接口)按照我们的要求进行数据的格式转换,对方法参数赋值的事情是处理器适配器做的,所以配置的工作应该交给处理器适配器,而在springmvc中我们已经通过注解配置了这个组件,所以配置应该在 <mvc:annotation-driven/> 进行设置
+
+- 编写转换类DateConvert
+
+``` java
+/**
+ * Converter<S, T>
+ * S:source,需要转换的源的类型
+ * T:target,需要转换的目标类型 
+ */
+public class DateConvert implements Converter<String,Timestamp>{
+
+	@Override
+	public Timestamp convert(String string) {
+		DateFormat df = new SimpleDateFormat("yyyy+MM+dd HH:mm:ss");
+		Timestamp timestamp =null;
+		try {
+			timestamp = new Timestamp(df.parse(string).getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return timestamp;
+	}
+}
+
+```
+
+- 在springmvc中配置DateConvert，并注册到适配器中
+
+``` xml
+<!-- 2.设置注解处理器映射器,处理器适配器注解驱动 -->
+	<mvc:annotation-driven conversion-service="formattingConversion" />
+	<!-- 配置日期转换工厂 -->
+	<bean name="formattingConversion"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<bean class="top.xiesen.ssm.util.DateConvert"></bean>
+			</set>
+		</property>
+	</bean>
+```
+> **注意页面显示和model类**
+
+![enter description here][11]
+
+``` java
+    @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
+    private Date rUpdatetime;
+```
+
+![enter description here][12]
+
+``` html?linenums
+<td colspan="3" class="control">
+	<input type="datetime-local" name="role.rUpdatetime" 
+	value="<fmt:formatDate value="${role.rUpdatetime }" type="both" pattern="yyyy-MM-dd'T'HH:mm"/>" >
+</td>
+```
+
+![enter description here][13]
+
+``` java
+@RequestMapping("/role/editRole.action")
+	public ModelAndView EditRole(RoleVo rv,String[] hobbys){
+		ModelAndView mv = new ModelAndView();
+		rs.updateRole(rv.getRole());
+		System.out.println(rv);
+		System.out.println(Arrays.toString(hobbys));
+		mv.setViewName("role/success");
+		return mv;
+	}
+```
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502715804353.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502758550357.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502795616758.jpg
+  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796009427.jpg
+  [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796264606.jpg
+  [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796313108.jpg
+  [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796264606.jpg
+  [8]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796660552.jpg
+  [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502797001442.jpg
+  [10]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796264606.jpg
+  [11]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502799634697.jpg
+  [12]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502799685153.jpg
+  [13]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502799718698.jpg
