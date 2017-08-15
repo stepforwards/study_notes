@@ -210,6 +210,236 @@ public class RoleController {
 - 创建config的source folder文件夹存放配置文件,在其内部创建两个文件夹spring(放spring配置文件)和mybatis(放mybatis的核心配置文件)
 - 将db.properties文件和log4j.properties文件放在config的根目录
 
+![项目结构示意图][2]
+
+- 在spring文件夹下创建springmvc.xml
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+	
+	<!-- 配置扫描controller层 -->
+	<context:component-scan base-package="top.xiesen.ssm"></context:component-scan>
+	
+	<!-- 设置注解处理器映射器,处理器适配器注解驱动 -->
+	<mvc:annotation-driven/>
+	
+	<!-- 配置视图解析器前缀后缀 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+</beans>
+```
+
+	- 设置注解处理器映射器，处理器适配器注解驱动
+	- 配置视图解析器前缀后缀
+	- 配置扫描controller层
+
+- 在spring文件下创建applicationContext-dao.xml
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+
+	<!-- 加载配置文件 -->
+	<context:property-placeholder location="classpath:db.properties" />
+
+	<!-- 配置连接池 -->
+	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	<bean name="sqlSessionFactor" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:mybatis/sqlMappingConfig.xml"></property>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="top.xiesen.ssm.mapper"></property>
+	</bean>
+	
+</beans>
+```
+
+	- 配置引入数据库db.properties
+	- 配置数据库连接池
+	- 配置sqlSessionFactory
+	- 配置mapper扫描
+
+- 在spring文件夹下创建applicationContext-service.xml
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+<import resource="applicationContext-dao.xml"/>
+
+<!-- 配置事务管理器 -->
+	<bean name="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>  
+	</bean>
+
+	<!-- 配置事务通知 -->
+	<tx:advice transaction-manager="transactionManager" id="txAdvice">
+		<tx:attributes>
+			<tx:method name="transfer" isolation="REPEATABLE_READ"
+				read-only="false" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置切面 -->
+	<aop:config>
+		<aop:pointcut
+			expression="execution(* top.xiesen.ssm.service.impl..*ServiceImpl.*(..))"
+			id="pc" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pc" />
+	</aop:config>
+	
+</beans>
+```
+
+	- 配置扫描service层注解
+- 在spring文件夹下创建applicationContext-tx.xml
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+<import resource="applicationContext-service.xml"/>
+<!-- 配置扫描service层注解 -->
+<context:component-scan base-package="top.xiesen.ssm"></context:component-scan>
+	
+</beans>
+
+```
+ 
+	 - 配置spring事务
+ - 在mybatis文件夹下创建sqlMapConfig.xml
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"mybatis-3-config.dtd">
+<configuration>
+	<!-- 配置别名 -->
+	<typeAliases>
+		<!-- <typeAlias type="top.xiesen.mybatis.pojo.User" alias="user"/> -->
+		<!-- 会扫描当前包和子包下，会将别名设置为User user ，设置过别名以后再mapper文件中使用这个类的类型别名和全名都可以-->
+		<package name="top.xiesen.ssm.model"/>
+	</typeAliases>
+</configuration>
+```
+
+- 通过逆向工程生成mapper文件和model类
+- 给service层添加注解，并注入mapper
+
+``` java
+@Controller
+public class RoleController {
+
+	@Autowired
+	RoleService rs;
+	@RequestMapping("/role/roleList.action")
+	public ModelAndView roleList(){
+
+		ModelAndView mv = new ModelAndView();
+		List<Role> roleList = rs.findAllRole();
+		mv.addObject("list", roleList);
+		mv.setViewName("/role/roleList");
+		return mv;
+	}
+}
+```
+
+- 配置web.xml文件
+	- 配置Spring容器
+	- 配置DispatcherServlet
+
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>chapter31_ssm</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- 配置Spring容器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/applicationContext-tx.xml</param-value>
+	</context-param>
+
+	<!-- 配置SpringMVC -->
+	<servlet>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/springmvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
+
+</web-app>
+```
+
+
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502715804353.jpg
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502758550357.jpg
