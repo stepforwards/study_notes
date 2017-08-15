@@ -99,6 +99,18 @@ public class RoleControl {
 
 # springmvc架构
 
+![springmvc架构示意图 ][2]
+
+> 核心架构的具体流程步骤如下：
+
+1、  首先用户发送请求——>DispatcherServlet，前端控制器收到请求后自己不进行处理，而是委托给其他的解析器进行处理，作为统一访问点，进行全局的流程控制；
+2、  DispatcherServlet——>HandlerMapping， HandlerMapping将会把请求映射为HandlerExecutionChain对象（包含一个Handler处理器（页面控制器）对象、多个HandlerInterceptor拦截器）对象，通过这种策略模式，很容易添加新的映射策略；
+3、  DispatcherServlet——>HandlerAdapter，HandlerAdapter将会把处理器包装为适配器，从而支持多种类型的处理器，即适配器设计模式的应用，从而很容易支持很多类型的处理器；
+4、  HandlerAdapter——>处理器功能处理方法的调用，HandlerAdapter将会根据适配的结果调用真正的处理器的功能处理方法，完成功能处理；并返回一个ModelAndView对象（包含模型数据、逻辑视图名）；
+5、  ModelAndView的逻辑视图名——> ViewResolver， ViewResolver将把逻辑视图名解析为具体的View，通过这种策略模式，很容易更换其他视图技术；
+6、  View——>渲染，View会根据传进来的Model模型数据进行渲染，此处的Model实际是一个Map数据结构，因此很容易支持其他视图技术；
+7、返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束。
+
 ## springmvc组件介绍及配置
 
 ### DispatcherServlet：前端控制器
@@ -210,7 +222,7 @@ public class RoleController {
 - 创建config的source folder文件夹存放配置文件,在其内部创建两个文件夹spring(放spring配置文件)和mybatis(放mybatis的核心配置文件)
 - 将db.properties文件和log4j.properties文件放在config的根目录
 
-![项目结构示意图][2]
+![项目结构示意图][3]
 
 - 在spring文件夹下创建springmvc.xml
 
@@ -476,7 +488,7 @@ public class RoleController {
 
 > 如果表单中的name属性和参数名称不一致的时候可以使用`@RequestParam` 建立映射关系，一旦使用了这个注解，传递的参数就必须含有改名称，就会报错误
 
-![enter description here][3]
+![enter description here][4]
 
 - required属性表示页面传过来的值是否是必须的，默认true
 - defaultValue表示如果没有该值默认是多少
@@ -507,7 +519,7 @@ public class RoleController {
 	}
 ```
 
-![enter description here][4]
+![enter description here][5]
 
 ## 解决乱码
 
@@ -533,9 +545,9 @@ public class RoleController {
 
 > 如果是包装类中的属性，需要将表单信息中的name属性名设置为类中属性的属性
 
-![enter description here][5]
-
 ![enter description here][6]
+
+![enter description here][7]
 
 ``` java
 @RequestMapping("/role/mulSubmit.action")
@@ -551,9 +563,9 @@ public class RoleController {
 ## 数组参数绑定
 > 在表单如果有CheckBox这种多选框，提交到controller，可以通过数组的形式进行获取，那么需要将CheckBox的name属性设置为方法的参数的名称，也可以在包装类中定义成员变量的名字为表单的name属性
 
-![enter description here][7]
-
 ![enter description here][8]
+
+![enter description here][9]
 
 ``` java
 @RequestMapping("/role/editRole.action")
@@ -570,9 +582,9 @@ public class RoleController {
 
 > 在表单中如果牵扯到表单中的数据批量修改，并且每一行有多个数据都有更改且有多行，我们可以把每一行当作一个对象，把多行数据放入对象集合中进行提交，**不过这种方法仅仅适合于包装类，不能直接把值传入相应的参数**
 
-![enter description here][9]
-
 ![enter description here][10]
+
+![enter description here][11]
 
 ``` java
 	/**
@@ -636,14 +648,14 @@ public class DateConvert implements Converter<String,Timestamp>{
 ```
 > **注意页面显示和model类**
 
-![enter description here][11]
+![enter description here][12]
 
 ``` java
     @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
     private Date rUpdatetime;
 ```
 
-![enter description here][12]
+![enter description here][13]
 
 ``` html?linenums
 <td colspan="3" class="control">
@@ -652,7 +664,7 @@ public class DateConvert implements Converter<String,Timestamp>{
 </td>
 ```
 
-![enter description here][13]
+![enter description here][14]
 
 ``` java
 @RequestMapping("/role/editRole.action")
@@ -668,15 +680,16 @@ public class DateConvert implements Converter<String,Timestamp>{
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502715804353.jpg
-  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502758550357.jpg
-  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502795616758.jpg
-  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796009427.jpg
-  [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796264606.jpg
-  [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796313108.jpg
-  [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796264606.jpg
-  [8]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796660552.jpg
-  [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502797001442.jpg
-  [10]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796264606.jpg
-  [11]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502799634697.jpg
-  [12]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502799685153.jpg
-  [13]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502799718698.jpg
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502800313504.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502758550357.jpg
+  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502795616758.jpg
+  [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796009427.jpg
+  [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796264606.jpg
+  [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796313108.jpg
+  [8]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796264606.jpg
+  [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796660552.jpg
+  [10]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502797001442.jpg
+  [11]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502796264606.jpg
+  [12]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502799634697.jpg
+  [13]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502799685153.jpg
+  [14]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502799718698.jpg
