@@ -3,7 +3,44 @@ title: Spring
 tags: Spring,框架,Java
 grammar_cjkRuby: true
 ---
-[TOC]
+
+-
+	* [注解](#注解)
+	* [注解的作用](#注解的作用)
+	* [常见注解](#常见注解)
+	* [自定义注解(了解)](#自定义注解了解)
+	* [使用注解(掌握)](#使用注解掌握)
+	* [元注解](#元注解)
+		* [@Retention](#retention)
+		* [@Target](#target)
+	* [通过反射的方式进行获取(了解)](#通过反射的方式进行获取了解)
+	* [Junit单元测试](#junit单元测试)
+		* [使用junit步骤和要求](#使用junit步骤和要求)
+		* [Junit的其他测试相关注解](#junit的其他测试相关注解)
+		* [@Test属性(了解)](#test属性了解)
+		* [断言判断(了解)](#断言判断了解)
+	* [Spring](#spring)
+		* [一站式框架](#一站式框架)
+		* [Spring环境搭建以及HelloWorld案例](#spring环境搭建以及helloworld案例)
+	* [配置schema约束步骤](#配置schema约束步骤)
+	* [schema讲解](#schema讲解)
+	* [IOC控制反转](#ioc控制反转)
+		* [bean元素的配置和创建](#bean元素的配置和创建)
+		* [name属性和class属性](#name属性和class属性)
+		* [bean元素的创建](#bean元素的创建)
+		* [scope属性](#scope属性)
+		* [Bean生命周期属性](#bean生命周期属性)
+	* [DI依赖注入](#di依赖注入)
+		* [注入方式](#注入方式)
+			* [set方法注入](#set方法注入)
+			* [构造方法注入](#构造方法注入)
+			* [p名称空间注入](#p名称空间注入)
+			* [SPEL表达式注入](#spel表达式注入)
+	* [复杂类型注入](#复杂类型注入)
+	* [Spring 的分模块配置文件的开发](#spring-的分模块配置文件的开发)
+	* [安装STS](#安装sts)
+
+-
 
 ## 注解
 
@@ -16,7 +53,6 @@ grammar_cjkRuby: true
 - 对比servlet2.5,Servlet3.0新加了很多的新特性,其中就有提供了注解的支持,也就是不需要使用web.xml可以进行路径的配置
 - 优点:开发效率高
 - 确定:耦合性太强,不便于维护
-
 
 ## 常见注解
 
@@ -209,7 +245,7 @@ meout属性,是用来测试超时操作的单位是毫秒其格式为**@Test(tim
 
 - 创建普通的类,让Spring帮我们创建
 
-``` stylus
+``` java
 public class People {
 	private String name;
 	private int age;
@@ -246,7 +282,7 @@ public class People {
 - 在配置文件写 `<bean name="people"class="com.zhiyou100.demo01.People"></bean>`
 - 创建一个测试类,写一个测试方法
 
-``` stylus
+``` java
 	@Test
 	public void test01(){
 		//创建spring容器对象,加载src下的配置文件
@@ -285,7 +321,7 @@ public class People {
 - 右配置了一个匿名的命名空间 `xmlns="http://www.springframework.org/schema/beans"`
 - 通过xsi的schemaLocation,将键值对进行对应
 
-``` stylus
+``` xml
 xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 ```
@@ -313,7 +349,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 
 - 空参构造方法创建
 
-``` stylus
+```xml
 <!--无参构造方法-->
 <bean name="people1" class="com.zhiyou100.demo01.People"></bean>
 ```
@@ -322,7 +358,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 
 > 静态方法，有返回值
 
-``` stylus
+``` xml
 <!--静态工厂-->
 <bean name="people2" class="com.zhiyou100.create.PeopleFactory" factory-method="createPeople"></bean>
 ```
@@ -331,7 +367,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 
 > 非静态方法，有返回值
 
-``` stylus
+``` xml
 <!--实例工厂-->
 <bean name="factoryBean" class="com.zhiyou100.create.PeopleFactory"></bean>
 <bean name="people3" factory-bean="factoryBean" factory-method="CreatePeople2"></bean>
@@ -343,12 +379,12 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 
 - singleton单例模式创建,当前对象在容器中只会创建一个对象
 
-``` stylus
+``` xml
 <bean name="people1" class="com.zhiyou100.demo01.People" scope="singleton"></bean>
 ```
 - prototype多例模式创建,当前对象在容器中每次调用getBean返回的是新的对象
 
-``` stylus
+``` xml
 <bean name="people1" class="com.zhiyou100.demo01.People" scope="prototype"></bean>
 ```
 > 以后绝大多数的对象都使用默认值就行,在Struts2中的action要配置成prototype
@@ -360,7 +396,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 - destroy-method销毁方法
 - 不能和prototype一起使用,如果是多例的话,spring容器将对象创建完成后就不再负责管理这个对象了,只有是singleton对象容器才会负责去管理它
 
-``` stylus
+``` xml
 <bean name="people1" class="com.zhiyou100.demo01.People" scope="singleton" init-method="init" destroy-method="destory"></bean>
 ```
 
@@ -375,9 +411,9 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 
 #### set方法注入
 
-> 类中必须要有set方法,否则属性无法正常注入
+> 类中必须要有set方法,否则属性无法正常注入,基本数据类型和String值使用value属性；引用类型值使用ref属性；ref属性值必须和引用对象bean的id相同
 
-``` stylus
+``` xml
 <bean name="user" class="com.zhiyou100.di.User">
 <bean name="car" class="com.zhiyou100.di.Car">
 <property name="price" value="8000"></bean>
@@ -386,7 +422,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd "
 
 > 通过构造方法创建对象,并传递相应的参数给具体的属性
 
-``` stylus
+``` xml
 <!--
 构造方法注入属性
 name 表示参数名称
@@ -402,7 +438,9 @@ type 表示参数的类型
 ```
 #### p名称空间注入
 
-``` stylus
+> 会默认调用无参构造方法
+
+``` xml
 xmlns:p="http://www.springframework.org/schema/p"
 <bean name="user3" class="com.zhiyou100.di.User" p:name="李雷" p:age="18" p:car-ref="car"></bean>
 ```
@@ -410,7 +448,7 @@ xmlns:p="http://www.springframework.org/schema/p"
 
 > spring expression language(表达式语言注入),必须在前面基础上完成,比如解决类类似配置一个bean的属性是另一个bean的属性值的时候,需要使用spel注入
 
-``` stylus
+``` xml
 
 <bean name="user4" class="com.zhiyou100.di.User">
 <property name="age" value="#{car.price > 300000 ? 35 : 20}"></property>
@@ -425,7 +463,7 @@ xmlns:p="http://www.springframework.org/schema/p"
 - list类型
 - map类型
 
-``` stylus
+``` xml
 public class ComplexTypeObject {
 	Object[] arr;
 	List<Object> list;
@@ -453,6 +491,7 @@ public String toString() {
 return "ComplexTypeObject [arr=" + Arrays.toString(arr) + ", list=" + list + ",map=" + map + "]";
 }
 }
+
 <bean name="ct" class="com.zhiyou100.di.ComplexTypeObject">
 <property name="arr">
 	<array>
