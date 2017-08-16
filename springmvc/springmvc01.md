@@ -5,7 +5,6 @@ grammar_cjkRuby: true
 ---
 
 -
-
 * [SpringMVC](#springmvc)
 	* [springmvc处理流程](#springmvc处理流程)
 * [Hello World](#hello-world)
