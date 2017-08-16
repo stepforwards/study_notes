@@ -3,7 +3,17 @@ title: mybatis01
 tags: MyBatis,框架,Java
 grammar_cjkRuby: true
 ---
-[TOC]
+
+-
+	* [MyBatis](#mybatis)
+	* [Mybatis的HelloWorld](#mybatis的helloworld)
+	* [HelloWorld讲解](#helloworld讲解)
+	* [将mybatis应用到dao层](#将mybatis应用到dao层)
+		* [userMapper接口](#usermapper接口)
+		* [编写User的mapper文件](#编写user的mapper文件)
+	* [mapper动态代理开发](#mapper动态代理开发)
+
+-
 
 ## MyBatis
 
@@ -103,7 +113,7 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 </select>
 
 <!-- 
-	#{v} 表示sql中的 ？ 其中的内容可以随便写，相当于在执行的时候自动添加了 '' (推荐使用这种方式)
+	#{v} 表示sql中的 ？ 其中的内容可以随便写，相当于在执行的时候自动添加了单引号 '' (推荐使用这种方式)
 	${value} 表示字符串的拼接，不会加任何符号，需要我们自己拼接
  -->
 <select id="findUserByName" parameterType="String" resultType="top.xiesen.mybatis.pojo.User">
@@ -181,7 +191,117 @@ public class TestMyBatis {
 ## 将mybatis应用到dao层
 	
 
+![enter description here][3]
+
+1. 编写userMapper接口
+2. 编写映射文件
+
+### userMapper接口
+``` stylus
+public interface UserMapper {
+	
+	/*
+	 * 1.方法名和文件中的一样
+	 * 2.方法参数一致
+	 * 3.返回值类型一致
+	 * 4.命名空间是接口的全类名
+	 */
+	void addUser(User user);
+	
+	void deleteUser(int id);
+	
+	void updateUserById(User user);
+	
+	User findUserById(int id);
+}
+
+```
+
+### 编写User的mapper文件
+
+``` stylus
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"mybatis-3-mapper.dtd">
+<mapper namespace="top.xiesen.mybatis.mapper.UserMapper">
+
+<!-- 按照id进行查询 -->
+<select id="findUserById" parameterType="Integer" resultType="top.xiesen.mybatis.pojo.User">
+	select * from t_user where id = #{id}
+</select>
+
+<insert id="addUser" parameterType="top.xiesen.mybatis.pojo.User">
+	insert into t_user values(null,#{username},#{password})
+</insert>
+
+<update id="updateUserById" parameterType="top.xiesen.mybatis.pojo.User">
+	update t_user set username = #{username} where id = #{id}
+</update>
+
+<delete id="deleteUser" parameterType="Integer">
+	delete from t_user where id = #{id}
+</delete>
+
+</mapper>
+```
+## mapper动态代理开发
+
+- 创建接口写接口方法确保4个一致
+	- 方法名称和文件中的id一致
+	- 方法的返回值和对应标签内的resultType一致
+	- 方法的参数和parameterType一致
+	- namespace和接口的全名称一致
+
+``` stylus
+public class TestMyBatis {
+
+	/**
+	 * 创建一个操作数据库的对象，读取配置文件
+	 * 0.创建sqlSessionFactoryBuilder对象
+	 * 1.创建sqlSessionFactory对象
+	 * 2.通过工厂对象创建sqlSession
+	 * 3.使用sqlSession操作数据库 
+	 * @throws Exception 
+	 */
+	@Test
+	public void test01() throws Exception{
+		// 创建sqlSessionFactoryBuilder对象
+		SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+		// 构建工厂对象读取配置文件,生成工厂
+		SqlSessionFactory sessionFactory = sqlSessionFactoryBuilder.build(Resources.getResourceAsStream("sqlMappingConfig.xml"));
+		// 通过工厂创建sqlSession
+		SqlSession sqlSession = sessionFactory.openSession();
+		// 查询一个
+		User user = sqlSession.selectOne("test.findUserById", 1);
+		System.out.println(user);
+		
+		// 按照id进行修该
+		User u = new User();
+		u.setId(1);
+		u.setUsername("东方不败");
+		u.setPassword("123");
+		sqlSession.update("test.updateUser", u);
+		sqlSession.delete("test.deleteUserById",14);
+		
+		// 插入操作
+		User u1 = new User();
+		u1.setUsername("张三丰");
+		u1.setPassword("zsf");
+		sqlSession.insert("test.insertUser", u1);
+		
+		// 模糊查询
+		List<User> list = sqlSession.selectList("test.findUserByName", "丰");
+		System.out.println(list);
+		
+		// 提交事务
+		sqlSession.commit();
+		// 关闭sqlSession
+		sqlSession.close();
+	}
+}
+```
 
 
   [1]: https://github.com/mybatis/mybatis%C2%AD3/releases
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502364549838.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/mybatis.png "mybatis"
