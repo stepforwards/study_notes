@@ -3,7 +3,18 @@ title: SQLSummary
 tags: sql,Java
 grammar_cjkRuby: true
 ---
-[TOC]
+-
+	* [术语](#术语)
+		* [SQL](#sql)
+		* [CRUD](#crud)
+		* [数据库术语](#数据库术语)
+	* [MySQL常用指令](#mysql常用指令)
+	* [MySQL约束](#mysql约束)
+	* [SQL分类](#sql分类)
+		* [常用sql语句](#常用sql语句)
+
+-
+
 ## 术语
 
 ### SQL
