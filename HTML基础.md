@@ -3,7 +3,34 @@ title: HTML基础
 tags: HTML,CSS
 grammar_cjkRuby: true
 ---
-[TOC]
+-
+	* [HTML](#html)
+	* [网页的组成](#网页的组成)
+	* [HTML的结构](#html的结构)
+	* [HTML中的常用标签](#html中的常用标签)
+		* [h系列标签](#h系列标签)
+		* [p标签](#p标签)
+		* [hr标签](#hr标签)
+		* [span标签](#span标签)
+		* [font标签](#font标签)
+		* [b标签](#b标签)
+		* [br标签](#br标签)
+		* [i标签](#i标签)
+		* [img标签](#img标签)
+		* [a标签](#a标签)
+		* [ol标签](#ol标签)
+		* [ul标签](#ul标签)
+		* [table标签](#table标签)
+	* [HTML中的表单标签](#html中的表单标签)
+		* [input标签](#input标签)
+		* [select标签](#select标签)
+		* [textarea](#textarea)
+		* [button标签](#button标签)
+	* [关于表单标签总结](#关于表单标签总结)
+	* [div标签](#div标签)
+
+-
+
 ## HTML
 > HTML是超文本标记语言,我们可以这样认为,HMTL就是普通的文本文件,只不过在文本中的内容如果被一些特殊的标签进行包裹就有了特殊的含义,这些被那些标记文本,就成了超文本
 > 我们平时在浏览器中浏览的网页就是使用HTML语言进行编写的
