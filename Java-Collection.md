@@ -1,4 +1,25 @@
-[TOC]
+-
+	* [Java集合](#java集合)
+	* [Set接口](#set接口)
+	* [泛型](#泛型)
+	* [排序算法](#排序算法)
+	* [引用类型比较大小](#引用类型比较大小)
+	* [堆栈](#堆栈)
+	* [堆溢出](#堆溢出)
+	* [栈溢出](#栈溢出)
+	* [封装(Encapsulation)](#封装encapsulation)
+	* [private关键字](#private关键字)
+	* [构造函数](#构造函数)
+	* [构造代码块](#构造代码块)
+	* [创建对象过程](#创建对象过程)
+	* [javabean](#javabean)
+	* [this](#this)
+	* [static](#static)
+	* [继承](#继承)
+	* [函数覆盖(Override)](#函数覆盖override)
+	* [final](#final)
+
+-
 ## Java集合
 Collection接口:定义了存取一组对象的方法,其中子接口Set和List分别定义了存储方式.
 Set 中的数据对象没有顺序且不可以重复.
