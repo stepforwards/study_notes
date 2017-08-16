@@ -4,6 +4,21 @@ tags: 框架,MyBatis,Java
 grammar_cjkRuby: true
 ---
 
+-
+	* [SqlMapConfig.xml配置文件](#sqlmapconfigxml配置文件)
+		* [引入外部文件](#引入外部文件)
+	* [别名](#别名)
+		* [mapper映射器--加载mapper文件](#mapper映射器-加载mapper文件)
+	* [输入映射(parameterType)](#输入映射parametertype)
+	* [输出映射(resultType)](#输出映射resulttype)
+	* [resultMap](#resultmap)
+	* [动态sql](#动态sql)
+	* [关联查询](#关联查询)
+		* [一对一查询](#一对一查询)
+		* [一对多查询](#一对多查询)
+
+-
+
 ## SqlMapConfig.xml配置文件
 
 ### 引入外部文件
