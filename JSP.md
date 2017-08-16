@@ -3,8 +3,33 @@ title: JSP
 tags: JSP,JSTL,EL
 grammar_cjkRuby: true
 ---
-[TOC]
+-
+	* [Jsp指令](#jsp指令)
+		* [page指令](#page指令)
+	* [JSP注释](#jsp注释)
+	* [JSP脚本](#jsp脚本)
+	* [JSP声明](#jsp声明)
+	* [JSP表达式](#jsp表达式)
+	* [JSP页面生命周期](#jsp页面生命周期)
+	* [get与post区别](#get与post区别)
+	* [JSP内置对象](#jsp内置对象)
+		* [out对象](#out对象)
+		* [request对象](#request对象)
+		* [response对象](#response对象)
+			* [请求重定向和转发的区别](#请求重定向和转发的区别)
+		* [session对象](#session对象)
+			* [session的生命周期](#session的生命周期)
+		* [application对象](#application对象)
+		* [Page对象](#page对象)
+		* [pageContext对象](#pagecontext对象)
+		* [exception对象](#exception对象)
+		* [config对象](#config对象)
+	* [JavaBean](#javabean)
+
+-
 ## Jsp指令
+
+![学习路线图][1]
 
 ### page指令
 
@@ -23,7 +48,6 @@ grammar_cjkRuby: true
 ``` stylus
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 ```
-
 
 > include指令：将一个外部文件嵌入到当前JSP文件中，同时解析这个页面的JSP语句。
 > taglib指令：使用标签库定义新的自定义标签，在JSP页面中启用定制行为。
@@ -73,7 +97,7 @@ grammar_cjkRuby: true
 ## JSP页面生命周期
 > jspService()方法被调用来处理客户端的请求。对每一个请求，jsp引擎创建一个新的线程来处理该请求。如果有多个客户端同时请求该jsp文件，则jsp引擎会创建多个线程。每个客户端请求对应一个线程。以多线程方式执行可以大大降低对系统的资源需求，提高系统的并发量及响应时间。但是也需要注意多线程带来的同步问题，由于该Servlet始终在内存中，所以响应是非常快的。
 
-![JSP生命周期][1]
+![JSP生命周期][2]
 ## get与post区别
 > get：以明文的方式通过URL提交数据，数据在URL中可以看到。提交的数据最大不超过2kB。安全性较低但效率比post方式高。适合提交数据量不大，安全性不高的数据。比如：搜索、查询等功能。
 > post：将用户的信息封装在HTML head内。适合提交数据量大，安全性高的信息。比如：登录、注册、上传等功能
@@ -150,7 +174,7 @@ session的销毁：
 - 2. session过期(超时)
 - 3. 服务器重新启动
 
-![session的生命周期][2]
+![session的生命周期][3]
 
 ### application对象
 - 和JavaSE中的static相似。
@@ -220,12 +244,16 @@ session的销毁：
 
 - JavaBean设计原则
 
-![JavaBean设计原则][3]
+![JavaBean设计原则][4]
 
 - Jsp动作元素
  
 > JSP动作元素(action elements)，动作元素是为请求处理阶段提供信息。动作元素遵循XML元素的语法，有一个包含元素名的开始标签，可以有属性、可选的内容、与开始标签匹配的结束标签。
 
-  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500174427823.jpg
-  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500195279179.jpg
-  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500301307794.jpg
+- `<jsp:setProperty>`
+- `<jsp:getProperty>`
+
+  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500357944841.jpg
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500174427823.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500195279179.jpg
+  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1500301307794.jpg
