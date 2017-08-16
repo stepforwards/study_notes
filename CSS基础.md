@@ -3,7 +3,48 @@ title: CSS基础
 tags: CSS3
 grammar_cjkRuby: true
 ---
-[TOC]
+-
+	* [CSS](#css)
+	* [CSS样式的种类](#css样式的种类)
+		* [内部样式](#内部样式)
+		* [行内样式](#行内样式)
+		* [外部样式](#外部样式)
+	* [选择器](#选择器)
+		* [常用选择器](#常用选择器)
+		* [不常用的的选择器](#不常用的的选择器)
+	* [文本相关样式](#文本相关样式)
+		* [font-style](#font-style)
+		* [font-weight](#font-weight)
+		* [font-size](#font-size)
+		* [font-family](#font-family)
+		* [连写形式](#连写形式)
+		* [text-decoration](#text-decoration)
+		* [text-align](#text-align)
+		* [text-indent](#text-indent)
+		* [color](#color)
+	* [背景相关样式](#背景相关样式)
+		* [background-color](#background-color)
+		* [background-image](#background-image)
+		* [background-repeat](#background-repeat)
+		* [background-position](#background-position)
+		* [background-attachment](#background-attachment)
+		* [连写形式](#连写形式)
+	* [边框](#边框)
+	* [盒子模型](#盒子模型)
+		* [padding](#padding)
+		* [margin](#margin)
+	* [标准流](#标准流)
+	* [浮动流](#浮动流)
+		* [float](#float)
+		* [clear](#clear)
+	* [定位流](#定位流)
+		* [相对定位（不会脱离标准流）](#相对定位不会脱离标准流)
+		* [绝对定位](#绝对定位)
+		* [固定定位](#固定定位)
+	* [z-index](#z-index)
+
+-
+
 ## CSS
 > CSS(Cascading Style Sheets)是层叠样式表的简写,用于美化我们所写的HTML页面
 
