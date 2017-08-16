@@ -3,7 +3,11 @@ title: mysql安装文档
 tags: mysql安装,mysql绑定数据库
 grammar_cjkRuby: true
 ---
+-
+	* [安装Mysql](#安装mysql)
+	* [eclipse连接mysql](#eclipse连接mysql)
 
+-
 
 ## 安装Mysql
 
