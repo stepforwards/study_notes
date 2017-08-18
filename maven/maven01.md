@@ -174,7 +174,6 @@ grammar_cjkRuby: true
 	- system 依赖范围和provided相同,但是需要提供一个磁盘路径,不推荐使用
 
 	
-
 ``` xml
 <dependencies>
 	 <dependency>  
@@ -186,9 +185,85 @@ grammar_cjkRuby: true
 	</dependencies>
 ```
 
+- `<scope>` 表示依赖范围
+
+|  依赖范围   | 对于编译classpath有效    | 对于测试有效    |  对于运行时classpath有效   |  例子   |
+| :---: | :---: | :---: | :---: | :---: |
+|  compile   |  y   |  y   |   y  |  spring-core   |
+|  test   |  -   |  y   |  y   |  Junit   |
+|  provided   | y    |  y   |   -  |  servlet-api   |
+|  runtime   |   -  |   y  |  y   |   JDBC驱动  |
+| system    |   y  |   y  |   -  |  本地的，Maven仓库之外的类库   |
+
+	- compile 表示编译时依赖,是默认值,会在编译,测试,运行的时候都要使用
+	- provided 只在编译和测试时依赖,运行的时候不依赖,如 servlet-api 因为tomcat已经提供,所以运行的时候如果使用就会出现错误,所以设置为 provided
+	- runtime 运行和测试的时候需要,编译的时候不需要,如jdbc驱动设置为runtime
+	- test 测试的时候依赖,编译和运行的时候不依赖,如Junit
+	- system 依赖范围和provided相同,但是需要提供一个磁盘路径,不推荐使用
+``` xml
+<dependencies>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>2.5</version>
+		<scope>provided</scope>
+	</dependency>
+</dependencies>
+```
+# maven的坐标查找
+
+## 网页查找
+如果我们需要使用jar包,就需要知道对应jar包的坐标,可以通过 [mvn repository][21] 进行查找
+
+![enter description here][22]
 
 
+## 搜索本地仓库
 
+> 本地搜索需要先构建索引,前面已经介绍
+
+![enter description here][23]
+
+![enter description here][24]
+
+
+## 配置插件
+
+> maven中也可以配置很多插件,如jdk版本和tomcat的插件
+
+- `<build>`  项目构建配置,配置编译,运行插件等
+- `<plugins>`  内部放 `<plugin>` ,是管理的插件
+- `<plugin>`  插件标签,内部配置该插件内部有 `<configuration>`
+- `<configuration>` 表示配置信息
+- 处理编译器版本
+
+``` xml
+<plugins>
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<version>3.5.1</version>  
+		<configuration>
+				<source>1.7</source>
+				<target>1.7</target>
+				<encoding>UTF-8</encoding>
+		</configuration>
+	</plugin>
+</plugins>
+```
+- tomcat插件
+
+``` xml
+ <plugin>
+		<groupId>org.apache.tomcat.maven</groupId>
+		<artifactId>tomcat7-maven-plugin</artifactId>
+		<version>2.2</version>
+		<configuration>
+			<path>/hello</path>
+			<port>8081</port>
+		</configuration>
+</plugin> 
+```
 
 
   [1]: http://maven.apache.org/download.cgi
@@ -211,3 +286,7 @@ grammar_cjkRuby: true
   [18]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502980182927.jpg
   [19]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502980252810.jpg
   [20]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1502980694621.jpg
+  [21]: https://mvnrepository.com/
+  [22]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1503057025112.jpg
+  [23]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1503057209747.jpg
+  [24]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1503057309100.jpg
