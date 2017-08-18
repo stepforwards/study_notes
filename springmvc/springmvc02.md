@@ -115,8 +115,6 @@ rect(req.getContextPath()+"/role/roleList.action");
 </mvc:interceptors>
 ```
 
-
-
 1.自定义一个异常类实现 **HandlerExceptionResolver** ，重写 **resolveException** 方法
 2.将异常类放到spring容器中，可以在springmvc文件中配置bean，`<bean class="top.xiesen.ssm.util.CustomException"></bean>` 或者直接在异常类上添加注解
 
