@@ -104,7 +104,6 @@ rect(req.getContextPath()+"/role/roleList.action");
 ```
 
 
-
 ``` xml
 <mvc:interceptors>
 	<mvc:interceptor>
