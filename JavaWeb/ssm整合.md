@@ -474,5 +474,34 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
 ``` javascript
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/jquery-1.12.4.min.js"></script>
 ```
+2. 编写ajax校验代码，设置在页面加载的时候加载
+
+``` javascript
+$("#name").blur(function(){
+	var value = $("#name").val();
+	$.ajax({
+		   type: "POST",
+		   url: "${pageContext.request.contextPath}/user/checkForm.action",
+		   data: "name=" + value,
+		   success: function(message){
+			   $("#msg").html(message);
+		   }
+	});
+});
+```
+
+3. 编写url数据库校验代码
+
+``` java
+@RequestMapping(value="/checkForm.action")
+public void checkForm(String name,HttpServletResponse response) throws IOException{
+	response.setContentType("text/html;charset=UTF-8");
+	User user = us.selectUserByName(name);
+	if(user != null){
+		response.getWriter().write("<b style='color: red'>用户名已存在</b>");
+	}
+}
+```
+
 
 
