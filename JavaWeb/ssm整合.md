@@ -503,5 +503,55 @@ public void checkForm(String name,HttpServletResponse response) throws IOExcepti
 }
 ```
 
+# 注册校验
+
+1.添加js支持
+
+``` javascript
+<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/messages_zh.min.js"></script>
+```
+
+2.编写校验规则
+
+``` javascript
+<script type="text/javascript">
+	$(function(){
+		$("#checkForm").validate({
+			rules:{
+				user:{//user是输入框的name属性值
+					required:true,
+					minlength:6,
+					email:true
+				},
+				pwd:{
+					required:true
+				},
+				rpwd:{
+					required:true,
+					equalTo:"input[name=pwd]"
+				}
+			},
+
+			messages:{
+				user:{//user是输入框的name属性值，保证rules和message对应
+					required:"用户名不能为空",
+					minlength:"长度太小"
+				},
+				pwd:{
+					required:"请输入密码"
+
+				},
+				rpwd:{
+					required:"请输入确认密码",
+					equalTo:"两次密码不一致"
+				}
+
+			}
+		});
+	});
+</script>
+```
 
 
