@@ -469,4 +469,10 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
 
 # ajax 异步校验用户名是否存在
 
+1. 添加jquery支持
+
+``` javascript
+<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/jquery-1.12.4.min.js"></script>
+```
+
 
