@@ -16,9 +16,13 @@ grammar_cjkRuby: true
 1.关闭tomcat
 2.run-->edit configuration
 3.server选项卡 -- >VM options部分
+
 > on "Update" action : update Classes and resources
-> on Frame deactivarion : update Classes and resources
+> on Frame deactivarion : update Classes and resource
+
 4.启动服务器要选择 "debug" 模式
-5.
 
 
+
+
+	
