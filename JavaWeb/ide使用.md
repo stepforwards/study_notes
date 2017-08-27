@@ -141,4 +141,11 @@ public class HomeController {
 6.启动程序，访问地址
 	http://localhost:8080/springmvc/
 
+7. 出现类找不到的原因。
+	> idea de web项目默认不会将依赖库放置在WEB-INF/lib下，需要手动设置
+	> project structure --> artifacts --> myspringmvc:war exploded --> 选择out layout选项卡--> 选择右侧的available elements 下 myspringmvc 条目的所有类 --> 右键-->put into WEB-INF/lib即可
+
+8. 运行程序
+9. 配置内部资源视图解析器(InteralResourceViewResolver)
+
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1503814915477.jpg
