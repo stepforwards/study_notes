@@ -22,7 +22,12 @@ grammar_cjkRuby: true
 
 4.启动服务器要选择 "debug" 模式
 
+# 在web项目中添加maven支持
 
+![springmvc结构][1]
 
 
 	
+
+
+  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1503814915477.jpg
