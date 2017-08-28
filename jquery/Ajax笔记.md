@@ -68,19 +68,19 @@ $.post(url,[data],[callback],[type])
  - type：返回内容格式，xml，html，script，json，text，_default
 
 ``` javascript
-				$.get(
-    				"${pageContext.request.contextPath}/user/loginCheckname.action",
-    				"name="+this.value,
-    				function(message){
-    					if(message.success === false){
-    						$("span").text("用户不存在");
-    					}else{
-    						alert(message.success);
-    						$("span").text("");
-    					}
-    				},
-    				"json"
-				);
+$.get(
+	"${pageContext.request.contextPath}/user/loginCheckname.action",
+	"name="+this.value,
+	function(message){
+		if(message.success === false){
+			$("span").text("用户不存在");
+		}else{
+			alert(message.success);
+			$("span").text("");
+		}
+	},
+	"json"
+);
 ```
 post或者get发送的数据只能是以下两种类型不能是json字符串：
 
@@ -92,12 +92,12 @@ post或者get发送的数据只能是以下两种类型不能是json字符串：
 
 ``` java
 @RequestMapping("/loginCheckname.action")
-	@ResponseBody
-	public Message login(User u){
-		Message message = new Message();
-		message.setSuccess(us.checkName(u) == null ? false : true);
-		return message;
-	}
+@ResponseBody
+public Message login(User u){
+	Message message = new Message();
+	message.setSuccess(us.checkName(u) == null ? false : true);
+	return message;
+}
 ```
 ### $.ajax
 
@@ -124,12 +124,12 @@ $.ajax({
 Controller层java文件
 ``` java
 @RequestMapping("/loginCheckname.action")
-	@ResponseBody
-	public Message login(@RequestBody User u){
-		Message message = new Message();
-		message.setSuccess(us.checkName(u) == null ? false : true);
-		return message;
-	}
+@ResponseBody
+public Message login(@RequestBody User u){
+	Message message = new Message();
+	message.setSuccess(us.checkName(u) == null ? false : true);
+	return message;
+}
 ```
 
 
