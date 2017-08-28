@@ -107,19 +107,19 @@ post或者get发送的数据只能是以下两种类型不能是json字符串：
 jsp中js
 ``` javascript
 $.ajax({
-		data:'{"name":'+this.value+'}',
-		dataType:"json",
-		contentType:"application/json;chartset=utf-8",
-		success:function(message){
-			if(message.success === false){
-				$("span").text("用户不存在");
-			}else{
-				$("span").text("");
-			}
-		},
-		type:"post",
-		url:"${pageContext.request.contextPath}/user/loginCheckname.action"
-	});
+	data:'{"name":'+this.value+'}',
+	dataType:"json",
+	contentType:"application/json;chartset=utf-8",
+	success:function(message){
+		if(message.success === false){
+			$("span").text("用户不存在");
+		}else{
+			$("span").text("");
+		}
+	},
+	type:"post",
+	url:"${pageContext.request.contextPath}/user/loginCheckname.action"
+});
 ```
 Controller层java文件
 ``` java
