@@ -101,8 +101,8 @@ public Message login(User u){
 ```
 ### $.ajax
 
-该方式支持get提交以及post提交并且可以提交json字符串，并且能够发送json串
-提交数据为json字符串的时必须在Controller层相应方法中的参数添加@RequestBody注解
+> 该方式支持get提交以及post提交并且可以提交json字符串，并且能够发送json串，发送json串需要设置**contentType:"application/json;chartset=utf-8"**
+> 提交数据为json字符串的时必须在Controller层相应方法中的参数添加@RequestBody注解
 
 jsp中js
 ``` javascript
