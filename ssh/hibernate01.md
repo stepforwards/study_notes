@@ -23,6 +23,7 @@ Hibernate的是开源轻量级的框架，对jdbc的代码进行封装，程序�
 
 ![orm图形分析][1]
 
+# Hibernate入门案例
 
 
 
