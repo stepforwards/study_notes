@@ -25,7 +25,12 @@ Hibernate的是开源轻量级的框架，对jdbc的代码进行封装，程序�
 
 # Hibernate入门案例
 
-
+## 导包
+## 引入外部约束
+## 创建model对象User(id,name,age)
+## 创建User.hbm.xml的orm映射文件
+## 在src下创建核心配置文件
+## 编写测试用例
 
 	
 	
