@@ -22,6 +22,15 @@ public class Speaker {
 }
 ```
 
-
 - 在多的一方添加一的一方的类类型
-- 
+
+``` java
+public class Video {
+    private Integer id;
+    private String name;
+    private Speaker speaker;
+	setter/getter...
+}
+```
+
+
