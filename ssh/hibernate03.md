@@ -11,4 +11,17 @@ grammar_cjkRuby: true
 ## 一对多(多对一)
 
 1. 创建实体
-	- 创建实体类在一的一方添加set或者list集合,推荐使用set,因为使用的时候需要在集合中添加元素,所以在声明的时候直接进行初始化操作
+- 创建实体类在一的一方添加set或者list集合,推荐使用set,因为使用的时候需要在集合中添加元素,所以在声明的时候直接进行初始化操作
+
+``` java
+public class Speaker {
+    private Integer id;
+    private String name;
+    private Set<Video> sperakerSet = new HashSet<>();
+	setter/getter...
+}
+```
+
+
+- 在多的一方添加一的一方的类类型
+- 
