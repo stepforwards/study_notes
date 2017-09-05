@@ -121,7 +121,32 @@ column="colIndex" type="java.lang.Integer"></index>
 > 需要对双方建立维护关系,并且要改变双方的状态都要是持久化状态才能写入数据库
 
 ``` java
-
+@Test
+public void test01(){
+	Session session = HibernateUtil.getSession();
+	Transaction tx = session.beginTransaction();
+	// 创建讲师对象
+	Speaker s = new Speaker();
+	s.setName("张三");
+	// 创建视频对象
+	Video v1 = new Video();
+	v1.setName("video1");
+	// 创建视频对象
+	Video v2 = new Video();
+	v2.setName("video2");
+	// 建立 speaker -- video 关系
+	s.getSperakerSet().add(v1);
+	s.getSperakerSet().add(v2);
+	// 建立 video -- speaker 关系
+	v1.setSpeaker(s);
+	v2.setSpeaker(s);
+	// 保存数据
+	session.save(s);
+	session.save(v1);
+	session.save(v2);
+	tx.commit();
+	session.close();
+}
 ```
 
 
