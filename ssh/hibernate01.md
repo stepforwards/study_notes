@@ -188,7 +188,75 @@ public class User {
 **name属性** ：设置为实体的完整包名，如果已经在hibernate-mapping中设置了package属性，可以直接类名
 **table属性**：设置为数据库对应的表名，可以省略，省略默认表名和类名相同
 **dynamic-insert属性**: 动态插入，默认是flase，如果设置为true就代表，如果字段为空，不参与insert语句
-**dynamic-update属性**: 动态更新，默认值是flase，如果设置为true就代表没有改动的属性，将不会生成update语句
+**dynamic-update属性**: 动态更新，默认值是flase，如果设置为true就代表没有改动的属性，将不会生成到update语句中
+## id标签
+> 配置数据库中主键的映射属性的
+
+- **name属性** ： 设置实体的属性名
+- **column属性** ： 设置数据库中字段名，可省略，省略默认和实体类属性名相同
+- **length属性** ： 设置列的数据长度
+- **unsave-value属性** ： 指定主键为什么值时，当作null来处理（不常用）
+- **access属性** ： 如果设置为filed，那么操作属性时，会直接操作对应的字段而不是get/set方法(不推荐使用)
+
+## generator子标签
+> 用于设置主键的生成策略，配置class属性可以配置不同的主键生成策略
+
+- **increment**：数据库自己生成主键，先在数据库中查询最大的ID值，将ID加1，作为新的主键
+- **identity**： 依赖于数据库主键自增功能
+- **sequence**：序列，依赖于数据中的序列功能（Orale）
+- **hilo** : hibernate自己实现的序列算法，自己生成主键。
+- **native** : 自动根据数据库判断，三选一。identity | sequence | hilo
+- **uuid** ： 生成32位的不重复随机字符串当作主键
+- **assigned** : 自己指定主键值。表的主键是自然主键时使用。
+
+## peoperty标签
+
+> 配置了除了主键之外的普通属性映射
+
+- **name属性**： 实体中属性的名称
+- **column熟悉**：表中字段名称
+- **length属性**：数据长度
+- **precision属性**：小数点后的精度
+- **scale属性**：有效位数
+- **insert属性**：该属性是否加入insert语句（一般不使用）
+- **update属性**：该属性是否加入update语句（一般不使用）
+- **not-null属性** ：指定属性是否使用非空
+- **unique属性**： 指定属性的约束是否使用唯一
+- **type属性**：表达该属性的类型（一般不建议设置），可以有三种类型
+	- java类型**java.lang.String**
+	- 数据库类型指定，如**varchar**
+	- Hibernate类型指定，如**string**
+
+``` xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--
+    配置package以后能够在当前文件下省去路径，但是不包含子包
+-->
+<hibernate-mapping package="top.xiesen.hibernate.model">
+<!--
+    name:表示model实体类名称
+    table：表名，如果表名和实体类名称相同，可省略table属性
+-->
+<class name="Video" table="t_video">
+    <!--name：实体类名称 column: 数据库字段名，如果设置实体类名称和字段名相同，可省略-->
+    <!--主键必须使用id标签-->
+    <id name="id">
+        <!--主键生成策略，现在先选择native，后面细说-->
+        <generator class="native"></generator>
+    </id>
+
+    <!--其他字段使用property标签-->
+    <property name="name"></property>
+    <many-to-one name="speaker" class="Speaker" column="svid"></many-to-one>
+</class>
+</hibernate-mapping>
+```
+
+
+
 	
 
 
