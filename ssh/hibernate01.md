@@ -185,7 +185,10 @@ public class User {
 
 > class标签及其子标签是用来配置实体与表之间的关系的
 
-
+**name属性** ：设置为实体的完整包名，如果已经在hibernate-mapping中设置了package属性，可以直接类名
+**table属性**：设置为数据库对应的表名，可以省略，省略默认表名和类名相同
+**dynamic-insert属性**: 动态插入，默认是flase，如果设置为true就代表，如果字段为空，不参与insert语句
+**dynamic-update属性**: 动态更新，默认值是flase，如果设置为true就代表没有改动的属性，将不会生成update语句
 	
 
 
