@@ -148,5 +148,11 @@ public void test01(){
 	session.close();
 }
 ```
+- 在生成的数据库文件中,hibernate会添加外键约束
+
+![外键约束][1]
 
 
+
+
+  [1]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1504621209879]]]"
