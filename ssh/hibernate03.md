@@ -33,4 +33,46 @@ public class Video {
 }
 ```
 
+## 配置ORM映射文件
 
+> hibernate对于外键的维护是双向的，因此，设置对象关系映射时，我们需要将两边的外键的值设置成一样的。
+
+- 配置一的一方的ORM映射,注意如果使用List类型,需要多添加一个标签index用来表示在多的一方中在list中的索引
+- name表示一的一方的属性名称集合自标签 <key column="speakerId">
+- </key> 表示在多的一方中外键
+- 一对多标签表示集合中对应的元素的类型<one-to-many class="Video"/>如果使用的是list需要添加 <index
+column="colIndex" type="java.lang.Integer"></index>
+- column表示要在多的一方生成的字段的名称,type表示类型,索引的类型为整型
+
+
+``` xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--
+    配置package以后能够在当前文件下省去路径，但是不包含子包
+-->
+<hibernate-mapping package="top.xiesen.hibernate.model">
+<!--
+    name:表示model实体类名称
+    table：表名，如果表名和实体类名称相同，可省略table属性
+-->
+<class name="Speaker" table="t_speaker">
+    <!--name：实体类名称 column: 数据库字段名，如果设置实体类名称和字段名相同，可省略-->
+    <!--主键必须使用id标签-->
+    <id name="id">
+        <generator class="native"></generator>
+    </id>
+    <!--其他字段使用property标签-->
+    <property name="name"></property>
+
+    <set name="sperakerSet" cascade="delete-orphan">
+        <!--key：表示多的一方的外键-->
+        <key column="svid"></key>
+        <one-to-many class="Video"></one-to-many>
+    </set>
+</class>
+
+</hibernate-mapping>
+```
