@@ -378,6 +378,31 @@ public class UserTest {
 
 ```
 
+# 封装工具类
+
+> SessionFactory具有如下特点:
+1.线程安全,可以保证在并发操作的时候,多个线程使用一个SessionFactory对象
+2.在创建的时候,会读取所有hibernate.cfg.xml和所有的映射文件,并且会创建数据库中的表,所以比较耗费资源,不能轻易的创建和销毁
+因此，在实际开发过程中我们可以使用一个工具类来创建一个SessionFactory对象,通过调用方法来创建操作数据库的session对象
+
+``` java
+public class HibernateUtil {
+    private static  Configuration cfg;
+    private static SessionFactory sessionFactory;
+    static {
+        cfg = new Configuration();
+        cfg.configure();
+        sessionFactory = cfg.buildSessionFactory();
+    }
+    public static Session getSession(){
+        return sessionFactory.openSession();
+    }
+
+    public static Session openCurrentSession(){
+        return sessionFactory.getCurrentSession();
+    }
+}
+```
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504534372962.jpg
