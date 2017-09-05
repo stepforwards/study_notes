@@ -120,3 +120,8 @@ column="colIndex" type="java.lang.Integer"></index>
 
 > 需要对双方建立维护关系,并且要改变双方的状态都要是持久化状态才能写入数据库
 
+``` java
+
+```
+
+
