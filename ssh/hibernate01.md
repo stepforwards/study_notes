@@ -255,6 +255,77 @@ public class User {
 </hibernate-mapping>
 ```
 
+# 核心配置文件
+
+> 用于配置hibernate中的数据库连接和映射文件所需的基本信息,Hibernate的配置文件有两种格式,一种是propertiest文件,默认是hibernate.properties,一种是xml格式的配置,默认名字是hibernate.cfg.xml,在实际开发过程中大部分时候使用的都是xml文件进行配置.一般将此文件放在src下
+
+## 必选配置
+- 数据库驱动 **hibernate.connection.driver_class**
+- 数据库**url hibernate.connection.url**
+- 数据库连接用户名 **hibernate.connection.username**
+- 数据库连接密码 **hibernate.connection.password**
+- 数据库方言 **hibernate.dialect**
+> 因为hibernate需要生成sql语句,在不同的数据库中sql语法略有差别,指定方言就是设置hibernate在生成sql语句的时候针对哪个库生成的sql
+ 
+- org.hibernate.dialect.MySQLDialect 通用存储引擎(我们一般设置为通用存储引擎,无论对应的哪个存储引擎的数据库都能进行操作)
+- org.hibernate.dialect.MySQLInnoDBDialect InnoDB存储引擎
+- org.hibernate.dialect.MySQLMyISAMDialect MyISAM存储引擎
+
+## 可选配置
+
+- **hibernate.show_sql** 将生成的sql语句打印到控制台hibernate.format_sql 进行格式化sql语句,如果为false,sql语句就会打印到一行
+- **hibernate.hbm2ddl.auto** 自动导出表结构,通过设置此项,hibernate可以通过实体自动创建表结构其有4个设置
+	- create 自动建表,每次hibernate运行都会创建新表,之前的内容都会被覆盖(用于测试环境,不常用)
+	-	create-drop 自动建表,每次运行都会创建表,运行结束后删除表
+	- update 自动建表,如果有就不再自动生成,如果没有创建新表,数据变动不会影响原来的表的内容(推荐使用),比如重新修改了表的映射关系,不会影响原有的数据
+	- validate 不自动建表,如果没有表就会抛出异常
+
+> 注意，如果hibernate版本较新,需要自动建表,需要设置方言mysql的方言为 **org.hibernate.dialect.MySQL5Dialect**
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!--配置数据库的相关信息-->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+
+        <!--配置数据库的方言-->
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
+        <!--配置hibernate的相关信息-->
+        <!--是否显示底层的sql语句-->
+        <property name="show_sql">true</property>
+        <!--是否格式化显示sql语句-->
+        <property name="format_sql">true</property>
+
+        <!--hibernate会自动给我们创建表，默认是不会创建的，需要配置hbm2ddl.auto
+            值 update：如果数据库中不存在表，创建；存在，更新
+        -->
+        <!--
+            #hibernate.hbm2ddl.auto create-drop //启动的时候创建，close的时候删除
+            #hibernate.hbm2ddl.auto create //每次启动创建新表，旧的数据会被覆盖掉
+            #hibernate.hbm2ddl.auto update //启动的时候如果没有就创建，存在就更新，不会对原来数据有影响(测试和开发)
+            #hibernate.hbm2ddl.auto validate // 不会创建表，如果执行的时候没有表，抛异常
+        -->
+        <property name="hbm2ddl.auto">update</property>
+        <!--
+            配置此项，调用getCurrentSession，获取的session与线程进行绑定
+            使用getCurrentSession，session会在线程结束后，自动关闭，不能调用session.close
+        -->
+        <property name="current_session_context_class">thread</property>
+        <!--引入ORM配置文件-->
+        <mapping resource="top/xiesen/hibernate/model/User.hbm.xml"></mapping>
+        <mapping resource="top/xiesen/hibernate/model/Speaker.hbm.xml"></mapping>
+        <mapping resource="top/xiesen/hibernate/model/Video.hbm.xml"></mapping>
+    </session-factory>
+</hibernate-configuration>
+```
 
 
 	
