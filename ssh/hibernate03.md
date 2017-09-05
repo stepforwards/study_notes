@@ -82,3 +82,35 @@ column="colIndex" type="java.lang.Integer"></index>
 	- 属性name表示属性
 	- 属性class表示一的一方的类型
 	- 属性column表示自己的外键的名称
+
+``` xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--
+    配置package以后能够在当前文件下省去路径，但是不包含子包
+-->
+<hibernate-mapping package="top.xiesen.hibernate.model">
+<!--
+    name:表示model实体类名称
+    table：表名，如果表名和实体类名称相同，可省略table属性
+-->
+<class name="Video" table="t_video">
+    <!--name：实体类名称 column: 数据库字段名，如果设置实体类名称和字段名相同，可省略-->
+    <!--主键必须使用id标签-->
+    <id name="id">
+        <!--主键生成策略，现在先选择native，后面细说-->
+        <generator class="native"></generator>
+    </id>
+    <property name="name"></property>
+    <!--
+        column：外键
+        name: 多的一方的属性值
+        class：一的一方的类的全路径
+    -->
+    <many-to-one name="speaker" class="Speaker" column="svid"></many-to-one>
+</class>
+
+</hibernate-mapping>
+```
