@@ -33,7 +33,7 @@ v1.setId(2);
 v1.setName("video1");
 ```
 
-![hibernate状态转换示意图][1]
+![hibernate状态转换示意图][2]
  
 **瞬时态**
   转换成持久态：调用save方法，saveOrUpdate方法实现
@@ -48,6 +48,5 @@ v1.setName("video1");
   转换成持久态：调用update和saveOrUpdate方法实现
 
 
-
-
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504616997842.jpg
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504617225744.jpg
