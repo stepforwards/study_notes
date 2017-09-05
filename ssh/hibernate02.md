@@ -32,8 +32,7 @@ Video v1 = new Video();
 v1.setId(2);
 v1.setName("video1");
 ```
-
-![hibernate状态转换示意图][2]
+![hibernate状态转换示意图][1]
  
 **瞬时态**
   转换成持久态：调用save方法，saveOrUpdate方法实现
@@ -47,6 +46,58 @@ v1.setName("video1");
   转换成瞬时态：设置oid值 ，user.setId(null)
   转换成持久态：调用update和saveOrUpdate方法实现
 
+# Hibernate的一级缓存
+## 什么是缓存
+> 把数据不放到文件系统中，放到系统的内存中，可以直接从内存中获取数据，提高获取数据的效率。
 
-  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504616997842.jpg
-  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504617225744.jpg
+## Hibernate的缓存
+- **Hibernate的一级缓存**
+  在hibernate中的一级缓存默认就是打开的，一级缓存使用范围是session范围的。从session创建，到session关闭的过程，如果session关闭了，一级缓存内容没有了。
+
+- **Hibernate的二级缓存**
+  在hibernate中的二级缓存默认不是打开的，手动设置才可以使用。二级缓存使用范围是sessionFactory范围的二级缓存。
+
+## 验证一级缓存存在
+> 查询三次，只打印出一条查询语句，并且三个对象指向的是同一个地址
+``` java
+ @Test
+public void test03(){
+	Session session = HibernateUtil.getSession();
+	Transaction tx = session.beginTransaction();
+
+	User user = session.get(User.class, 3);
+	User user1 = session.get(User.class, 3);
+	User user2 = session.get(User.class, 3);
+
+	System.out.println(user == user1);
+	System.out.println(user1 == user2);
+
+	tx.commit();
+	session.close();
+}
+```
+
+![验证一级缓存执行结果][2]
+
+## 一级缓存的快照区（副本）
+
+``` java
+@Test
+public void test03(){
+	Session session = HibernateUtil.getSession();
+	Transaction tx = session.beginTransaction();
+	User user = session.get(User.class, 3);
+	user.setName("张三丰");
+	session.update(user);
+	tx.commit();
+	session.close();
+}
+```
+
+
+![一级缓存的快照区执行结果][3]
+
+
+  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504617225744.jpg
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504618380053.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504618986931.jpg
