@@ -159,9 +159,9 @@ public void test01(){
 # inverse cascade 外键的维护之间的关系
 
 级联操作外键之间关系的维护是双向的，两边都进行维护
-
 inverse：true，表示放弃维护的权利，默认是false，维护外键之间的关系
-
 cascade：是强调在操作一个对象的时候级联操作另一个对象
+
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504621209879.jpg
