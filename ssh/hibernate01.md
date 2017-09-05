@@ -327,8 +327,57 @@ public class User {
 </hibernate-configuration>
 ```
 
+# API
 
+## Configuration
+> 加载核心配置文件类,默认会加载src下的**hibernate.cfg.xml**
+
+## SessionFactory
+> 通过conf调用 **buildSessionFactory()** 创建factory,因为核心配置文件中的根标签是 **session-factory** ,所以创
+建出来的factory就是我们在配置文件中配置的那个factory可以通过这个对象创建session对象因为factory创建消耗资源比较大,并且一个factory可以创建多个session,所以在实际开发过程中SessionFactory只需要创建一个即可
 	
+
+## Session
+> 是操作数据库的核心对象,通过SessionFactory 进行创建,可以进行增删改查
+
+## Transaction
+> hibernate中处理事务的类
+
+``` java
+public class UserTest {
+
+    /**
+     * 1. 加载核心配置文件
+     * 2. 创建sessionFactory工厂
+     * 3. 通过sessionFactory创建session
+     * 4. 通过session开启事务
+     * 5. 数据库操作
+     * 6. 提交事务
+     * 7. 关闭资源
+     */
+    @Test
+    public void test01(){
+        // 调用configure()方法默认加载src下hibernate.cfg.cml 文件，所以我们的核心配置文件名必须是hibernate.cfg.xml
+        Configuration conf = new Configuration().configure();
+        // 创建sessionFactory工厂
+        SessionFactory sessionFactory = conf.buildSessionFactory();
+        // 通过sessionFactory创建session
+        Session session = sessionFactory.openSession();
+
+        Transaction tx = session.beginTransaction();
+        User user = new User();
+        user.setName("李四");
+        user.setAge(18);
+        user.setMoney(1000);
+        session.save(user);
+        tx.commit();
+        session.close();
+        sessionFactory.close();
+    }
+}
+
+```
+
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504534372962.jpg
