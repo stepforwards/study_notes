@@ -76,3 +76,9 @@ column="colIndex" type="java.lang.Integer"></index>
 
 </hibernate-mapping>
 ```
+
+- 配置多的一方的ORM映射文件
+	- 多对一使用 <many-to-one>
+	- 属性name表示属性
+	- 属性class表示一的一方的类型
+	- 属性column表示自己的外键的名称
