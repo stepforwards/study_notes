@@ -194,6 +194,17 @@ grammar_cjkRuby: true
 
 > 如果不去扩到session的范围,因为web层会使用dao层的数据,如果此时数据是懒加载,就会出现no-session问题
 
+``` xml
+<filter>
+	<filter-name>openSessionInView</filter-name>
+	<filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>openSessionInView</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+```
+
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504704212766.jpg
