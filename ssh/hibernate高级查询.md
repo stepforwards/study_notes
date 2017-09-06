@@ -128,7 +128,44 @@ grammar_cjkRuby: true
 
 > 在使用OID查询的时候我们之前使用的是 ==User user = session.get(User.class, 1);== 会发现当代码走到这一行的时候,sql语句就会打印,当我们使用 User user =session.load(User.class, 1); 方法的时候,只有当使用user的时候才会打印sql语句懒加载的策略默认是true,我们可以在通过在class元素上配置lazy属性进行控制,lazy值如果是true,表示加载的时候不查询,使用的时候才查询
 
+![enter description here][14]
 
+**注意：** ==所有延迟加载的策略只适用与load方法,不适用get方法==
+
+- 原理是在没有使用的时候创建的不是User对象,仅仅是代理对象,这个代理对象会关联session,在使用的时候通过session查询数据库
+
+![enter description here][15]
+
+- 确保在调用属性加载数据的时候,session还是打开的
+
+## 关联级别查询优化
+
+> 主要是在关联级别的查询的时候操作延时加载和抓取策略
+
+### 集合级别的关联
+
+> 对于speaker中的set标签可以设置两个属性lazy和fetch
+
+- lazy属性可以设置3个值
+	- true (默认值)延时加载|懒加载
+	- false 立即加载
+	- extra 极其懒惰的加载	
+
+- fetch属性可以设置3个值
+	- select (默认值)单表select语句查询关联对象
+	- join 发送一条迫切左连接查询关联对象
+	- subselect 发送一条子查询,查询其关联对象
+
+- 效果 fetch="select"
+- lazy="true" 在使用的集合的时候,发送单表查询语句
+- lazy="false" 在获取集合的时候,发送单表查询语句
+- lazy="extra" 会发现在查看集合的size时候只会查询大小,在使用其他内容的时候再去查询
+
+![enter description here][16]
+
+![enter description here][17]
+
+> 效果 fetch="join" ,lazy属性无论是什么值都会失效,因为在获取speaker的时候会进行多表查询将所有数据都查出来
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504704212766.jpg
@@ -144,3 +181,7 @@ grammar_cjkRuby: true
   [11]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504706015799.jpg
   [12]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504706856881.jpg
   [13]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504706976001.jpg
+  [14]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504707086263.jpg
+  [15]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504707154855.jpg
+  [16]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504707338881.jpg
+  [17]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1504707362131]]]"
