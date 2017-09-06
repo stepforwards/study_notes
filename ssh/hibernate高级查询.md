@@ -38,9 +38,109 @@ grammar_cjkRuby: true
 
 ## 外连接
 
+> 1.左连接 select * from 表1 left join 表2 on 表1.字段= 表2.字段
+2.又连接 select * from 表1 right join 表2 on 表1.字段 = 表2.字段
+
+# HQL多表查询
+
+## 内连接
+
+>  1.内连接: from Speaker s inner join s.videoSet ,其结果是list集合,集合中放的是 Object[] ,第一项是 speaker 对象,第二项是 video 对象
+
+![enter description here][4]
+
+![enter description here][5]
+
+> 2.迫切内连接: select distinct s from Speaker s inner join fetch s.videoSet ,其结果是list集合,集合中是 Speaker 对象, hibernate 会自动帮助我们进行封装处理
+
+![enter description here][6]
+
+![enter description here][7]
+
+## 外连接
+
+> 1.左外连接 from Speaker s left join s.videoSet 返回值类型是list,其中放的是 Object[] ,第一项是 speaker 对象,第二项是 video 对象
+
+![enter description here][8]
+
+![enter description here][9]
+
+>2.迫切左外连接 select distinct s from Speaker s left join fetch s.videoSet 其结果是list集合,集合中是 Speaker 对象, hibernate 会自动帮助我们进行封装处理
+
+![enter description here][10]
+
+![enter description here][11]
+
+> 3.右外连接(和左外连接相同,left换成right)
+> 4.迫切右外连接(和迫切左外连接相同,left换成right)
+
+**注意需要做去重操作,添加 select distinct s**
+
+# QBC查询
+
+> 通过session调用 session.createCriteria(类名.class)
+
+|   限定方法  |  说明   |
+| :---: | :---: |
+|  Restrictions.eq   |  equal,等于   |
+|  Restrictions.allEq   |  参数为Map对象,使用key/value进行多个等于的比对,相当于多个Restrictions.eq的效果   |
+|  Restrictions.gt   |   great-than > 大于  |
+|  Restrictions.ge   | great-equal >= 大于等于    |
+|  Restrictions.lt   | less-than, < 小于    |
+|   Restrictions.le  | less-equal <= 小于等于    |
+|  Restrictions.between   |   对应SQL的between子句 |
+|  Restrictions.like   | 对应SQL的LIKE子句    |
+|  Restrictions.in   |   对应SQL的in子句  |
+|Restrictions.and     |   and 关系  |
+| Restrictions.or	    |    or 关系 |
+|   Restrictions.isNull  |    判断属性是否为空,为空则返回true |
+|   Restrictions.isNotNull  |   与isNull相反  |
+|Restrictions.sqlRestriction     | SQL限定的查询    |
+|   Order.asc  |  根据传入的字段进行升序排序   |
+|  Order.desc   |   根据传入的字段进行降序排序  |
+|  MatchMode.EXACT   |   字符串精确匹配.相当于”like ‘value’”  |
+|   MatchMode.ANYWHERE  |   字符串在中间匹配.相当于”like ‘%value%’”  |
+| MatchMode.START    |   字符串在最前面的位置.相当于”like ‘value%’”  |
+| MatchMode.END    |  MatchMode.END   |
+
+- 查询集合通过调用 **list()**
+- 查询单个数据通过调用 **uniqueResult()**
+- 条件查询通过调用 **add(Restrictions.eq())** 等操作
+- 排序操作 **addOrder(Order.asc("id"))**
+- 统计操作 **setProjection(Projections.rowCount());**
+
+![enter description here][12]
+
+# 离线查询
+
+> 在通常的web开发过程中,我们需要将web层提交的数据,传递给service,再由service传递给dao,最终在dao层通过factory创建session,由session创建查询,如果在dao层想要对所有的查询方法进行封装的话,因为不同的业务传递的参数会有所不同,所以很难封装,hibernate为我们提供了离线查询,也就是说可以在脱离session的情况下创建出来查询条件,由web层给service层,再由service层给dao,在dao层只需写一个方法就能完成就能完成很多工程的查询
+
+创建离线 ==Criteria DetachedCriteria dc = DetachedCriteria.forClass(User.class);==
+通过我们之前的QBC添加条件, ==dc.add(Restrictions.idEq(1));==
+当传递到dao层的时候可以通过dc调用方法,去绑定session, ==Criteria criteria = dc.getExecutableCriteria(session);==
+
+
+![enter description here][13]
+
+# 查询优化
+## 类级别查询优化
+### 懒加载
+
+> 在使用OID查询的时候我们之前使用的是 ==User user = session.get(User.class, 1);== 会发现当代码走到这一行的时候,sql语句就会打印,当我们使用 User user =session.load(User.class, 1); 方法的时候,只有当使用user的时候才会打印sql语句懒加载的策略默认是true,我们可以在通过在class元素上配置lazy属性进行控制,lazy值如果是true,表示加载的时候不查询,使用的时候才查询
+
 
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504704212766.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504704253915.jpg
   [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504705706131.jpg
+  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504705815667.jpg
+  [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504705833258.jpg
+  [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504705873937.jpg
+  [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504705909391.jpg
+  [8]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504705948314.jpg
+  [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504705968193.jpg
+  [10]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504705998212.jpg
+  [11]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504706015799.jpg
+  [12]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504706856881.jpg
+  [13]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504706976001.jpg
