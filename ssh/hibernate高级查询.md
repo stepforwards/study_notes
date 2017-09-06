@@ -167,6 +167,34 @@ grammar_cjkRuby: true
 
 > 效果 fetch="join" ,lazy属性无论是什么值都会失效,因为在获取speaker的时候会进行多表查询将所有数据都查出来
 
+![enter description here][18]
+
+![enter description here][19]
+
+- 效果 fetch="subselect" ,如果查询的是单条数据那么和select没有区别,所以可以查询所有的speaker,通过遍历查看效果
+
+![enter description here][20]
+
+- lazy="true" 在查询到size的时候会把所有数据通过子查询都查出来
+- lazy="false" 在查询到list的时候会把所有数据通过子查询都查出来
+- lazy="extra" 在查询到 sp.getVideoSet() 的时候把通过子查询把数据都查找出来
+
+### 对象级别的关联
+
+> 在video的多对标签可以设置fetch和lazy
+
+- lazy属性可以设置两种
+	- false 立即加载
+	- proxy 有video的类加载级别决定
+- fetch属性可以设置两种
+	- select 单表查询
+	- join 迫切左连接
+
+#### 扩大session的范围
+
+> 如果不去扩到session的范围,因为web层会使用dao层的数据,如果此时数据是懒加载,就会出现no-session问题
+
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504704212766.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504704253915.jpg
@@ -185,3 +213,6 @@ grammar_cjkRuby: true
   [15]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504707154855.jpg
   [16]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504707338881.jpg
   [17]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1504707362131]]]"
+  [18]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504707428618.jpg
+  [19]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504707485886.jpg
+  [20]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504707519367.jpg
