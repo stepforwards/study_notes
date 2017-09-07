@@ -163,6 +163,129 @@ inverse：true，表示放弃维护的权利，默认是false，维护外键之�
 cascade：是强调在操作一个对象的时候级联操作另一个对象
 
 
+# 级联操作
+
+> 对于上述操作,我们想要将数据存入到数据库中,需要对所有的数据都要进行由瞬时态到持久态的转变,如果不做这些操作的话,数据是无法被写入数据库中的,如果数据多的时候操作就会相当复杂级联操作就是可以在多的一方或者一的一方设置,那么将对其中一方进行操作的时候,另一方也会受到影响通过级联操作可以对 cascade 属性设置3个值分别为
+- 1. save-update 保存修改的时候级联操作
+-  2. delete 删除的时候级联操作,当删除一方数据的时候,另一方也会被删除
+- 3. all 等同于 save-update,delete
+
+
+## 对speaker进行级联操作(save-update)
+
+> 如果对speaker进行级联设置,那么对于其中的video对象就不用再对他们进行保存,只需保存speaker就可以了
+
+![enter description here][2]
+
+
+## 对speaker进行级联操作(delete)
+
+> 如果对speaker进行了级联删除设置,那么只要删除speaker对象,video中所有的是这个外键的video对象都会被删除
+
+![enter description here][3]
+
+## 对video进行级联操作(delete)
+
+> 如果对某一个video进行了级联删除设置,那么只要删除video对象,speaker对象就会被删除,其他的video对象如果外键是这个speaker对象,就会变为null
+
+# 双方关系维护特征
+
+> 当我们对刚才的数据进行如下设置,就是为了,建立对象双方的关系维护
+
+![enter description here][4]
+
+![enter description here][5]
+
+运行结果为
+
+![enter description here][6]
+
+- 当保存video1的时候video1会写入数据库,因为video和speaker有级联操作,所以speaker会存入数据库,speaker和video有级联操作,所以video2会写入数据库
+
+``` java
+@Test
+public void test05(){
+	Session session = HibernateUtil.openSession();
+	Transaction transaction = session.beginTransaction();
+	Video video1 = new Video();
+	video1.setVideoTitle("video1");
+	
+	Video video2 = new Video();
+	video2.setVideoTitle("video2");
+	
+	Video video3 = new Video();
+	video3.setVideoTitle("video3");
+	
+	Speaker speaker = new Speaker();
+	speaker.setSpeakerName("李彦伯");
+	
+	video1.setSpeaker(speaker);
+	speaker.getVideoList().add(video2);
+	speaker.getVideoList().add(video3);
+	//session.save(video1);//会存入video1
+	video2 video3 speaker
+	//session.save(speaker);//会存入speake
+	r video2 video3
+	session.save(video3);//会存入video3
+	transaction.commit();
+	session.close();
+}
+```
+
+# 外键的维护权管理
+
+## 冗余sql的产生
+
+> 通过如下代码
+
+![enter description here][7]
+
+> 当我们去运行的过程中会发现其结果为
+
+![enter description here][8]
+
+因为对于同一个外键,video会进行维护,speaker也会进行维护,所以对于外键的操作会进行两次
+
+## 放弃外键的维护
+
+![enter description here][9]
+
+设置放弃对外键进行维护
+
+![enter description here][10]
+
+## inverse和cascade区别
+
+> inverse是对外键的维护权
+> cascade是强调在操作一个对象的时候级联操作另一个对象
+
+## inverse总结
+如果在speaker中设置了inverser,那么使用speaker操作video的时候,如果进行删除和修改的时候是没有效果的
+
+![enter description here][11]
+
+# 多对多
+##创建实体
+- 创建teacher实体,在其中创建Student类型的set集合
+
+``` java
+private Integer id;
+private String name;
+private Set<Student> students = new HashSet<> ();
+setter/getter
+```
+
+
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504621209879.jpg
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504794161626.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504794231286.jpg
+  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504794291497.jpg
+  [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504794304976.jpg
+  [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504794336625.jpg
+  [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504795016474.jpg
+  [8]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504795056851.jpg
+  [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504795092754.jpg
+  [10]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504795179592.jpg
+  [11]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504795282880.jpg
