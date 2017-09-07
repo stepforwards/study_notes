@@ -272,9 +272,108 @@ public void test05(){
 private Integer id;
 private String name;
 private Set<Student> students = new HashSet<> ();
-setter/getter
+setter/getter...
+```
+- 创建Student实体,在其中创建Teacher类型的set集合
+
+``` java
+private Integer id;
+private String name;
+private Set<Teacher> teachers = new HashSet<>();
+setter/getter...
 ```
 
+# 创建ORM映射文件
+
+- 创建teacher映射文件
+	- name属性是指teacher中的属性名
+	-  因为是多对多,所以需要生成第三张表,table属性是指定第三张表的名称
+	- key column 指的是teacher在第三张表中的外键名称 many-to-many 表示多对多,只另一放的设置内容
+		- class 表示另一方的类名
+		- column 表示另一方在第三张表中的名称
+
+``` xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--
+    配置package以后能够在当前文件下省去路径，但是不包含子包
+-->
+<hibernate-mapping package="top.xiesen.hibernate.model">
+<class name="Teacher" table="t_teacher">
+    <id name="id">
+        <generator class="native"></generator>
+    </id>
+    <property name="name"></property>
+
+    <set name="setStudent" table="s_t" cascade="save-update,delete">
+        <key column="tid"></key>
+        <many-to-many class="Student" column="sid"></many-to-many>
+    </set>
+</class>
+</hibernate-mapping>
+```
+
+
+- 创建student映射文件
+
+``` xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--
+    配置package以后能够在当前文件下省去路径，但是不包含子包
+-->
+<hibernate-mapping package="top.xiesen.hibernate.model">
+<class name="Student" table="t_student">
+    <id name="id">
+        <generator class="native"></generator>
+    </id>
+    <property name="name"></property>
+
+    <set name="setTeacher" table="s_t" inverse="true">
+        <key column="sid"></key>
+        <many-to-many class="Teacher" column="tid"></many-to-many>
+    </set>
+
+</class>
+</hibernate-mapping>
+```
+
+## 创建测试文件
+
+``` java
+public void test01(){
+
+	Teacher t1 = new Teacher();
+	t1.setName("张老师");
+
+	Teacher t2 = new Teacher();
+	t2.setName("李老师");
+
+	Student s1 = new Student();
+	s1.setName("张三");
+	Student s2 = new Student();
+	s2.setName("李四");
+
+	t1.getSetStudent().add(s1);
+	t1.getSetStudent().add(s2);
+	t2.getSetStudent().add(s1);
+	t2.getSetStudent().add(s2);
+
+	s1.getSetTeacher().add(t1);
+	s1.getSetTeacher().add(t2);
+	s2.getSetTeacher().add(t1);
+	s2.getSetTeacher().add(t2);
+	session.save(t1);
+	session.save(t2);
+	/*session.save(s1);
+	session.save(s2);*/
+}
+
+```
 
 
 
