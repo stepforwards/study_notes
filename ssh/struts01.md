@@ -186,6 +186,14 @@ public class HelloWorkAction {
 
 ```
 
+# structs2中的默认配置
+
+- ==method== 的默认值 ==execute==
+- ==result 的name属性== 默认值是 ==success==
+- ==result的type属性== 默认值是 ==dispatcher==,默认内部转发
+class的默认值是 ActionSupport 其中有 execute 方法返回值是 success
+配置package下的默认的action,当访问当前包下,如果找不到指定action,就会自动寻
+找默认的action
 
 
   [1]: https://struts.apache.org/
