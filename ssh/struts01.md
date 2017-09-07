@@ -226,6 +226,25 @@ public class HelloWorkAction {
 
 对于type属性需要设置为 chain ,并在其下方配置 **<param>** 标签
 
+![enter description here][10]
+
+``` xml
+<action name="test01" class="top.xiesen.struts.web.action.demo5.Demo5Action" method="test01">
+	<result type="chain">
+		<param name="actionspace">/test</param>
+		<param name="actionName">test02</param>
+	</result>
+</action>
+```
+
+## 重定向
+
+### 重定向到指定界面
+
+> 对于type属性,设置为 **redirect** ,就是重定向到界面,如果需要进行重定向就必须进行此处的设置
+
+
+
 
 
 
@@ -240,3 +259,4 @@ public class HelloWorkAction {
   [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504786653176.jpg
   [8]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504786697450.jpg
   [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504787511895.jpg
+  [10]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504788591156.jpg
