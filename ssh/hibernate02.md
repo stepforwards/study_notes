@@ -148,6 +148,68 @@ List<User> list = (List<User>)session.createQuery("from User").setFirstResult(0)
 
 ## QBC查询
 
+> QBC(Query By Criteria )完全面向对象查询,无语句进行查询,是hibernate提供的
+
+![enter description here][4]
+
+- 查询所有
+
+``` java
+Criteria criteria = session.createCriteria(User.class);
+List<User> list = criteria.list();
+System.out.println(list);
+```
+
+- 条件查询
+
+``` java
+User use =(User) session.createCriteria(Use
+r.class).add(Restrictions.eq("id", 9)).uniqueResult();
+System.out.println(use);
+```
+
+- 分页查询
+
+``` java
+Criteria criteria = session.createCriteri
+a(User.class).setFirstResult(0).setMaxResults(5);
+List<User> list = criteria.list();
+System.out.println(list);
+```
+
+## SQLQuery查询
+
+> 就是普通的sql语句查询,sql语句中使用都是字段名称,不是实体类的属性值
+
+- 查询所有
+
+``` java
+SQLQuery sqlQuery = session.createSQLQuery("select * from t_user");
+sqlQuery.addEntity(User.class);
+List<User> list = sqlQuery.list();
+System.out.println(list);
+```
+
+- 条件查询
+
+``` java
+SQLQuery sqlQuery = session.createSQLQuery("select * from t_user where u_id = ?");
+sqlQuery.setParameter(0, 1);
+sqlQuery.addEntity(User.class);
+User u = (User) sqlQuery.uniqueResult();
+System.out.println(u);
+```
+
+- 分页查询
+
+``` java
+SQLQuery sqlQuery = session.createSQLQuery("select * from t_user limit ?,?");
+sqlQuery.addEntity(User.class);
+sqlQuery.setParameter(0, 0);
+sqlQuery.setParameter(1, 5);
+List<User> list = sqlQuery.list();
+System.out.println(list);
+```
 
 
 
@@ -155,3 +217,4 @@ List<User> list = (List<User>)session.createQuery("from User").setFirstResult(0)
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504617225744.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504618380053.jpg
   [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504618986931.jpg
+  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504793775249.jpg
