@@ -108,6 +108,45 @@ public void test03(){
 
 
 ## HQL查询
+> Hibernate Query Language 面向对象的查询,在查询语句中是没有任何数据库相关内容,只会出现类名和属性名
+
+- 如果查询的对象的所有属性的时候时候省略select *
+- 表名改为完整类名,如果工程中没有重名的类,可以省略掉包名
+- 对于唯一的结果调用 uniqueResult() 方法
+- 对于结果是集合类型调用调用 list() 方法
+- 对于结果是对象类型调用调用 uniqueResult() 方法
+- 对于绑定 ? 一般使用 setParameter(索引,Object) ,索引从0开始
+
+- 查找所有
+
+``` java
+String hql = "from User";
+Query<User> query = session.createQuery(hql);
+List<User> list = query.list();
+System.out.println(list);
+```
+
+- 查询指定id的
+
+``` java
+User uu = (User)session.createQuery("fromUser where id = ?").setParameter(0, 9).uniqueResult();
+System.out.println(uu);
+```
+
+
+- 命名占位符
+
+``` java
+User uu = (User)session.createQuery("fromUser where id = :userid").setParameter("userid",9).uniqueResult();
+```
+
+- 分页查询
+
+``` java
+List<User> list = (List<User>)session.createQuery("from User").setFirstResult(0).setMaxResults(5).list();
+```
+
+## QBC查询
 
 
 
