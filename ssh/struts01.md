@@ -191,9 +191,44 @@ public class HelloWorkAction {
 - ==method== 的默认值 ==execute==
 - ==result 的name属性== 默认值是 ==success==
 - ==result的type属性== 默认值是 ==dispatcher==,默认内部转发
-class的默认值是 ActionSupport 其中有 execute 方法返回值是 success
-配置package下的默认的action,当访问当前包下,如果找不到指定action,就会自动寻
-找默认的action
+- ==class== 的默认值是 ==ActionSupport== 其中有 execute 方法返回值是 success
+- 配置package下的默认的action,当访问当前包下,如果找不到指定action,就会自动寻找默认的 action
+
+![enter description here][9]
+
+# Action类
+
+> Action类建立的方式一共有3种类型
+
+- 1.普通的pojo,不需要实现接口,不需要继承任何父类,这种类的好处就是书写自由,框架代码侵入性低,但是缺点就是对于很多Struts2提供的很多功能我们都需要自己去实现,实际开发中并不常用
+- 2.实现Action接口,抽象方法 execute() 需要去实现,并且内置了一些字符串供我们使用,实际开发中并不常用,主要是起到一个规范的作用
+- 3.继承ActionSupport父类,在ActionSupport中提供很多丰富的功能,并且实现了**Action, Validateable, ValidationAware, TextProvider,LocaleProvider** 这些接口为我们提供了更多的功能,并且ActionSupport内部也有很多丰富的功能,这些功能包括获取国际化信息,数据校验,默认处理用户请求等功能,实际开发过程中大多使用这种方法来创建Action类
+
+
+- 内部方法的特征为
+	- 修饰符 public
+	- 返回值为String
+	- 方法名随意
+	- 不能有参数
+	- 可以抛异常
+
+# 结果跳转的方式
+
+> 结果的跳转方式可以通过result的type属性进行设置,比较常用的大致为四种，级：转发到指定页面，转发到action，重定向到页面，重定向action
+
+## 转发
+
+### 转发到指定页面
+
+> 对于type属性,默认是 dispatcher ,就是转发到响应界面,可以不用进行配置
+
+### 转发到指定action
+
+对于type属性需要设置为 chain ,并在其下方配置 **<param>** 标签
+
+
+
+
 
 
   [1]: https://struts.apache.org/
@@ -204,3 +239,4 @@ class的默认值是 ActionSupport 其中有 execute 方法返回值是 success
   [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504786619717.jpg
   [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504786653176.jpg
   [8]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504786697450.jpg
+  [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504787511895.jpg
