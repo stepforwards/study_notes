@@ -375,6 +375,11 @@ public void test01(){
 
 ```
 
+## 注意事项
+
+> 多对多关系中必须设置一方放弃外键维护,否则就会出现
+
+![enter description here][12]
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504621209879.jpg
@@ -388,3 +393,4 @@ public void test01(){
   [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504795092754.jpg
   [10]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504795179592.jpg
   [11]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504795282880.jpg
+  [12]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1504795894685.jpg
