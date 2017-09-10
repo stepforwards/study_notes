@@ -4,8 +4,7 @@ tags:uri,url,Java,http
 grammar_cjkRuby: true
 ---
 
-
-> uri是统一资源标识符。url是统一资源定位符
+> uri是统一资源标识符，url是统一资源定位符。uri是资源的唯一标识，资源包括文本，图片，视频等等信息，url是uri的一个子集，是描述网络资源的，是定位资源的。其本质就是一段字符串，使用绝对路径用来表示网咯中的资源。
 
 # URI
 **URI—Universal Resource Identifier**通用资源标志符Web上可用的每种资源如HTML文档、图像、视频片段、程序等都是一个来URI来定位的URI一般由三部组成
