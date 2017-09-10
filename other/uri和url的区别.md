@@ -5,6 +5,8 @@ grammar_cjkRuby: true
 ---
 
 
+> uri是统一资源标识符。url是统一资源定位符
+
 # URI
 **URI—Universal Resource Identifier**通用资源标志符Web上可用的每种资源如HTML文档、图像、视频片段、程序等都是一个来URI来定位的URI一般由三部组成
 ①访问资源的命名机制
