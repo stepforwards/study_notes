@@ -15,6 +15,8 @@ grammar_cjkRuby: true
 - ActionProxy 通过配置信息和 ActionMapping 信息汇总后创建一个 action 对象,并将这个 action 对象交给ActionInvocation ,还会给 ActionInvocation 一个 interceptors 集合,集合中放了20个拦截器,拦截器中就是struts帮我们封装的20个功能
 - ActionInvocation 按照 ActionProxy 要求依次调用20个拦截器的前处理方法和 action 方法,通过 action方法之后,获取 result ,result通过内部转发或者重定向到jsp,然后又经过拦截器后处理方法,形成响应,返回给客户端
 
+> 通过struts架构拦截器为我们提供了丰富的功能,并支持可插拔功能,并且体现了aop思想,我们也可以自定义拦截器
+
 
 
 
