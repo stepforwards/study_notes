@@ -19,7 +19,15 @@ grammar_cjkRuby: true
 
 # Action的生命周期
 
+> servlet中当请求第一次到达的时候创建一个servlet对象，当服务器关闭的时候servlet销毁，Action每次请求都会创建一个对象
 
+## 获取表单参数
+
+### 属性驱动
+
+- 方法1，在成员变量位置声明变量，变量名称和提交参数名称一致，需要生成setter/getter
+- 方法2，在成员变量位置声明模型对象，提供模型对象的setter/getter，需要在表单中的name属性设置为模型对象名称.属性名
+- 
 
 
 
