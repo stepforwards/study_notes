@@ -131,17 +131,74 @@ map.put("user2", new User("李四", "234"));
 
 ## 模型驱动
 
-- 
+- 在值栈中的root中,在赋值之前,将接收参数的对象放入栈顶,然后再由param拦截器对对User赋值,如果我们想自己实现这个过程,可以通过 prepare 拦截器去实现此功能
 
+# 配置文件中使用OGNL表达式
 
+- 内部转发和重定向到指定页面携带参数
+	- 在路径后添加 /aa.jsp?name=${name}&amp;pwd=${pwd} ,注意 `&amp` 代表在xml文件中的 $ 的转义字符 ${name} 和${pwd} 表示使用OGNL表达式从root中寻找属性为name和pwd的值
 
+- 内部转发和重定向到指定action携带参数
+	- 添加 <param name="name">${name}</param> 和 <param name="pwd">${pwd}</param> 代表使用OGNL表达式从root中获取指定属性的值
+	- 只要param中的name属性不是struts中的属性的时候,就会被当作请求的参数进行请求
 
+# struts中的访问流程
+## 路径排除(了解)
 
+![enter description here][8]
 
+如果我们需要排除某些路径,不经过struts2来访问的时候可以配置常量, `<constant name="struts.action.excludePattern" value="/res/.*,/css/.*,/images/.*,/js/.*,/services/.*"/>` ,注意 struts.action.excludePattern 的值是用逗号（，）隔开的正则表达式。比如： /res/.* 表示以 /res/ 为开头的路径。 .* 表示零个或多个任意字符
 
+## 静态资源问题
 
+> 对于静态资源我们一般是不用设置的,因为在struts2中,有专门处理静态资源的方法,他会判断,如果是静态资源,就会将静态资源进行放行
 
+![enter description here][9]
 
+## 值栈的生命周期(重要)
+
+> 通过查看源码我们可以发现,值栈的创建在于一次请求,每次请求都会创建一个ActionContext对象,并且创建一个值栈值栈的生命周期和ActionContext和Request生命周期相同,存活于同一个请求
+
+## 包装request(重要)
+
+> 通过对原生的request对象进行包装,生成了一个 StrutsRequestWrapper 的类,在此类中重写了getAttribute 方法
+
+![enter description here][10]
+
+![enter description here][11]
+
+## 查找顺序
+
+> 注意查找当我们调用 request.getAttribute() 方法的时候,查找顺序是以下顺序所以当我们在jsp页面中输入 ${name} 它实际调用的就是经过包装的 request.getAttribute() 方法
+
+1. 查找原生request中的内容
+2. 查找值栈中的root中的内容
+3. 查找值栈中的context中的内容
+
+## 放置内容
+
+> 我们之前讲过想要往request域中放入数据的时候,需要调用ActionContext的put方法,推荐也是调用上述方法去放值所以我们之前调用的actionContext中的put方法的时候,在界面能够找到原因就是值栈中的context部分就是ActionContext,在界面中使用el表达式就能够进行获取操作
+
+# 拦截器
+> 拦截器是struts2实现功能的核心
+
+## 生命周期
+
+> 项目启动的时候创建拦截器,项目销毁的时候拦截器销毁
+
+## 创建方式
+> 拦截器的创建方式有3种
+
+1. 实现Interceptor接口,实现3个方法,init方法,destory方法,intercept方法
+2. 继承AbstractInterceptor,实现抽象方法 intercept ,其本身也是实现 Interceptor 接口
+3. 继承 MethodFilterInterceptor 实现抽象方法 doIntercept ,一般我们使用此方法进行创建
+
+## 拦截过程
+
+- 拦截器的方法中有个参数 ActionInvocation invocation ,他就代表的使我们的action对象,通过对象调用 `invocation.invoke();` 表示action方法的调用,也表示放行操作
+- 类似于spring中的环绕通知,写在它前面的代码叫做拦截器的前处理
+- 写在其后面的代码叫做其后处理程序对于返回值,一般用于不放行跳转到结果界面,如果是方向就将 `invocation.invoke();` 的返回值赋值给它
+## 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505127945210.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505128855650.jpg
@@ -150,3 +207,7 @@ map.put("user2", new User("李四", "234"));
   [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505129141225.jpg
   [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505129169059.jpg
   [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505129524255.jpg
+  [8]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505132432012.jpg
+  [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505132559881.jpg
+  [10]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505132639365.jpg
+  [11]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505132660448.jpg
