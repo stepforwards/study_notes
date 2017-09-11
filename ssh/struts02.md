@@ -198,7 +198,42 @@ map.put("user2", new User("李四", "234"));
 - 拦截器的方法中有个参数 ActionInvocation invocation ,他就代表的使我们的action对象,通过对象调用 `invocation.invoke();` 表示action方法的调用,也表示放行操作
 - 类似于spring中的环绕通知,写在它前面的代码叫做拦截器的前处理
 - 写在其后面的代码叫做其后处理程序对于返回值,一般用于不放行跳转到结果界面,如果是方向就将 `invocation.invoke();` 的返回值赋值给它
-## 
+## 配置拦截器
+
+> 当我们将拦截器配置在package中的时候,默认是会对package中所有的action都拦截,也可以单独配置到某个action中(比较少用)
+
+![enter description here][12]
+
+- 注册拦截器
+- 注册拦截器栈
+- 指定默认拦截器栈
+
+## 配置拦截器的排除
+> 默认情况下是会拦截package中所有的action
+
+- 在对应的拦截器栈中的自定义的拦截器上添加 `<param name="excludeMethods">add,delete</param>` 标签,指定排除规则
+
+![enter description here][13]
+
+- 也可以指定某些方法拦截 `<param name="includeMethods">add,delete</param>`
+
+# 配置全局异常界面
+
+``` xml
+<global-exception-mappings>
+	<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+</global-exception-mappings>
+```
+
+# 配置全局result
+
+``` xml
+<global-results>
+	<result name="error">/error.jsp</result>
+</global-results>
+```
+
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505127945210.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505128855650.jpg
@@ -211,3 +246,5 @@ map.put("user2", new User("李四", "234"));
   [9]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505132559881.jpg
   [10]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505132639365.jpg
   [11]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505132660448.jpg
+  [12]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505132883647.jpg
+  [13]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505132958683.jpg
