@@ -116,7 +116,22 @@ map.put("user2", new User("李四", "234"));
 
 # 通过debug标签查看值栈
 
-- 在转发后的jsp页面导入标签库struts2的标签库
+- 在转发后的jsp页面导入标签库struts2的标签库`<%@ tablib prefix="s" uri="struts-tags">
+- 在界面上书写<s:debug></s:debug>`标签，会生成debug标签
+- 栈中默认放置的就是当前访问的action对象
+
+#表单参数接收原理
+
+＞将表单中的数据交给我们的是由一个名叫param的拦截器去具体实现的
+
+## 属性驱动
+
+- 当将数据提交到表单的时候,struts2实际上使用的是OGNL表达式,向值栈中添加数据,提交表单的时候数据格式为 name=123 通过使用OGNL表达式进行操作,此时的表达式为 name=123 ,而值栈中的root元素刚好是对应的action,所以就对action的属性name赋值成功
+- 当使用属性驱动的第二种形式的时候,数据格式为 u.name=123 anction中的成员变量名称是u,所以OGNL相当于给root中的属性进行赋值
+
+## 模型驱动
+
+- 
 
 
 
