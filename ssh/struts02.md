@@ -17,6 +17,8 @@ grammar_cjkRuby: true
 
 > 通过struts架构拦截器为我们提供了丰富的功能,并支持可插拔功能,并且体现了aop思想,我们也可以自定义拦截器
 
+# Action的生命周期
+
 
 
 
