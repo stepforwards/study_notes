@@ -59,6 +59,54 @@ grammar_cjkRuby: true
 - Action页面
 ![enter description here][6]
 
+# OGNL表达式语法
+> 对象视图导航语言(Object-Graph Navigation Language)是一种表达式语言，struts2整合了OGNL语言其提供了强大功能，OGNL和EL表达式相似，EL是从11个域中获取数据，OGNL表达式是从OGNLContext中读取值
+
+# OGNL Context
+
+> OGNLContext由两个部分构成，ROOT和CONTEXT，OGNL表达式就是从这两个部分获取值
+
+![enter description here][7]
+
+ROOT部分可以放置的是Map类型的键值对，且必须只能放键值对
+
+# API
+
+- 准备Root中的数据`User rootUser = new User("kkkk","pppp");`
+- 准备Context中的数据
+
+``` java
+Map<String, User> map = new HashMap<> ();
+map.put("user1", new User("张三", "123"));
+map.put("user2", new User("李四", "234"));
+```
+- 创建OGNLContext `OgnlContext oc = new OgnlContext();`
+- 向oc的root中放值 `oc.setValues(map);`
+
+- 获取root中的对象: Object root = oc.getRoot();
+- 获取context中的对象: Map context = oc.getValues();
+- 获取root中对象的name属性 String name = (String)Ognl.getValue("name", oc, oc.getRoot());
+- 获取context中user1的pwd属性属性 String pwd = (String)Ognl.getValue("#user1.pwd", oc, oc.getRoot());
+- 设置root中对象的name属性 Ognl.getValue("name='hello'", oc, oc.getRoot());
+- 设置context中user1的pwd属性并且获取 String pwd = (String)Ognl.getValue("#user1.pwd='pp',#user1.pwd",oc, oc.getRoot());
+- 调用root对象的get方法 String name =(String)Ognl.getValue("getName()", oc,oc.getRoot());
+- 调用context中user1的setName方法,并获取 String pp =(String)Ognl.getValue("#user1.setName('ioio'),#user1.getName()",oc, oc.getRoot());
+- 调用其他类的静态方法 Double t = (Double)Ognl.getValue("@java.lang.Math@random()", oc,oc.getRoot());
+- 获取类的静态成员变量 Double t1 = (Double)Ognl.getValue("@java.lang.Math@PI", oc,oc.getRoot());
+- 创建list对象,并获取长度 Integer size =(Integer)Ognl.getValue("{'tom','李雷','韩梅梅'}.size()", oc, oc.getRoot());
+- 取出数组中指定索引的内容 String content =(String)Ognl.getValue("{'tom','李雷','韩梅梅'}[0]",oc, oc.getRoot()); 或者写 String content(String)Ognl.getValue("{'tom','李雷','韩梅梅'}.get(0)", oc, oc.getRoot());
+- 创建map,并获取长度 Integer mapSize =(Integer)Ognl.getValue("#{'name':'李雷','age':18}.size()", oc, oc.getRoot());
+- 获取map中指定key的值 String mapContent =(String)Ognl.getValue("#{'name':'李雷','age':18}['name']", oc, oc.getRoot()); 或者 String mapContent= (String)Ognl.getValue("#{'name':'李雷','age':18}.get('name')", oc, oc.getRoot());
+
+# 值栈
+
+
+
+
+
+
+
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505127945210.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505128855650.jpg
@@ -66,3 +114,4 @@ grammar_cjkRuby: true
   [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505129064232.jpg
   [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505129141225.jpg
   [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505129169059.jpg
+  [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505129524255.jpg
