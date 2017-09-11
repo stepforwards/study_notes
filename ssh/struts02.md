@@ -99,6 +99,24 @@ map.put("user2", new User("李四", "234"));
 - 获取map中指定key的值 String mapContent =(String)Ognl.getValue("#{'name':'李雷','age':18}['name']", oc, oc.getRoot()); 或者 String mapContent= (String)Ognl.getValue("#{'name':'李雷','age':18}.get('name')", oc, oc.getRoot());
 
 # 值栈
+> Struts2为我们提供了OGNLContext，并且在root部分和contxt部分放置了很多数据，我们需要使用OGNL表达式获取对应的OGNLContext中的数据，struts2把这个OGNL队形起名为ValueStack，也就数我们所说的struts中的值栈本质就是一个OGNLContext对象
+
+- 值栈 中的root部分就是一个集合，是栈的结构，其本质就是一个ArrayLiat
+- 值栈中的context部分就是我们介绍的ActionContext(其本质就是一个Map)
+- 获取值栈对象，可以通过`ValueStack valueStack = ActionContext.getContext().getValueStack();`
+
+# 栈结构
+
+- 栈是一种存储的结构
+- 栈的特点是**先进后出，后进先出**
+- 对于栈的操作一般都是有两个方法**push方法** 和 **pop方法**
+- 我们可以通过一个ArrayList来实现栈的结构，当调用push方法的时候，将索引为0的位置放入数据，调用pop方法的时候将索引为0的内容删除并返回就实现了压栈和弹栈的过程
+- 通过查看源代码可以实现值栈中的root部分就是按照上述内容进行实现的
+- 对于ValueStack，因为root部分是一个栈的结果，当我们通过OGNL表达式调用某个属性的时候，他会从栈顶依次向栈底查找对应的数据，如果发现了就停止
+
+# 
+
+
 
 
 
