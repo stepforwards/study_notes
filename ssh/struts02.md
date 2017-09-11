@@ -33,6 +33,36 @@ grammar_cjkRuby: true
 
 > 前台页面不用再使用**模型对象名称.属性名**，action中定义成员变量为model类型，不用再写setter/getter
 
+![enter description here][2]
+
+- action实现ModelDriven<User>接口，并实现抽象方法，抽象方法的返回值是User
+- 在成员变量位置创建一个User对象
+- 将User对象作为抽象方法的返回值
+
+# 复杂类型
+## List类型
+
+- list前台页面
+
+![enter description here][3]
+
+- Action页面
+
+![enter description here][4]
+
+
+## Map类型
+
+- 前台页面
+![enter description here][5]
+
+- Action页面
+![enter description here][6]
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505127945210.jpg
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505128855650.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505129038262.jpg
+  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505129064232.jpg
+  [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505129141225.jpg
+  [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505129169059.jpg
