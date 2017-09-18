@@ -67,17 +67,23 @@ private void ensureExplicitCapacity(int minCapacity) {
 再调用grow方法,进行数据的copy
 
 ``` java
+
+private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;// 数组的最大容量
 private void grow(int minCapacity) {
 	// overflow-conscious code
 	int oldCapacity = elementData.length;
 	int newCapacity = oldCapacity + (oldCapacity >> 1);
 	if (newCapacity - minCapacity < 0)
 		newCapacity = minCapacity;
-	if (newCapacity - MAX_ARRAY_SIZE > 0)
+	if (newCapacity - MAX_ARRAY_SIZE > 0)// MAX_ARRAY_SIZE
 		newCapacity = hugeCapacity(minCapacity);
 	// minCapacity is usually close to size, so this is a win:
 	elementData = Arrays.copyOf(elementData, newCapacity);
 }
 ```
-指定数据的索引值，size+1
+指定数据的索引值，size+1，到这数据的添加就完成了，整个过程很繁琐，进行了数组的copy，及其耗费性能。
+
+
+
+
 
