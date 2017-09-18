@@ -87,9 +87,25 @@ private void grow(int minCapacity) {
 
 
 # LinkedList集合的数据结构是双向链表，方便添加、删除操作
-
+LinkedList的添加操作比较简单，调用下列方法即可，具体实现流程如下图
 ``` java
-enter code here
+// LinkedList
+public boolean add(E e) {
+        linkLast(e);
+        return true;
+    }
+	
+void linkLast(E e) {
+        final Node<E> l = last;
+        final Node<E> newNode = new Node<>(l, e, null);
+        last = newNode;
+        if (l == null)
+            first = newNode;
+        else
+            l.next = newNode;
+        size++;
+        modCount++;
+    }
 ```
 
 
