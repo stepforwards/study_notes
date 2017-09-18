@@ -17,5 +17,15 @@ Collection<String> col = new ArrayList<>();
 col.add("123");
 ```
 
-首先创建ArrayList对象
+首先创建ArrayList对象,ArratList的构造方法方法如下
 
+``` java
+ public ArrayList() {
+        this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+ }
+ 
+ private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
+```
+实际上就是创建一个空的数组
+
+拿着新建的ArrayList对象，调用添加方法`list.add("aaaa");`
