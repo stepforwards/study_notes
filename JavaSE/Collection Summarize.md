@@ -147,7 +147,7 @@ public boolean add(E e) {
 1. 重写hashcode方法
 2. 重写equals方法
 
-注意 ： 
+注意 ： 重写hashcode和equals方法，eclipse使用快捷键 `Alt+shift+s，h`
 
 ## 哈希表
 
