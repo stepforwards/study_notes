@@ -125,12 +125,21 @@ set接口的方法和Collection中的方法完全相同
 2.不重复
 3.底层是HashMap
 
-HashSet的底层实现是HashMap
+> HashSet的底层实现是HashMap
 
 ``` java
 public HashSet() {
 		// 创建HashSet实际上是创建了HashMap
         map = new HashMap<>();
+}
+```
+> HashSet添加数据，
+
+``` java
+// PRESENT是一个Object对象
+private static final Object PRESENT = new Object();
+public boolean add(E e) {
+        return map.put(e, PRESENT)==null;
 }
 ```
 
