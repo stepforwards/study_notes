@@ -39,3 +39,16 @@ public boolean add(E e) {
         return true;
     }
 ```
+
+
+调用
+
+``` java
+private void ensureCapacityInternal(int minCapacity) {
+	if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
+		minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
+	}
+
+	ensureExplicitCapacity(minCapacity);
+}
+```
