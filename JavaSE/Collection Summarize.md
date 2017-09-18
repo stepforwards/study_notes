@@ -69,13 +69,14 @@ private void ensureExplicitCapacity(int minCapacity) {
 ``` java
 
 private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;// 数组的最大容量
+// MAX_VALUE int的最大范围
 private void grow(int minCapacity) {
 	// overflow-conscious code
 	int oldCapacity = elementData.length;
 	int newCapacity = oldCapacity + (oldCapacity >> 1);
 	if (newCapacity - minCapacity < 0)
 		newCapacity = minCapacity;
-	if (newCapacity - MAX_ARRAY_SIZE > 0)// MAX_ARRAY_SIZE
+	if (newCapacity - MAX_ARRAY_SIZE > 0)
 		newCapacity = hugeCapacity(minCapacity);
 	// minCapacity is usually close to size, so this is a win:
 	elementData = Arrays.copyOf(elementData, newCapacity);
