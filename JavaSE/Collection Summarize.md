@@ -59,7 +59,7 @@ protected transient int modCount = 0;
 
 private void ensureExplicitCapacity(int minCapacity) {
         modCount++;
-        // 判断是佛扩容
+        // 判断是否溢出
         if (minCapacity - elementData.length > 0)
             grow(minCapacity);
     }
