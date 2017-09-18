@@ -12,3 +12,7 @@ grammar_cjkRuby: true
 
 > 下面我们看一下ArrayList的添加功能的内部实现
 
+``` java
+Collection<String> col = new ArrayList<>();
+col.add("123");
+```
