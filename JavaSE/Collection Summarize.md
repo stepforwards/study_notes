@@ -171,6 +171,7 @@ public boolean add(E e) {
 2.如果集合中有对应的hash值,就会让后来的对象调用 equals 方法和之前的对象进行比较,如果返回值为true就代表已经存在,不再存储,如果返回值是false,就会将这个对象放入上一个对象的索引位置的下面进行一个链表形式的存储
 
 
+
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505737374188.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505737320906.jpg
   [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505738235303.jpg
