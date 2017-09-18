@@ -183,7 +183,7 @@ public boolean add(E e) {
 
 > 如果TreeSet放自定义对象,需要实现Comparable实现compareTo方法,方法的返回值为正数代表顺序,为负数代表逆序
 
-注意：
+注意：新对象调用compareTo方法进行比较
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505737374188.jpg
