@@ -84,7 +84,7 @@ private void grow(int minCapacity) {
 ```
 指定数据的索引值，size+1，将指定的元素添加到列表的尾部。到这数据的添加就完成了，整个过程很繁琐，进行了数组的copy，及其耗费性能。
 
-
+![enter description here][1]
 
 # LinkedList集合的数据结构是双向链表，方便添加、删除操作
 LinkedList的添加操作比较简单，调用下列方法即可，具体实现流程如下图
@@ -107,6 +107,9 @@ void linkLast(E e) {
         modCount++;
     }
 ```
+![enter description here][2]
 
 
 
+  [1]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1505737374188]]]"
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505737320906.jpg
