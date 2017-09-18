@@ -143,6 +143,9 @@ public boolean add(E e) {
 }
 ```
 
+## HashSet存储自定义对象
+1. 重写hashcode方法
+2. 重写equals方法
 
 ## 哈希表
 
