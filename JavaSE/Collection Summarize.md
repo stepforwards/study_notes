@@ -1,6 +1,6 @@
 ---
 title: Collection Summarize
-tags: Collection,ArrayList,LinkList
+tags: Collection,ArrayList,LinkList,Set
 grammar_cjkRuby: true
 ---
 
@@ -196,4 +196,4 @@ public boolean add(E e) {
   [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505740028395.jpg
   [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505740402518.jpg
   [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505740597935.jpg
-  [7]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1505740614104]]]"
+  [7]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505740614104.jpg
