@@ -170,9 +170,24 @@ public boolean add(E e) {
 1.先调用对象的hash值,如果集合中没有对应的hash值,就将此对象存入数组中对应的索引位置
 2.如果集合中有对应的hash值,就会让后来的对象调用 equals 方法和之前的对象进行比较,如果返回值为true就代表已经存在,不再存储,如果返回值是false,就会将这个对象放入上一个对象的索引位置的下面进行一个链表形式的存储
 
+## LinkedHashSet
+
+> 其存储结构和HashSet相同,和HashSet不同的是其是有序的
+
+## TreeSet
+
+> 是一种红黑树(特殊的二叉树)的结构,其内部是一个排好顺序的结构
+二叉树的先序排序,中序排序,后序排序
+
+![enter description here][5]
+
+> 如果TreeSet放自定义对象,需要实现Comparable实现compareTo方法,方法的返回值为正数代表顺序,为负数代表逆序
+
+注意：
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505737374188.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505737320906.jpg
   [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505738235303.jpg
   [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505740028395.jpg
+  [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505740402518.jpg
