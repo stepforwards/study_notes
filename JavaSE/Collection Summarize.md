@@ -28,4 +28,14 @@ col.add("123");
 ```
 实际上就是创建一个空的数组
 
-拿着新建的ArrayList对象，调用添加方法`list.add("aaaa");`
+拿着新建的ArrayList对象，调用添加方法`list.add("aaaa");`添加方法接收一个泛型，返回一个boolean的值，首先调用ensureCapacityInternal方法
+
+``` java
+
+private int size;// 默认是0
+public boolean add(E e) {
+        ensureCapacityInternal(size + 1);  // Increments modCount!!
+        elementData[size++] = e;
+        return true;
+    }
+```
