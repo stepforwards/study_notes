@@ -16,3 +16,6 @@ grammar_cjkRuby: true
 Collection<String> col = new ArrayList<>();
 col.add("123");
 ```
+
+首先创建ArrayList对象
+
