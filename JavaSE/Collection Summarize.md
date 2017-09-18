@@ -185,9 +185,15 @@ public boolean add(E e) {
 
 注意：新对象调用compareTo方法进行比较
 
+![enter description here][6]
+
+![enter description here][7]
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505737374188.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505737320906.jpg
   [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505738235303.jpg
   [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505740028395.jpg
   [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505740402518.jpg
+  [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505740597935.jpg
+  [7]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1505740614104]]]"
