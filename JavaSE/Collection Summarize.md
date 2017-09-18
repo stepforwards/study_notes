@@ -79,5 +79,5 @@ private void grow(int minCapacity) {
 	elementData = Arrays.copyOf(elementData, newCapacity);
 }
 ```
-
+指定数据的索引值，size+1
 
