@@ -41,14 +41,28 @@ public boolean add(E e) {
 ```
 
 
-调用
+调用ensureCapacityInternal
 
 ``` java
-private void ensureCapacityInternal(int minCapacity) {
+private void ensureCapacityInternal(int minCapacity) { // minCapacit为1
 	if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
-		minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
+		minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity); // DEFAULT_CAPACITY变量，默认为10
 	}
-
-	ensureExplicitCapacity(minCapacity);
+	ensureExplicitCapacity(minCapacity); // 调用ensureExplicitCapacity方法
 }
 ```
+
+调用ensureExplicitCapacity方法
+
+``` java
+protected transient int modCount = 0;
+
+private void ensureExplicitCapacity(int minCapacity) {
+        modCount++;
+        // overflow-conscious code
+        if (minCapacity - elementData.length > 0)
+            grow(minCapacity);
+    }
+```
+
+
