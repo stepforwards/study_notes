@@ -64,7 +64,7 @@ private void ensureExplicitCapacity(int minCapacity) {
             grow(minCapacity);
     }
 ```
-再调用grow方法
+再调用grow方法,进行数据的copy
 
 ``` java
 private void grow(int minCapacity) {
