@@ -129,6 +129,7 @@ HashSet的底层实现是HashMap
 
 ``` java
 public HashSet() {
+		// 创建HashSet实际上是创建了HashMap
         map = new HashMap<>();
 }
 ```
