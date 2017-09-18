@@ -88,6 +88,9 @@ private void grow(int minCapacity) {
 
 # LinkedList集合的数据结构是双向链表，方便添加、删除操作
 
+``` java
+enter code here
+```
 
 
 
