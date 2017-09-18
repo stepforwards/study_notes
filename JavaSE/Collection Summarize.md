@@ -149,6 +149,8 @@ public boolean add(E e) {
 
 注意 ： 重写hashcode和equals方法，eclipse使用快捷键 `Alt+shift+s，h`
 
+![hash实现结构][4]
+
 ## 哈希表
 
 > 哈希表底层使用的也是数组机制，数组中也存放对象，而这些对象往数组中存放时的位置比较特殊，当需要把这些对象给数组中存放时，那么会根据这些对象的特有数据结合相应的算法，计算出这个对象在数组中的位置，然后把这个对象存放在数组中。而这样的数组就称为哈希数组，即就是哈希表。
@@ -169,7 +171,7 @@ public boolean add(E e) {
 2.如果集合中有对应的hash值,就会让后来的对象调用 equals 方法和之前的对象进行比较,如果返回值为true就代表已经存在,不再存储,如果返回值是false,就会将这个对象放入上一个对象的索引位置的下面进行一个链表形式的存储
 
 
-
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505737374188.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505737320906.jpg
   [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505738235303.jpg
+  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505740028395.jpg
