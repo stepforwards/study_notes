@@ -133,7 +133,7 @@ public HashSet() {
         map = new HashMap<>();
 }
 ```
-> HashSet添加数据，
+> HashSet添加数据，HashSet利用Map键的唯一性，确保在Hashset中添加的元素唯一不重复，值是一个Object对象
 
 ``` java
 // PRESENT是一个Object对象
