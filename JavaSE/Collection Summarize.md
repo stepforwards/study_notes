@@ -4,3 +4,5 @@ tags: Collection,ArrayList,LinkList
 grammar_cjkRuby: true
 ---
 
+# ArrayList原理
+
