@@ -41,7 +41,7 @@ public boolean add(E e) {
 ```
 
 
-调用ensureCapacityInternal
+1. 调用ensureCapacityInternal
 
 ``` java
 private void ensureCapacityInternal(int minCapacity) { // minCapacit为1
@@ -52,7 +52,7 @@ private void ensureCapacityInternal(int minCapacity) { // minCapacit为1
 }
 ```
 
-调用ensureExplicitCapacity方法
+2. 调用ensureExplicitCapacity方法
 
 ``` java
 protected transient int modCount = 0;
@@ -64,7 +64,7 @@ private void ensureExplicitCapacity(int minCapacity) {
             grow(minCapacity);
     }
 ```
-再调用grow方法,进行数据的copy
+3. 再调用grow方法,进行数据的copy
 
 ``` java
 
@@ -82,7 +82,8 @@ private void grow(int minCapacity) {
 	elementData = Arrays.copyOf(elementData, newCapacity);
 }
 ```
-指定数据的索引值，size+1，到这数据的添加就完成了，整个过程很繁琐，进行了数组的copy，及其耗费性能。
+指定数据的索引值，size+1，将指定的元素添加到列表的尾部。到这数据的添加就完成了，整个过程很繁琐，进行了数组的copy，及其耗费性能。
+
 
 
 
