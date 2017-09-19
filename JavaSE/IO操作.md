@@ -96,6 +96,29 @@ boolean exists = file.isFile();
 ```
 
 	
+``` java
+@Test
+public void test02(){
+	File file = new File("D:\\Develop\\eclipse");
+	// listFiles 打印的是绝对路径
+	File[] list = file.listFiles();
+	for (File string : list) {
+		System.out.println(string);
+	}
+	System.out.println("-------------");
+	// list打印的是相对路径
+	String[] list2 = file.list();
+	for (String string : list2) {
+		System.out.println(string);
+	}
+	// 打印的是盘符
+	File[] roots = File.listRoots();
+	for (File file2 : roots) {
+		System.out.println(file2);
+	}
+}
+```
+
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505818844720.jpg
