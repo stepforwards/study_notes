@@ -119,6 +119,25 @@ public void test02(){
 }
 ```
 
+# 文件过滤器
+
+``` java
+@Test
+public void test03(){
+	File file = new File("D:\\Develop\\eclipse");
+	// 文件过滤实现FileFilter接口即可
+	File[] listFiles = file.listFiles(new FileFilter() {
+		@Override
+		public boolean accept(File pathname) {
+			// 返回后缀名是.exe的文件
+			return pathname.getName().toLowerCase().endsWith(".exe");
+		}
+	});
+	for (File file2 : listFiles) {
+		System.out.println(file2);
+	}
+}
+```
 
 
 
