@@ -156,14 +156,13 @@ public void test03(){
 - `writer(byte[] b,int off,int len)`斜土字节数组,off表示从数组中那个索引开始写，len表示写多少个长度
 - `close()` 关闭对象释放相关资源，有时如果不写close就会造成文件一致被占用无法删除
 
-
 ## FileOutputStream
 
 > FileOutputStream类，即文件输出流，是用于将数据写入File的输出流
 
 ### 写入流程
 
-- 创建FileOutputStream指定输出笛子
+- 创建FileOutputStream指定输出地址`FileOutputStream fos = new FileOutStream("d:/a,txt");`
 - 如果路径中含有中间目录是无法写入成功的
 - `fos.close(100);`将100转换成二进制写入文件，会参照对应ASCII码表
 - 关闭输出liu`fos.close();`
