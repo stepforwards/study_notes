@@ -62,13 +62,13 @@ System.out.println(b);
 
 # file的获取功能
 
->file.getName() 通过路径的 split("/") 数组的最后一个元素
-file.getPath() 得到创建file的路径,创建file时的路径是什么得到的就是什么
-file.getAbsolutePath() 获取绝对路径,如果是file中的路径是相对路径,得到的是相对于当前项目的绝对路径
-file.getAbsoluteFile() 返回的是文件
-file.length() 获取的是文件的字节数,long类型
-file.getParent() 得到的是父目录,返回值是String类型
-file.getParentFile() 得到的是父目录,返回值是file类型
+> file.getName() 通过路径的 split("/") 数组的最后一个元素
+> file.getPath() 得到创建file的路径,创建file时的路径是什么得到的就是什么
+> file.getAbsolutePath() 获取绝对路径,如果是file中的路径是相对路径,得到的是相对于当前项目的绝对路径
+> file.getAbsoluteFile() 返回的是文件
+> file.length() 获取的是文件的字节数,long类型
+> file.getParent() 得到的是父目录,返回值是String类型
+> file.getParentFile() 得到的是父目录,返回值是file类型
 
 	
 
