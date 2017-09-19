@@ -196,7 +196,8 @@ public void test03(){
 
 - 读取单个字节
 
-> read的返回值代表读取的内容 文件末尾的值为 -1
+> read的返回值代表读取的内容 
+> 文件末尾的值为 -1
 
 ``` java
 File file = new File("d:\\a.txt");
@@ -211,6 +212,18 @@ is.close();
 
 > read的返回值代表读取到了多少个有效字节
 > 读取的内容放在byte中
+
+``` java
+File file = new File("d:\\a.txt");
+FileInputStream fis = new FileInputStream(file);
+byte [] b = new byte[2];
+int len = 0;
+while((len = fis.read(b)) != -1){
+String str = new String(b, 0, len);
+System.out.print(str);
+}
+```
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505818844720.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505820804886.jpg
