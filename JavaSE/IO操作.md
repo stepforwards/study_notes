@@ -162,7 +162,7 @@ public void test03(){
 
 ### 写入流程
 
-- 创建FileOutputStream指定输出地址`FileOutputStream fos = new FileOutStream("d:/a,txt");`
+- 创建FileOutputStream指定输出地址`FileOutputStream fos = new FileOutStream("d:/a,txt");`此代码可以帮助我们创建一个文件。
 - 如果路径中含有中间目录是无法写入成功的
 - `fos.close(100);`将100转换成二进制写入文件，会参照对应ASCII码表
 - 关闭输出liu`fos.close();`
