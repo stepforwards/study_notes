@@ -156,6 +156,7 @@ public void test03(){
 - `writer(byte[] b,int off,int len)`斜土字节数组,off表示从数组中那个索引开始写，len表示写多少个长度
 - `close()` 关闭对象释放相关资源，有时如果不写close就会造成文件一致被占用无法删除
 
+
 ## FileOutputStream
 
 > FileOutputStream类，即文件输出流，是用于将数据写入File的输出流
