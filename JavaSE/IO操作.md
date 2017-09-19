@@ -70,6 +70,24 @@ System.out.println(b);
 > file.getParent() 得到的是父目录,返回值是String类型
 > file.getParentFile() 得到的是父目录,返回值是file类型
 
+![enter description here][2]
+
+# File判断功能
+判断路径是否存在: 
+
+``` java
+File file = new File("d:/abc/bcd/a.txt");
+boolean exists = file.exists();
+```
+
+
+判断是不是文件夹: File file = new File("d:/abc/bcd");
+boolean exists = file.isDirectory();
+判断是否是文件: File file = new File("d:/abc/bcd/a.txt");
+boolean exists = file.isFile();
+
 	
 
+
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505818844720.jpg
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505820804886.jpg
