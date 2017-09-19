@@ -32,6 +32,34 @@ grammar_cjkRuby: true
 		File file3 = new File(new File("d:/a/"), "a.txt");
 	}
 ```
+# 创建删除目录和文件
+
+- 创建文件
+``` java
+/**
+ * 创建文件夹
+ * 1. mkdir--只能创建一级目录，多级目录报错
+ * 2. 创建多级目录，使用mkdirs
+ */
+File file4 = new File("d:/a/b");
+boolean b = file4.mkdirs();
+System.out.println(b);
+```
+- 删除
+
+``` java
+/**
+ * 删除文件或文件夹
+ * 1. 如果中间有目录，删除会失败
+ * 2. 删除不会到回收站
+ * 
+ */
+
+File file4 = new File("d:/a/b");
+boolean b = file4.delete();
+System.out.println(b);
+```
+
 
 
 
