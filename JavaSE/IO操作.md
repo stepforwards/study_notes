@@ -146,11 +146,30 @@ public void test03(){
 
 > 输出流和输入流是相对于我们的程序而言的，当我们向磁盘中写入文件的时候，对于我们的程序而言，需要将数据从程序读取到某个文件的时候，对于我们的程序而言，需要将数据从程序写出并写入文件，所以这种流叫做输出流，当我们程序需要读取某个文件的时候，就需要将磁盘中的文件读取到程序当中，这种刘叫做输入流
 
-## 
+## OutputStream 
+> outputStream叫做字节输出流，每次操作的是1个字节(8位)，因为计算机中最小的存储单位是字节，所以OutputStream可以写入任何文件，OutputStream是抽象类，是表示输出字节的所有类的超类。操作的数据都是字节，定义了输出字节流的基本公共性功能方法。
+
+![enter description here][3]
+
+- `writer(int b)` 写入一个字节
+- `writer(byte[] b)`写入字节数组
+- `writer(byte[] b,int off,int len)`斜土字节数组,off表示从数组中那个索引开始写，len表示写多少个长度
+- `close()` 关闭对象释放相关资源，有时如果不写close就会造成文件一致被占用无法删除
+
+## FileOutputStream
+
+> FileOutputStream类，即文件输出流，是用于将数据写入File的输出流
+
+### 写入流程
+
+- 创建FileOutputStream指定输出笛子
+- 如果路径中含有中间目录是无法写入成功的
+- `fos.close(100);`将100转换成二进制写入文件，会参照对应ASCII码表
+- 关闭输出liu`fos.close();`
+
 
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505818844720.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505820804886.jpg
-
-
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505822543939.jpg
