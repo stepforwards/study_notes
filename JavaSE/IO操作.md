@@ -73,7 +73,7 @@ System.out.println(b);
 ![enter description here][2]
 
 # File判断功能
-判断路径是否存在: 
+**判断路径是否存在:** 
 
 ``` java
 File file = new File("d:/abc/bcd/a.txt");
@@ -81,13 +81,24 @@ boolean exists = file.exists();
 ```
 
 
-判断是不是文件夹: File file = new File("d:/abc/bcd");
+**判断是不是文件夹:** 
+
+``` java
+File file = new File("d:/abc/bcd");
 boolean exists = file.isDirectory();
-判断是否是文件: File file = new File("d:/abc/bcd/a.txt");
+```
+
+**判断是否是文件:** 
+
+``` java
+File file = new File("d:/abc/bcd/a.txt");
 boolean exists = file.isFile();
+```
 
 	
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505818844720.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505820804886.jpg
+
+
