@@ -167,9 +167,54 @@ public void test03(){
 - `fos.close(100);`将100转换成二进制写入文件，会参照对应ASCII码表
 - 关闭输出liu`fos.close();`
 
+### 写入方式
 
+- 写入一个字节 `fos.writer(100);`
+- 写入一个字节数组 `byte[] bytes = {65,66,67};fos.writer(bytes,0,2);`
+- 如果要写入一个字符串，可以通过字符串调用`“大家好”.getBytes()` 方式将字符串转换成一个字节数组的方式
+- 如果需要多次写入并且进行换行操作的话，需要添加`\r\n`,因为在windows中默认的换行符`\r\n`
+- 如果需要每次写入内容是当前文件的尾部添加。而不是进行覆盖，就需要创建FileOutputStream的时候使用`FileOutputStream fos = new FileOutputStream("d:/a.txt",true);`
 
+## InputStream
+> InputStream叫做字节输入流,每次操作的是1个字节(8位),因为计算机中最小的存储单位是字节,所以InputStream可以读取任何文件InputStream此抽象类,是表示输入字节流的所有类的超类。操作的数据都是字节，定义了读取字节流的基本共性功能方法。
+
+![enter description here][4]
+
+- `int read()` : 读取一个字节并返回，没有字节返回-1.
+- `int read(byte[])`:读取一定量的字节数，并存储到自己数组中，返回读取到的字节数。
+- `void close()`:关闭输入流
+
+### FileInputStream
+
+> FileInputStream类，即文件输出流，是用于将数据读取到程序的输入流。
+
+### 构造方法
+
+![enter description here][5]
+
+![enter description here][6]
+
+- 读取单个字节
+
+> read的返回值代表读取的内容 文件末尾的值为 -1
+
+``` java
+File file = new File("d:\\a.txt");
+FileInputStream fis = new FileInputStream(file);
+int len = 0;
+while((len = fis.read()) != -1){
+System.out.print((char)len);
+} f
+is.close();
+```
+- 读取到字节数组
+
+> read的返回值代表读取到了多少个有效字节
+> 读取的内容放在byte中
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505818844720.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505820804886.jpg
   [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1505822543939.jpg
+  [4]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1505823793772]]]"
+  [5]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1505824033750]]]"
+  [6]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1505824072537]]]"
