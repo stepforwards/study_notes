@@ -80,7 +80,6 @@ File file = new File("d:/abc/bcd/a.txt");
 boolean exists = file.exists();
 ```
 
-
 **判断是不是文件夹:** 
 
 ``` java
@@ -138,7 +137,6 @@ public void test03(){
 	}
 }
 ```
-
 - file.listFiles() 每次获取到一个文件或者文件夹的时候,就会调用对应接口的 accept 方法,将得到的这个文件或者文件夹作为参数进行传递
 - accept() 方法如果返回值是true,就将此文件或者文件夹放入对应的数组中,所以我们可以用我们的代码进行控制返回值是 true 还是 false
 
@@ -153,11 +151,10 @@ public void test03(){
 
 - `writer(int b)` 写入一个字节
 - `writer(byte[] b)`写入字节数组
-- `writer(byte[] b,int off,int len)`斜土字节数组,off表示从数组中那个索引开始写，len表示写多少个长度
+- `writer(byte[] b,int off,int len)`写入字节数组,off表示从数组中那个索引开始写，len表示写多少个长度
 - `close()` 关闭对象释放相关资源，有时如果不写close就会造成文件一致被占用无法删除
 
 ## FileOutputStream
-
 > FileOutputStream类，即文件输出流，是用于将数据写入File的输出流
 
 ### 写入流程
