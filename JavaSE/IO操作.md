@@ -202,8 +202,8 @@ FileInputStream fis = new FileInputStream(file);
 int len = 0;
 while((len = fis.read()) != -1){
 System.out.print((char)len);
-} f
-is.close();
+} 
+fis.close();
 ```
 - 读取到字节数组
 
