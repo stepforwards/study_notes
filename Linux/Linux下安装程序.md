@@ -46,5 +46,53 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 先执行命令 `/sbin/iptables -I INPUT -p tcp --dport 8080 -j ACCEPT`
 然后保存设置 `/etc/rc.d/init.d/iptables save`
 - 对于此问题,我们同样可以进行关闭防火墙的操作
-- 进入tomcat的bin目录,进行启动 ./startup.sh
-- 关闭tomcat的命令是 ./shutdown.sh
+- 进入tomcat的bin目录,进行启动 `./startup.sh`
+- 关闭tomcat的命令是 `./shutdown.sh`
+
+# 安装Mysql
+
+![enter description here][1]
+
+- 查看系统自带mysql, `rpm -qa | grep mysql`
+- 如系统中已经存在,进行写在  `rpm -e --nodeps` 要卸载的软件
+- 上传mysql到/opt/Software/Mysql文件夹下
+- 解压`mysql  tar -xvf MySQL-5.6.22-1.el6.i686.rpm-bundle.tar`
+- 安装mysql服务端依赖的库 
+	- 输入命令 `yum -y install libaio.so.1`
+	- 输入命令 `yum update libstdc++-4.4.7-4.el6.x86_64`
+	- 输入命令 `yum -y install libstdc++.so.6`
+	- 输入命令 `yum -y install libgcc_s.so.1`
+- 安装mysql客户端依赖的库 
+	- 输入命令 `yum -y install libncurses.so.5`
+	- 输入命令 `yum -y install libtinfo.so.5`
+- 使用rpm进行安装 
+	- 安装服务器端 `rpm -ivh MySQL-server-5.6.22-1.el6.i686.rpm`
+	- 安装客户端 `rpm -ivh MySQL-client-5.6.22-1.el6.i686.rpm`
+- 启动mysql service mysql start
+- 将mysql加到系统服务中并设置开机启动 
+	- 加入到系统服务： chkconfig --add mysql
+	- 自动启动： chkconfig mysql on
+- 因为登录mysql的时候需要用户名和密码,安装完成后,mysql安装好后会生成一个临时随机密码,存储位置在 /root/.mysql_secret ,进行查看
+- 登录mysql  mysql -uroot -p 生成的密码
+- 修改mysql的密码 set password = password('root');
+- 默认情况下mysql为安全起见，不支持远程登录mysql，所以需要设置开启远程登录mysql的权限,具体步骤如下 
+	- 1.登录mysql
+	- 2.先输入命令 `grant all privileges on *.*to 'root' @'%' identified by 'root';` ,最后一个引号中的root,代表的是密码,如果密码不是root,自行更改
+	- 3.在输入命令 flush privileges;
+- 开放Linux的对外访问的端口3306 
+	- 1.先开放端口 `/sbin/iptables -I INPUT -p tcp --dport 3306 -j ACCEPT`
+	- 2.然后保存设置 `/etc/rc.d/init.d/iptables save`
+
+
+# 远程连接mysql
+
+- 打开windows中的Navicat
+- 建立连接
+
+![enter description here][2]
+
+
+
+
+  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506346147921.jpg
+  [2]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1506346612490]]]"
