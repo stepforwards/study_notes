@@ -26,3 +26,11 @@ grammar_cjkRuby: true
 - 进入该目录,解压指定的jdk文件,  tar -xvf jdk-8u141-linux-x64.tar.gz
 - 打开/etc/profile文件配置环境变量
 
+``` xml
+#set java environment
+export JAVA_HOME=/opt/Software/Java/jdk1.8.0_141
+export JRE_HOME=/opt/Software/Java/jdk1.8.0_141/jre
+export CLASSPATH=.:$JRE_HOME/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+```
+
