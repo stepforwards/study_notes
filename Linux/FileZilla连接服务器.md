@@ -18,4 +18,4 @@ grammar_cjkRuby: true
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506344953503.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506344980006.jpg
   [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506344996987.jpg
-  [4]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1506345012993]]]"
+  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506345012993.jpg
