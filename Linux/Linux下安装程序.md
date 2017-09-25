@@ -33,4 +33,6 @@ export JRE_HOME=/opt/Software/Java/jdk1.8.0_141/jre
 export CLASSPATH=.:$JRE_HOME/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 ```
-
+- 输入命令 source /etc/profile 重新加载profile文件
+- 在终端的任何地方输入 java -version ,如有相关jdk版本信息代表安装成功
+> 注意如果配置失败 尝试安装此插件 yum install glibc.i686
