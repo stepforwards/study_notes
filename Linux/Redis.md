@@ -172,7 +172,23 @@ grammar_cjkRuby: true
 
 ## sortedset类型
 
-> Sorted-Sets和Sets类型极为相似，它们都是字符串的集合，都不允许重复的成员出 现在一个Set中。它们之间的主要差别是Sorted-Sets中的每一个成员都会有一个分 数(score)与之关联，Redis正是通过分数来为集合中的成员进行从小到大的排序。然 而需要额外指出的是，尽管Sorted-Sets中的成员必须是唯一的，但是分数(score) 却是可以重复的。在Sorted-Set中添加、删除或更新一个成员都是非常快速的操作，其时间复杂度为 集合中成员数量的对数。由于Sorted-Sets中的成员在集合中的位置是有序的，因此即便是访问位于集合中部的成员也仍然是非常高效的。
+> Sorted-Sets和Sets类型极为相似，它们都是字符串的集合，都不允许重复的成员出 现在一个Set中。它们之间的主要差别是Sorted-Sets中的每一个成员都会有一个分 数(score)与之关联，Redis正是通过分数来为集合中的成员进行从小到大的排序。然 而需要额外指出的是，尽管Sorted-Sets中的成员必须是唯一的，但是分数(score) 却是可以重复的。在Sorted-Set中添加、删除或更新一个成员都是非常快速的操作，其时间复杂度为 集合中成员数量的对数。由于Sorted-Sets中的成员在集合中的位置是有序的，因此即便是访问位于集合中部的成员也仍然是非常高效的。\
+
+- `zadd key score1 member1 score2 member2 …`  将所有成员以及该成员的分数存放到sorted-set中
+- `zscore key member` 返回指定成员的分数
+- `zcard key` 获取集合中的成员数量
+- `zrem key member[member…]` 移除集合中指定的成员，可以指定多个成员。
+- zrange key start end [withscores] 获取集合中脚标为start-end的成员，[withscores]参数表明返回的成员包含其分数。
+- zrevrange key start end [withscores] 按照分数从大到小的顺序返回索引从start-end的元素,[withscores]参数表明返回的成员包含其分数。
+- 删除元素
+	- zremrangebyrank key start end 按照排名顺序删除从后向前的元素
+	- zremrangebyscore key min max 按照分数从小到达删除
+	-  zrangebyscore key min max [withscores] [limit ofset count] 返回分数在[min,max]的成员并按照分数从低到高排序。[withscores]：显示分数；[limit offset count]：offset，表明从脚标为offset的元素开始并返回 count个成,例如 zrangebyscore mysort 60 100 withscores limit 0 2
+	-  zcount key min max 获取分数在[min,max]之间的成员个数
+	-  zincrby key increment member 设置指定成员的增加的分数
+	-  zrank key member 返回成员在集合中排名,从小到大排序,索引从0开始
+
+
 
 
 
