@@ -37,6 +37,9 @@ pid-file=/var/run/mysqld/mysqld.pid
 
 然后重启mysql `/etc/init.d/mysql restart`
 
+![修改过后的编码格式][3]
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506403579431.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506403823295.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506403875043.jpg
