@@ -105,8 +105,8 @@ grammar_cjkRuby: true
 	- 如果key不存在返回的值为 **nil**
 - 删除key  **del key**
 - 先获取该key的值，然后在设置该key的值. **getset key value**
-- incr key 增加键对应的值让值+1,如果键不存在自动创建一个,默认是0,并加1
-- decr key 减少键对应的值让值-1
+- **incr key** 增加键对应的值让值+1,如果键不存在自动创建一个,默认是0,并加1
+- **decr key** 减少键对应的值让值-1
 - incrby key increment 相当于 i+=increment
 - decrby key decrement 相当于 i-=decrement
 - append key value 如果该key存在,则在原有的value后追加该值；key不存在，则重新创建一个key/value
