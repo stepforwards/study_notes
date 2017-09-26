@@ -5,7 +5,7 @@ grammar_cjkRuby: true
 ---
 
 
-> 如果/etc目录下存在my.cnf文件直接修改。没有文件，将/usr/share/mysql/下面的my-default.cnf文件复制到/etc/下面，并改名为my.cnf `cp my-default.cnf /etc/my.cnf`
+> 如果/etc目录下存在my.cnf文件直接修改为如下代码。如果没有文件，将/usr/share/mysql/下面的my-default.cnf文件复制到/etc/下面，并改名为my.cnf `cp /usr/share/mysql/my-default.cnf /etc/my.cnf`
 
 ``` xml
 [client]
