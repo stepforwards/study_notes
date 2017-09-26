@@ -93,6 +93,5 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 
 
 
-
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506346147921.jpg
-  [2]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1506346612490]]]"
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506346612490.jpg
