@@ -42,7 +42,7 @@ grammar_cjkRuby: true
 因为Redis是C语言开发的,所以需要c语言的编译环境,先编译后再安装 
 启动后默认端口号 6379
 
-- 安装redis编译的c环境, yum install gcc-c++
+- 安装redis编译的C环境, yum install gcc-c++
 - 在 /opt/Software/ 目录中创建 Redis 目录
 - 上传 redis-3.0.0.tar.gz 到 Redis 目录
 - 进入此目录解压文件 tar -xvf redis-3.0.0.tar.gz
