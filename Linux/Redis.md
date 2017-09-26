@@ -156,8 +156,23 @@ grammar_cjkRuby: true
 
 > 在Redis中，我们可以将Set类型看作为没有排序的字符集合，和List类型一样，我 们也可以在该类型的数据值上执行添加、删除或判断某一元素是否存在等操作。需要 说明的是，这些操作的时间是常量时间。Set可包含的最大元素数是4294967295.和List类型不同的是，Set集合中不允许出现重复的元素。和List类型相比，Set类 型在功能上还存在着一个非常重要的特性，即在服务器端完成多个Sets之间的聚合计 算操作，如unions、intersections和differences。由于这些操作均在服务端完成， 因此效率极高，而且也节省了大量的网络IO开销
 
-- sadd key value1、value2… 向set中添加数据，如果该key的值已有则不会 重复添加
-- smembers key 获取set中所有的成员 srem key member1、member2… 删除set
+- `sadd key value1、value2…` 向set中添加数据，如果该key的值已有则不会 重复添加
+- `smembers key` 获取set中所有的成员 
+- `srem key member1、member2…` 删除set
+- `sismember key member` 判断参数中指定的成员是否在该 set中，1表示存 在，0表示不存在或者该key本身就不存在
+- `scard key` 获取set中成员的数量
+- `srandmember key` 随机返回set中的一个成员
+- 集合相关
+	- `sdiff key1 key2` 返回key1与key2中相差的成员，而且与key的顺序有 关。即返回差集。如 sdiff key1key2 表示key1中哪些元素不在key2中
+	- `sdiffstore destination key1 key2` 将key1、key2相差的成员存储在 destination上
+	- `sinter key1 key2` 返回交集。
+	- `sinterstore destination key1 key2` 将返回的交集存储在destination上
+	- `sunion key1、key2` 返回并集。
+	- `sunionstore destination key1 key2` 将返回的并集存储在destination上
+
+## sortedset类型
+
+> Sorted-Sets和Sets类型极为相似，它们都是字符串的集合，都不允许重复的成员出 现在一个Set中。它们之间的主要差别是Sorted-Sets中的每一个成员都会有一个分 数(score)与之关联，Redis正是通过分数来为集合中的成员进行从小到大的排序。然 而需要额外指出的是，尽管Sorted-Sets中的成员必须是唯一的，但是分数(score) 却是可以重复的。在Sorted-Set中添加、删除或更新一个成员都是非常快速的操作，其时间复杂度为 集合中成员数量的对数。由于Sorted-Sets中的成员在集合中的位置是有序的，因此即便是访问位于集合中部的成员也仍然是非常高效的。
 
 
 
