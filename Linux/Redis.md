@@ -109,7 +109,7 @@ grammar_cjkRuby: true
 - **decr key** 减少键对应的值让值-1
 - **incrby key increment** 相当于 i+=increment
 - **decrby key decrement** 相当于 i-=decrement
-- append key value 如果该key存在,则在原有的value后追加该值；key不存在，则重新创建一个key/value
+- **append key value** 如果该key存在,则在原有的value后追加该值；key不存在，则重新创建一个key/value
 
 ## hash类型
 
