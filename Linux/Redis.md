@@ -42,4 +42,6 @@ grammar_cjkRuby: true
 因为Redis是c语言开发的,所以需要c语言的编译环境,先编译后再安装 
 启动后默认端口号 6379
 
+
+
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506423474007.jpg
