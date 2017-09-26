@@ -16,5 +16,30 @@ grammar_cjkRuby: true
 
 # 主流的NoSQL产品
 
+![enter description here][1]
+
+# NoSQL特点
+> NoSQL虽说种类繁多,但都具有如下特性,易扩展,高性能,高可用,灵活性数据模型
+
+# Redis
+> Redis是用c语言开发的一个开源的键值对数据库,官方提供的数据,对于50个并发,执行10万次请求,读的速度是110000次/s,写的速度的是81000次/s,它通过提供了多种键值类型满足多样化的需求,对于redis而言键的类型一般都为字符串,对应的值有5中类型
+
+- 1.字符串类型(String)
+- 2.散列类型(hash)
+- 3.列表类型(list)
+- 4.集合类型(set)
+- 5.有序集合类型(sorted set)
+
+# 使用场景
+- 缓存(数据查询,新闻,商品信息)(使用最多)
+- 任务队列(秒杀,抢购)
+- 分布式集群的 session 的分离
 
 
+# 安装
+
+> 官方推荐的是在Linux下进行安装的,同样也有windows下的安装版,只不过window下的版本不是官方版本,安装windows版本,解压双击redis­server.exe即可,推荐在linux下进行安装,以下内容就是在linux中redis 
+因为Redis是c语言开发的,所以需要c语言的编译环境,先编译后再安装 
+启动后默认端口号 6379
+
+  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506423474007.jpg
