@@ -35,7 +35,7 @@ log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid
 ```
 
-然后重启mysql `/etc/init.d/mysql restart`
+然后重启mysql `/etc/init.d/mysql restart`，出现下图，说明修改成功。
 
 ![修改过后的编码格式][3]
 
