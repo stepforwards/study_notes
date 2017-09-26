@@ -152,7 +152,12 @@ grammar_cjkRuby: true
 - llen key 返回指定的key关联的链表中的元素的数量。
 - linsert key before|after pivot value 在pivot元素前或者后插入value这个 元素。如 linsert mylist before 2 zhangsan
 
+## set类型
 
+> 在Redis中，我们可以将Set类型看作为没有排序的字符集合，和List类型一样，我 们也可以在该类型的数据值上执行添加、删除或判断某一元素是否存在等操作。需要 说明的是，这些操作的时间是常量时间。Set可包含的最大元素数是4294967295.和List类型不同的是，Set集合中不允许出现重复的元素。和List类型相比，Set类 型在功能上还存在着一个非常重要的特性，即在服务器端完成多个Sets之间的聚合计 算操作，如unions、intersections和differences。由于这些操作均在服务端完成， 因此效率极高，而且也节省了大量的网络IO开销
+
+- sadd key value1、value2… 向set中添加数据，如果该key的值已有则不会 重复添加
+- smembers key 获取set中所有的成员 srem key member1、member2… 删除set
 
 
 
