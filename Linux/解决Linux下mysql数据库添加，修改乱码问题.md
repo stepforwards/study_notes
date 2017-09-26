@@ -28,7 +28,6 @@ default-character-set=utf8
 [mysqld_safe]
 log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid
-
 ```
 
 
