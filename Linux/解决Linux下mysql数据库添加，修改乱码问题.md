@@ -29,7 +29,7 @@ default-character-set=utf8
 log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid
 
-
 ```
 
 
+然后重启mysql `/etc/init.d/mysql restart`
