@@ -82,6 +82,19 @@ grammar_cjkRuby: true
 	- 3.列表类型(list)
 	- 4.集合类型(set)
 	- 5.有序集合类型(sorted set)
+- 对于redis的key,如果写的太长降低查询效率,建议按规范起名
+
+# 命令
+- 显示所有key的命令 keys *  
+	- keys s? 以s开头,长度为2
+- 清空所有数据 flushall
+- del key1 key2 删除key
+- exists key  1代表存在,0代表不存在
+- rename key newName 给当前key重命名
+- expire key 时间 设置key的过期时间,单位为秒
+- ttl key 获取key,所剩余的超时时间,如果没有设置超时返回-1,如果返回-2表示超时不存在
+- type key 获取key的指定类型,返回为string list set hash 和zset
+
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506423474007.jpg
