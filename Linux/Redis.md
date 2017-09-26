@@ -55,7 +55,7 @@ grammar_cjkRuby: true
 
 - 此时进入bin目录可以启动redis  ./redis-server ,但是此时的命令行不能退出,如果退出了就意味着关闭了数据库 
 	- 对于上述情况如果想操作redis的话,需要再建立一个连接,进入到 redis 中的 bin 目录 `cd /opt/Software/Redis/bin/`
-	- 启动客户端 ./redis-cli -h ip地址 -p 端口号 ,如果连接本机可以写为 ./redis-cli
+	- 启动客户端 `./redis-cli -h ip地址 -p 端口号` ,如果连接本机可以写为 `./redis-cli`
 	- 输入命令  set name aaa 放入键值对, key 为 name , 值为 aaa
 	- 输入命令  get name ,就能得到 aaa
 	- 按键 ctrl+c 退出当前客户端,或者 exit
