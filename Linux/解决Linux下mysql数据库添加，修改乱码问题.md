@@ -3,8 +3,8 @@ title: 解决Linux下mysql数据库添加，修改乱码问题
 tags: mysql,linux
 grammar_cjkRuby: true
 ---
-
-
+![乱码问题][1]
+## 解决方案
 > 如果/etc目录下存在my.cnf文件直接修改为如下代码。如果没有文件，将/usr/share/mysql/下面的my-default.cnf文件复制到/etc/下面，并改名为my.cnf `cp /usr/share/mysql/my-default.cnf /etc/my.cnf`
 
 ``` xml
@@ -31,3 +31,6 @@ pid-file=/var/run/mysqld/mysqld.pid
 ```
 
 然后重启mysql `/etc/init.d/mysql restart`
+
+
+  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506403579431.jpg
