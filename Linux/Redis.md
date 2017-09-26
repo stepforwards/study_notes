@@ -99,9 +99,9 @@ grammar_cjkRuby: true
 
 > 字符串类型是Redis中最为基础的数据存储类型，它在Redis中是二进制安全的，这 便意味着该类型可以接受任何格式的数据，如JPEG图像数据或Json对象描述信息等。 在Redis中字符串类型的Value最多可以容纳的数据长度是512M
 
-- 设置键值对  set key value
-- 设置多个键值对 mset key1 value1 age 125
-- 通过指定键获取值 get key  
+- 设置键值对  **set key value**
+- 设置多个键值对 **mset key1 value1 age 125**
+- 通过指定键获取值 **get key**  
 	- 如果key不存在返回的值为 nil
 - 删除key  del key
 - 先获取该key的值，然后在设置该key的值. getset key value
