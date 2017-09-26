@@ -95,6 +95,66 @@ grammar_cjkRuby: true
 - ttl key 获取key,所剩余的超时时间,如果没有设置超时返回-1,如果返回-2表示超时不存在
 - type key 获取key的指定类型,返回为string list set hash 和zset
 
+## String类型
+
+> 字符串类型是Redis中最为基础的数据存储类型，它在Redis中是二进制安全的，这 便意味着该类型可以接受任何格式的数据，如JPEG图像数据或Json对象描述信息等。 在Redis中字符串类型的Value最多可以容纳的数据长度是512M
+
+- 设置键值对  set key value
+- 设置多个键值对 mset key1 value1 age 125
+- 通过指定键获取值 get key  
+	- 如果key不存在返回的值为 nil
+- 删除key  del key
+- 先获取该key的值，然后在设置该key的值. getset key value
+- incr key 增加键对应的值让值+1,如果键不存在自动创建一个,默认是0,并加1
+- decr key 减少键对应的值让值-1
+- incrby key increment 相当于 i+=increment
+- decrby key decrement 相当于 i-=decrement
+- append key value 如果该key存在,则在原有的value后追加该值；key不存在，则重新创建一个key/value
+
+## hash类型
+
+> Redis中的Hashes类型可以看成具有String Key和String Value的map容器。所 以该类型非常适合于存储值对象的信息。如Username、Password和Age等。如果 Hash中包含很少的字段，那么该类型的数据也将仅占用很少的磁盘空间。每一个Hash可以存储4294967295个键值对。
+
+- 赋值 
+	- hset key field1 value1 为指定的key设定 field/value对（键值对）设置一个
+	- hmset key field1 value1 field2 value2 :为指定的key设定field/value对（键值对）设置多个
+- 取值
+	- hget key field :返回指定的key中的field的值
+	- hmget key field1 field2 field3 :返回指定的key中的field的值,返回多个
+	- hgetall key :获取key中的所有filed­vaule
+- 删除
+	- hdel key filed1 filed2 ,删除多个
+	- del key 删除整个key对应的内容
+
+- 增加 
+	- hincrby key field increment 设置key中filed的值 增加increment，如：age增加20
+- hexists key field 判断指定的key中的filed是否存在
+- hlen key 获取key所包含的field的数量
+- hkeys key 获得所有的key
+- hvals key 获得所有的value
+
+## list类型
+> 在Redis中，List类型是按照插入顺序排序的字符串链表。和数据结构中的普通链表 一样，我们可以在其头部(left)和尾部(right)添加新的元素。在插入时，如果该键并不 存在，Redis将为该键创建一个新的链表。与此相反，如果链表中所有的元素均被移 除，那么该键也将会被从数据库中删除。List中可以包含的最大元素数量是 4294967295.从元素插入和删除的效率视角来看，如果我们是在链表的两头插入或删除元素，这将会是非常高效的操作，即使链表中已经存储了百万条记录，该操作也可以在常量时间内完成。然而需要说明的是，如果元素插入或删除操作是作用于链表中间，那将会是 非常低效的
+
+- 两端添加
+- lpush key value1 value2... 在指定的key所关联的list的头部插入所有的 values，如果该key不存在，该命令在插入的之前创建一个与该key关联的空链 表，之后再向该链表的头部插入数据。插入成功，返回元素的个数。
+- rpush key value1、value2… 在该list的尾部添加元素
+- lpushx key value 仅当参数中指定的key存在时（如果与key管理的list中没 有值时，则该key是不存在的）在指定的key所关联的list的头部插入value。
+- rpushx key value 在该list的尾部添加元素
+
+- 查看列表
+	- lrange key start end 获取链表中从start到end的元素的值，start、end可 为负数，若为-1则表示链表尾部的元素，-2则表示倒数第二个，依次类推…
+
+- 两端弹出
+	- lpop key 返回并弹出指定的key关联的链表中的第一个元素，即头部元素。
+	- rpop key 从尾部弹出元素
+
+- llen key 返回指定的key关联的链表中的元素的数量。
+- linsert key before|after pivot value 在pivot元素前或者后插入value这个 元素。如 linsert mylist before 2 zhangsan
+
+
+
+
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506423474007.jpg
