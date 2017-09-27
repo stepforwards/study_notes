@@ -61,6 +61,50 @@ grammar_cjkRuby: true
 - 同一个document可以定义相同的Field
 - 每一个文档放入索引库的时候都会生成一个唯一的编号,叫做id,id和数据库不同的是id不是域
 
+## 分析文档
+
+> 将原始内容创建为包含域（Field）的文档（document），需要再对域中的内容进行分析，分析的过程是经过对原始文档提取单词、将字母转为小写、去除标点符号、去除停用词等过程生成最终的语汇单元，可以将语汇单元理解为一个一个的单词。
+
+- 例如我们通过这段话 The Spring Framework provides acomprehensive programming and configuration model formodern Java-based enterprise applications经过分析就成为一个语汇单元 spring,framework,comprehensive,programming.......
+- 每一个单词叫做一个Term,不同的域(如文件名,文件路径,文件内容)都含有同相同的单词(如spring)会被认为是不同的Term
+- Term中包含两个部分 
+	- 一部分是文档的域名
+	- 一部分是单词的内容
+- 每一个Term对象会被创建为索引保存到我们的索引库中
+- 当我们进行搜索的时候,本质就是创建一个Term,包含域名和单词内容
+
+![enter description here][4]
+
+## 创建索引
+![enter description here][5]
+
+- 索引库由两个部分组成索引和文档对象
+- 索引就是我们之前进行文件分析的时候的每个Term对象
+- 文档对象就是我们之前创建的document对象
+- 如果此时有多个文档对象有相同的Term对象,那么在索引库中只会有一个Term,在此Term中会有一个文档对应的编号,用来指定当前Term对应哪个文档,当进行查询的时候会将对应的多个文档一并返回
+- 如果一个Term对应多个文档,那么这多个文档的先后顺序按照文档中的出现次数作为排序,次数越多排序越靠前
+
+### 倒排索引
+
+> 正常查看文档的方式应该先找到文档,再去查找文档中的内容,而我们上述的过程是先通过查找文档中的内容生成索引,再通过索引去找到对应的文档,这种方式叫做倒排索引.倒排索引结构也叫反向索引结构，包括索引和文档两部分，索引即词汇表，它的规模较小，而文档集合较大,所以通过倒排索引的方式速度较快
+
+# 创建索引API
+
+- 导包
+	- lucene-core-4.10.3.jar
+	- lucene-analyzers-common-4.10.3.jar
+	- lucene-queryparser-4.10.3.jar
+	- commons-io-2.2.jar
+- 创建indexwriter对象
+- 指定索引库的存放位置Directory对象
+- 指定一个分析器，对文档内容进行分析
+- 创建Document对象
+
+
+
+
   [1]: http://lucene.apache.org
   [2]:https://www.github.com/xiesen310/notes_Images/raw/master/images/1506512560549.jpg
   [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506513156990.jpg
+  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506513464576.jpg
+  [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506513492461.jpg
