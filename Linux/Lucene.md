@@ -49,6 +49,18 @@ grammar_cjkRuby: true
 > 获取原始内容的目的是为了索引，在索引前需要将原始内容创建成文档Document对象,文档中包括一个一个的域Field域中存储内容.
 
 
+![enter description here][3]
+
+- 我们可以为磁盘中的每一个文件当成一个document对象,中包括一些Field如我们可以指定 
+	- file_name文件名称
+	- file_name文件名称
+	- file_size文件大小
+	- file_content文件内容
+- 每个document可以有多个Field
+- 不同的document可以有不同的field
+- 同一个document可以定义相同的Field
+- 每一个文档放入索引库的时候都会生成一个唯一的编号,叫做id,id和数据库不同的是id不是域
 
   [1]: http://lucene.apache.org
-  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506512560549.jpg
+  [2]:https://www.github.com/xiesen310/notes_Images/raw/master/images/1506512560549.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506513156990.jpg
