@@ -101,6 +101,8 @@ grammar_cjkRuby: true
 - 创建Document对象
 - 创建Filed对象
 - 创建Field对象，将对象添加到document对象中
+- 使用indexwriter对象将document对象写入索引库，此过程进行索引创建。并将索引和document对象写入索引库`iw.addDocument(document);`
+- 关闭IndexWriter对象 iw.close();
 
 
 
