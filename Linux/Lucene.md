@@ -41,6 +41,5 @@ grammar_cjkRuby: true
 - 2.创建文档对象进行分析
 - 3.创建索引放入索引库
 
-
   [1]: http://lucene.apache.org
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506512560549.jpg
