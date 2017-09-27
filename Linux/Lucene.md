@@ -34,7 +34,12 @@ grammar_cjkRuby: true
 
 ![enter description here][2]
 
+## 创建索引
 
+> 对文档索引的过程，将用户要搜索的文档内容进行索引，索引存储在索引库(index),创建关键索引的过程包括,几个部分, 
+- 1.获取原始文档
+- 2.创建文档对象进行分析
+- 3.创建索引放入索引库
 
 
   [1]: http://lucene.apache.org
