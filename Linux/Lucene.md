@@ -96,16 +96,48 @@ grammar_cjkRuby: true
 	- lucene-queryparser-4.10.3.jar
 	- commons-io-2.2.jar
 - 创建indexwriter对象
-- 指定索引库的存放位置Directory对象
-- 指定一个分析器，对文档内容进行分析
-- 创建Document对象
-- 创建Filed对象
-- 创建Field对象，将对象添加到document对象中
-- 使用indexwriter对象将document对象写入索引库，此过程进行索引创建。并将索引和document对象写入索引库
-- 关闭IndexWriter对象 iw.close();
+	- 指定索引库的存放位置Directory对象
+	- 指定一个分析器，对文档内容进行分析
+	- 创建Document对象
+	- 创建Filed对象
+	- 创建Field对象，将对象添加到document对象中
+	- 使用indexwriter对象将document对象写入索引库，此过程进行索引创建。并将索引和document对象写入索引库
+	- 关闭IndexWriter对象 iw.close();
 
 ``` java
+@Test
+public void test01() throws Exception{
+	// 创建索引库
+	FSDirectory directory = FSDirectory.open(new File("d:/index"));
+	// 创建分词器，分词器是抽象类，用这个类的子类创建对象
+	Analyzer analyzer = new StandardAnalyzer();
+	// 创建IndexWriterConfig对象，指定lucene的版本号和分词器
+	IndexWriterConfig config = new IndexWriterConfig(Version.LATEST, analyzer);
+	// 想索引库中添加索引对象
+	IndexWriter iw = new IndexWriter(directory, config);
+	// 创建File，路径指向资源目录
+	File file = new File("d:/source");
+	File[] files = file.listFiles();
+	// 获取路径下的所有File对象 ,遍历数组,每次提取 文件名 路径 内容 大小
+	for (File f : files) {
+		String fileName = f.getName();
+		String filePath = f.getAbsolutePath();
+		String fileContent = FileUtils.readFileToString(f);
+		long fileSize = FileUtils.sizeOf(f);
 
+		Document doc = new Document();
+		Field fileNameFileld = new TextField("fileName", fileName,Store.YES);
+		Field fileContentFileld = new TextField("fileContent", fileContent,Store.YES);
+		Field filePathField = new StoredField("filePath", filePath);
+		Field fileSizeField = new LongField("fileSize", fileSize, Store.YES);
+		doc.add(fileNameFileld);
+		doc.add(fileContentFileld);
+		doc.add(filePathField);
+		doc.add(fileSizeField);
+		iw.addDocument(doc);
+	}
+	iw.close();
+}
 ```
 
 
