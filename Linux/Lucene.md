@@ -41,5 +41,14 @@ grammar_cjkRuby: true
 - 2.创建文档对象进行分析
 - 3.创建索引放入索引库
 
+## 获取原始文档
+
+> 原始文档是指要索引和搜索的内容。原始内容包括互联网上的网页、数据库中的数据、磁盘上的文件等。Lucene不提供信息采集的类库，需要自己编写一个爬虫程序实现信息采集，也可以通过一些开源软件实现信息采集,常用的java的信息采集类库有Nutch,jsoup,heritrix,我们目前研究的对象,是磁盘中的文件
+
+## 创建文档对象
+> 获取原始内容的目的是为了索引，在索引前需要将原始内容创建成文档Document对象,文档中包括一个一个的域Field域中存储内容.
+
+
+
   [1]: http://lucene.apache.org
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506512560549.jpg
