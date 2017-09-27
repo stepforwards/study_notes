@@ -25,11 +25,17 @@ grammar_cjkRuby: true
 们通过索引查找到我们需要的内容 
 这种先建立索引，再对索引进行搜索的过程就叫全文检索(Full-textSearch)。
 
-## Lucene
+# Lucene
 
 > Lucene是apache下的一个开放源代码的全文检索引擎工具包。提供了完整的查询引擎和索引引擎，部分文本分析引擎。我们可以使用Lucene实现全文检索的功能
 
 - [下载地址][1]
+- 创建索引查询索引的流程
+
+![enter description here][2]
+
+
 
 
   [1]: http://lucene.apache.org
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506512560549.jpg
