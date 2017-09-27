@@ -99,6 +99,8 @@ grammar_cjkRuby: true
 - 指定索引库的存放位置Directory对象
 - 指定一个分析器，对文档内容进行分析
 - 创建Document对象
+- 创建Filed对象
+- 创建Field对象，将对象添加到document对象中
 
 
 
