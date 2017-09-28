@@ -5,41 +5,56 @@ grammar_cjkRuby: true
 ---
 
 # 单机版安装Redis
-
-> 1.  将Redis的安装包通过各种工具上传到Linux上，具体使用什么工具，这里就不说了。
-> 2.  解压Redis `tar -xvf redis-3.0.0.tar.gz `
-> 3.  因为Redis是用C语言书写的，所以需要安装C语言开发环境，对Redis进行编译，安装命令 `yum -y install gcc-c++`
-> 4. 使用make命令进行编译
-> 5.安装 `make FRIFX=安装路径 install`
+> 源码下载
+	从官网下载 
+	http://download.redis.io/releases/redis-3.0.0.tar.gz
+	将redis-3.0.0.tar.gz拷贝到/usr/local下
 
 
-![安装完成示意图][1]
+> 解压源码
+   tar -zxvf redis-3.0.0.tar.gz  
+   
+   
+> 进入解压后的目录进行编译
+	cd /usr/local/redis-3.0.0
+	make
+	
+> 安装到指定目录,如 /usr/local/redis
+	cd /usr/local/redis-3.0.0 
+	make PREFIX=/usr/local/redis install
 
-## 启动
-### 前台启动
-> 进入到bin目录下，运行redis-sercer即可`./bin/redis-server`
+> redis.conf
+redis.conf是redis的配置文件，redis.conf在redis源码目录。
+注意修改port作为redis进程的端口,port默认6379。
 
-![启动成功][2]
 
-### 后台启动
-> 将redis-3.0.0文件夹内的redis.conf文件复制到bin目录下，修改daemonize yes
+>拷贝配置文件到安装目录下	
+	进入源码目录，里面有一份配置文件 redis.conf，然后将其拷贝到安装路径下 
+	cd /usr/local/redis
+	mkdir conf
+	cp /usr/local/redis-3.0.0/redis.conf  /usr/local/redis/bin
 
-![enter description here][3]
 
-后台启动`./redis-server redis.conf`即可
+> 安装目录bin下的文件列表
 
-![enter description here][4]
+![enter description here][1]
 
-### redis客户端
-在bin目录下执行`./redis-cli`打开客户端
-在bin目录下执行 `./redis-cli shutdown` 关闭客户端
+ 
+
+
+redis3.0新增的redis-sentinel是redis集群管理工具可实现高可用。
+![enter description here][2]
+
+配置文件目录：
+ 
+
 
 # 搭建Reids集群
    
  > 单机版的Redis我们已经创建完成了，下面我们在这个基础之上创建Redis集群
 
+直接复制
 
-  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506579372821.jpg
-  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506579560706.jpg
-  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506579764600.jpg
-  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506579904818.jpg
+
+  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596693371.jpg
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596641999.jpg
