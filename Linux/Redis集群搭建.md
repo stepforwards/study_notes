@@ -36,7 +36,7 @@ grammar_cjkRuby: true
 
 # 搭建Reids集群
 
-
+ 
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506579372821.jpg
