@@ -12,7 +12,30 @@ grammar_cjkRuby: true
 > 4. 使用make命令进行编译
 > 5.安装 `make FRIFX=安装路径 install`
 
+
+![安装完成示意图][1]
+
 ## 启动
 ### 前台启动
+> 进入到bin目录下，运行redis-sercer即可`./bin/redis-server`
+
+![启动成功][2]
 
 ### 后台启动
+> 将redis-3.0.0文件夹内的redis.conf文件复制到bin目录下，修改daemonize yes
+
+![enter description here][3]
+
+后台启动`./redis-server redis.conf`即可
+
+![enter description here][4]
+
+### redis客户端
+在bin目录下执行`./redis-cli`打开客户端
+在bin目录下执行 `./redis-cli shutdown` 关闭客户端
+
+
+  [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506579372821.jpg
+  [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506579560706.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506579764600.jpg
+  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506579904818.jpg
