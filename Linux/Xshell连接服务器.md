@@ -19,6 +19,12 @@ grammar_cjkRuby: true
 
 ![enter description here][4]
 
+> 小技巧，安装lrzsz支持拖拽上传
+
+首先安装lrzsz
+命令为：yum install lrzsz
+安装完毕后直接将.tar.gz格式的文件拖如xshell的窗口内就会自动上传。
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506344513750.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506344539914.jpg
