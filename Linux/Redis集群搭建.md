@@ -117,7 +117,9 @@ Installing RDoc documentation for redis-3.0.0...
 ./redis-trib.rb create --replicas 1 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005  127.0.0.1:7006
 ```
 
-## 测试集群
+
+
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596693371.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596641999.jpg
