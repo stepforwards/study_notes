@@ -36,7 +36,7 @@ grammar_cjkRuby: true
 
 # 搭建Reids集群
    
- 
+ > 单机版的Redis我们已经创建完成了，下面我们在这个基础之上创建Redis集群
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506579372821.jpg
