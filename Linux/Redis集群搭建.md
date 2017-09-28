@@ -35,7 +35,7 @@ grammar_cjkRuby: true
 在bin目录下执行 `./redis-cli shutdown` 关闭客户端
 
 # 搭建Reids集群
-
+   
  
 
 
