@@ -39,21 +39,19 @@ redis.conf是redis的配置文件，redis.conf在redis源码目录。
 
 ![enter description here][1]
 
- 
-
 
 redis3.0新增的redis-sentinel是redis集群管理工具可实现高可用。
-![enter description here][2]
 
 配置文件目录：
- 
+
+![enter description here][2]
 
 
-# 搭建Reids集群
-   
- > 单机版的Redis我们已经创建完成了，下面我们在这个基础之上创建Redis集群
+# redis启动
 
-直接复制
+## 前台启动
+
+## 后台启动
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596693371.jpg
