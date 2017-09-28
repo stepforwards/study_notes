@@ -88,6 +88,14 @@ redis集群管理工具redis-trib.rb
 
 脚本需要的ruby包：在redis-3.0.0/src的文件夹下
 
+需要上传到linux服务。
+安装ruby的包：
+gem install redis-3.0.0.gem
+[root@bogon ~]# gem install redis-3.0.0.gem 
+Successfully installed redis-3.0.0
+1 gem installed
+Installing ri documentation for redis-3.0.0...
+Installing RDoc documentation for redis-3.0.0...
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596693371.jpg
