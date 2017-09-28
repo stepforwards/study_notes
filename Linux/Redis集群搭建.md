@@ -117,7 +117,7 @@ Installing RDoc documentation for redis-3.0.0...
 ./redis-trib.rb create --replicas 1 192.168.159.131:7001 192.168.159.131:7002 192.168.159.131:7003 192.168.159.131:7004 192.168.159.131:7005  192.168.159.131:7006
 ```
 
-**注意：创建集群不能使用127.0.0.1.否则程序操作集群时，会出现获取不到集群中的值，如果不小心使用了127.0.0.1创建了集群，可以修改每个redis中的nodes.conf**
+**注意：创建集群不能使用127.0.0.1.否则程序操作集群时，会出现获取不到集群中的值，如果不小心使用了127.0.0.1创建了集群，可以修改每个redis中的nodes.conf文件**
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596693371.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596641999.jpg
