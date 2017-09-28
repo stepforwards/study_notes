@@ -99,10 +99,20 @@ Installing RDoc documentation for redis-3.0.0...
 
 ## 集群的搭建
 
+第一步：创建6个redis实例，端口号从7001~7006
+第二步：修改redis的配置文件
+1、修改端口号
 
+![enter description here][5]
+
+2、打开cluster-enable前面的注释。
+
+![enter description here][6]
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596693371.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596641999.jpg
   [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596813212.jpg
   [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596893766.jpg
+  [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506597151900.jpg
+  [6]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1506597171883]]]"
