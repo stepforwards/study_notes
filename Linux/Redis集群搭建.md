@@ -109,10 +109,18 @@ Installing RDoc documentation for redis-3.0.0...
 
 ![enter description here][6]
 
+第三步：把创建集群的ruby脚本复制到redis-cluster目录下。
+第四步：启动6个redis实例
+第五步：创建集群。
+
+``` stylus
+./redis-trib.rb create --replicas 1 192.168.25.153:7001 192.168.25.153:7002 192.168.25.153:7003 192.168.25.153:7004 192.168.25.153:7005  192.168.25.153:7006
+```
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596693371.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596641999.jpg
   [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596813212.jpg
   [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596893766.jpg
   [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506597151900.jpg
-  [6]: http://markdown.xiaoshujiang.com/img/spinner.gif "[[[1506597171883]]]"
+  [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506597171883.jpg
