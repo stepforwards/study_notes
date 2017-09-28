@@ -68,6 +68,25 @@ cd /usr/local/redis
 ```
 ![enter description here][4]
 
+# 集群搭建
+
+## 搭建集群需要的环境
+
+搭建集群需要使用到官方提供的ruby脚本。
+需要安装ruby的环境。
+
+安装ruby
+yum install ruby
+yum install rubygems
+
+redis集群管理工具redis-trib.rb
+[root@bogon ~]# cd redis-3.0.0
+[root@bogon redis-3.0.0]# cd src
+[root@bogon src]# ll *.rb
+-rwxrwxr-x. 1 root root 48141 Apr  1 07:01 redis-trib.rb
+[root@bogon src]# 
+
+脚本需要的ruby包：在redis-3.0.0/src的文件夹下
 
 
 
