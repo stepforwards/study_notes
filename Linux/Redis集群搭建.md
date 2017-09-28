@@ -51,8 +51,27 @@ redis3.0新增的redis-sentinel是redis集群管理工具可实现高可用。
 
 ## 前台启动
 
+> 直接运行bin/redis-server将以前端模式启动，前端模式启动的缺点是ssh命令窗口关闭则redis-server程序结束，不推荐使用此方法。如下图：
+
+![enter description here][3]
+
+
 ## 后台启动
+
+> 修改redis.conf配置文件， daemonize yes 以后端模式启动。
+
+> 执行如下命令启动redis：
+
+``` jboss-cli
+cd /usr/local/redis
+./bin/redis-server ./redis.conf
+```
+![enter description here][4]
+
+
 
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596693371.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596641999.jpg
+  [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596813212.jpg
+  [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596893766.jpg
