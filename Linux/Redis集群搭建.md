@@ -97,6 +97,10 @@ Successfully installed redis-3.0.0
 Installing ri documentation for redis-3.0.0...
 Installing RDoc documentation for redis-3.0.0...
 
+## 集群的搭建
+
+
+
 
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596693371.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596641999.jpg
