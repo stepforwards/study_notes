@@ -105,7 +105,7 @@ Installing RDoc documentation for redis-3.0.0...
 
 ![enter description here][5]
 
-2、打开cluster-enable前面的注释。
+2、修改cluster-enable为如下图片
 
 ![enter description here][6]
 
@@ -118,12 +118,9 @@ Installing RDoc documentation for redis-3.0.0...
 ```
 
 
-
-
-
   [1]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596693371.jpg
   [2]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596641999.jpg
   [3]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596813212.jpg
   [4]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506596893766.jpg
   [5]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506597151900.jpg
-  [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506597171883.jpg
+  [6]: https://www.github.com/xiesen310/notes_Images/raw/master/images/1506597845668.jpg
